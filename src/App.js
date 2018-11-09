@@ -12,6 +12,7 @@ import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
+import LoginForm from './components/forms/LoginForm.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -38,46 +39,41 @@ class App extends Component {
 
         {/* Header */}
         <header className="App-header">
-          {/* <div id="headerBar">
+          <div id="headerBar">
             <img src={logo} alt="logo" />
             <input id="searchBar" type="text" placeholder="Search..." />
 
-          </div> */}
+          </div>
 
           {/* Routing Links & Routes */}
           <Router>
             <div id="navbar">
 
-              <div id="headerBar">
+              {/* <div id="headerBar">
                 <img src={logo} alt="logo" />
-                <input id="searchBar" type="text" placeholder="Search..." />
+                <input id="searchBar" type="text" placeholder="Search..." /> */}
 
 
-                <Link to="/">
-                  <button id="homeBtn" type="button">Home</button>
-                </Link>
+              <Link to="/">
+                <button id="homeBtn" type="button">Home</button>
+              </Link>
 
-                <Link to="/login">
-                  <button id="loginBtn" type="button">Log In</button>
-                </Link>
+              <Link to="/login">
+                <button id="loginBtn" type="button">Log In</button>
+              </Link>
 
-                <Link to="/signup">
-                  <button id="signupBtn" type="button">Sign Up</button>
-                </Link>
+              <Link to="/signup">
+                <button id="signupBtn" type="button">Sign Up</button>
+              </Link>
 
-                <Route path="/">
+              <Route exact path="/" component={PostsBoard} />
 
-                </Route>
+              <Route path="/login" component={LoginForm} />
 
-                <Route path="/login">
+              <Route path="/signup" />
 
-                </Route>
-
-                <Route path="/signup">
-
-                </Route>
-              </div>
             </div>
+            {/* </div> */}
           </Router>
         </header>
 

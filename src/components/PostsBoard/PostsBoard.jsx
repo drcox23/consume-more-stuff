@@ -12,9 +12,15 @@ class PostsBoard extends Component {
     console.log("\nPostsBoards - props:", this.props);
     return (
       <div class="postsBoard">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
+        <div class="posting">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
+        </div>
+        <div class="posting">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
+        </div>
+        <div class="posting">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
+        </div>
       </div>
     )
   }

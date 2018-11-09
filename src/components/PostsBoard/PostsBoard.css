@@ -1,4 +1,23 @@
 .postsBoard{
-  width: 50%;
-  margin: 10px 0 10px 100px;
+  width: 100%;
+  margin: 40px 10px 0 20px;
+  /* border: 1px solid pink; */
+}
+
+.posting{
+  border: 2px outset lightgray;
+  border-radius: 3px;
+  margin: 15px;
+  padding: 15px;
+  width: 60%;
+  cursor: pointer;
+}
+
+.posting:hover{
+  background-color: rgb(221, 219, 219);
+}
+
+p{
+  margin: 0;
+  padding: 0;
 }
