@@ -2,7 +2,7 @@ const bookshelf = require('./bookshelf')
 const Posts = require('./Posts.js');
 const Users = require('./Users.js');
 
-const Posts = bookshelf.Model.extend({
+const Comments = bookshelf.Model.extend({
   tableName: 'comments',
   post_id: function () {
     return this.belongsTo(Posts, "post_id");
@@ -14,4 +14,4 @@ const Posts = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = Posts
+module.exports = Comments
