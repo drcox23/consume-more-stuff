@@ -10,9 +10,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">CMS</header>
-        <div id="Project-header">
-          <div>Home</div>
-        </div>
 
         {/* Routing Links and Routes */}
         <Router>
@@ -21,12 +18,17 @@ class App extends Component {
               <div id="nav-bar">
                 {/* Links */}
 
+                <Link to="/">
+                  <button type="button">Home</button>
+                </Link>
+
                 <Link to="/login">
                   <button type="button">Login</button>
                 </Link>
 
-
+                <Route path="/" />
                 <Route path="/login" component={Login} />
+
               </div>
             </div>
           </div>

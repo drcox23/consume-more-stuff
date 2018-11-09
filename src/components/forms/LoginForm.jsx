@@ -4,7 +4,11 @@ import React, { Component } from 'react';
 class LoginForm extends Component {
   render() {
     return (
-     <h1>Hello World</h1>
+    <form>
+        <input type="text" placeholder="username"/>
+        <input type="text" placeholder="password"/>
+        <button>submit</button>
+    </form>
     );
   }
 }
