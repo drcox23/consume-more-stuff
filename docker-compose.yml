@@ -1,0 +1,5 @@
+version: '3'
+services:
+  consume-more-stuff:
+    build: .
+    image: maymc/consume-more-stuff:local
