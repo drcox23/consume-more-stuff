@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from './2cents.png';
+// import './App.css';
+
+const bodyStyle = {
+  backgroundColor: 'lightcoral',
+  width: '100%',
+  height: '100%',
+  margin: '0'
+}
+
+const imgStyle = {
+  margin: '30px',
+  width: '100px',
+
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div style={bodyStyle} className="App">
         <header className="App-header">
-          <p>
-            Working???????
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <img style={imgStyle} src={logo} alt="logo" />
         </header>
       </div>
     );
