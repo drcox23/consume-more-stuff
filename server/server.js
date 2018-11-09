@@ -52,12 +52,10 @@ app.get('/home', (req, res) => {
     })
 });
 
-
+// get the post by id
 app.get('/post/:id', (req, res) => {
   const id = req.params.id;
   console.log('whats the id', id);
-
-  let postdata = []
 
   Posts
     .where({id})
@@ -66,19 +64,44 @@ app.get('/post/:id', (req, res) => {
       const posts = results.toJSON()
       console.log('can i see the posts!!!', posts);
       // const postById = posts[0];
-      postdata.push(posts)
+      res.json(posts)
     })
+    .catch(err => {
+      console.log("post by id error", err)
+    })
+  
+})
+
+// get the comments associated with a post
+app.get('/comments/:id', (req, res) => {
+  const id = req.params.id;
+  
   Comments
     .where({post_id: id})
     .fetchAll()
     .then(results => {
       const comments = results.toJSON()
-      console.log('can i see the comments???', comments);
-      postdata.push(comments)
-      res.json(postdata)
+      // console.log('can i see the comments???', comments);
+      res.json(comments)
     })
     .catch(err => {
-      console.log("post by id error", err)
+      console.log("comments by id error", err)
+    })
+})
+
+app.get('/mycomments/:id', (req, res) => {
+  const id = req.params.id;
+
+  Comments
+    .where({user_id: id})
+    .fetchAll()
+    .then(results => {
+      const comments = results.toJSON()
+      console.log('can i see the comments???', comments);
+      res.json(comments)
+    })
+    .catch(err => {
+      console.log("my comments by id error", err)
     })
 })
 
