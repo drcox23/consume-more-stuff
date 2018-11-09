@@ -40,8 +40,8 @@ module.exports = {
     connection: {
       host: "db",
       port: 5432,
-      database: "articles-products-db",
-      user: "wyminc",
+      database: "cms-db",
+      user: "maymc",
       password: "passwordpassword"
     },
     pool: {

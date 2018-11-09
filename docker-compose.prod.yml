@@ -1,6 +1,6 @@
 version: '3'
 services:
   consume-more-stuff
-    image: itzymin/consume-more-stuff:${IMAGE_VERSION}
+    image: maymc/consume-more-stuff:${IMAGE_VERSION}
     environment:
       NODE_ENV: production
