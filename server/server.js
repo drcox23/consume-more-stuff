@@ -7,10 +7,16 @@ const cors = require('cors');
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 
 //Models
-const cards = require('./knex/models/cards.js');
-const priorities = require('./knex/models/priorities.js');
-const statuses = require('./knex/models/statuses.js');
-const users = require('./knex/models/users.js');
+const Users = require('./knex/models/Users.js');
+const Posts = require('./knex/models/Posts.js');
+const Comments = require('./knex/models/Comments.js');
+const Transactions = require('./knex/models/Transactions.js');
+const Type = require('./knex/models/Type.js');
+const draftPosts = require('./knex/models/draftPosts.js');
+const draftComments = require('./knex/models/draftComments.js');
+const archivedPosts = require('./knex/models/archivedPosts.js');
+const archivedComments = require('./knex/models/archivedComments.js');
+
 
 //Redis Stuff
 // const RedisStore = require('connect-redis')(session);
@@ -28,7 +34,6 @@ const users = require('./knex/models/users.js');
 
 app.use(express.static("public"));
 app.use(cors());
-app.use(methodOverride("_method"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

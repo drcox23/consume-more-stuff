@@ -2,7 +2,7 @@
 exports.up = function (knex, Promise) {
     return knex.schema.createTable('archived_comments', function (table) {
       table.increments();
-      table.string('body', 500).notNullable();
+      table.string('body', 10000).notNullable();
       table.integer("post_id").unsigned().notNullable();
       table.foreign('post_id').references('id').inTable('posts');
       table.integer('user_id').unsigned().notNullable();

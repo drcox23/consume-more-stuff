@@ -3,7 +3,7 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('posts', function (table) {
       table.increments();
       table.string('subject').notNullable();
-      table.string('body', 500).notNullable();
+      table.string('body', 10000).notNullable();
       table.decimal('price').notNullable().defaultTo(0.00);
       table.integer("type_id").unsigned().notNullable();
       table.foreign('type_id').references('id').inTable('type');

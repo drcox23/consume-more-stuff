@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
       table.increments();
       table.integer("post_id").unsigned().notNullable();
       table.foreign('post_id').references('id').inTable('posts');
-      talbe.integer('poster_id').unsigned().notNullable();
+      table.integer('poster_id').unsigned().notNullable();
       table.foreign('poster_id').references('id').inTable('users');
       table.integer('commenter_id').unsigned().notNullable();
       table.foreign('commenter_id').references('id').inTable('users');
