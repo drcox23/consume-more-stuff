@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import logo from './2cents.png';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
 
 //Import JSX component files
 import Login from './components/forms/LoginForm.jsx';
+import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
+
+//Setup for redux
+import { connect } from 'react-redux';
 
 // const bodyStyle = {
 //   backgroundColor: 'lightcoral',
@@ -39,40 +44,30 @@ class App extends Component {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         </link>
 
+        <header className="App-header">
+
+          {/* Navigation */}
+          <img src={logo} alt="logo" />
+        </header>
         <Router>
           <div>
-            <header className="App-header">
 
-              {/* Navigation */}
-              <img src={logo} alt="logo" />
+            {/* Routing Links and Routes */}
 
-              {/* Routing Links and Routes */}
-              {/* <div id="Nav-header"> */}
-              {/* <div id="nav-bar"> */}
-              {/* Links */}
+            <Link to="/">
+              <button type="button">Home</button>
+            </Link>
 
-              {/* <Link to="/">
-                  <button style={btnStyle} type="button">Home</button>
-                </Link> */}
+            <Link to="/login">
+              <button type="button">Login <i class="fas fa-sign-in-alt"></i></button>
+            </Link>
 
-              <Link to="/login">
-                <button type="button">Login <i class="fas fa-sign-in-alt"></i></button>
-              </Link>
+            <Route exact path="/" component={PostsBoard} />
+            <Route path="/login" component={Login} />
+            {/* <Route path="/login" /> */}
 
-              <Route path="/" />
-              <Route path="/login" component={Login} />
-
-              {/* </div> */}
-              {/* </div> */}
-            </header>
-            <div class="postsBoard">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-            </div>
           </div>
         </Router>
-
       </div>
     );
   }
