@@ -13,6 +13,7 @@ import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import LoginForm from './components/forms/LoginForm.jsx';
+import SignupForm from './components/forms/SignupForm.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class App extends Component {
 
                 <Route path="/login" component={LoginForm} />
 
-                <Route path="/signup" />
+                <Route path="/signup" component={SignupForm} />
 
               </div>
 

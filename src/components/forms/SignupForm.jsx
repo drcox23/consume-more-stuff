@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './LoginForm.css';
-import SignupForm from './SignupForm.jsx';
+import './SignupForm.css';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
   render() {
     return (
       <div id="container">
-        <p id="login-title">2¢</p>
+        <p id="signup-title">Sign Up!</p>
         <form action="">
           <div class="row">
             <div class="rowHeader">
@@ -22,20 +21,11 @@ class LoginForm extends Component {
             </div>
           </div>
           <br />
-          <button>Sign In</button>
-          <Router>
-            <div>
-              <br />
-              <p>Not a 2¢ user?</p>
-              <br />
-              <Link to="/signup">Sign up now!</Link>
-              <Route path="/signup"></Route>
-            </div>
-          </Router>
+          <button>Sign Up for 2¢!</button>
         </form>
       </div>
     );
   }
 }
 
-export default LoginForm;
+export default SignupForm;
