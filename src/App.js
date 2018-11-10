@@ -1,54 +1,63 @@
 import React, { Component } from 'react';
-import logo from './2cents.png';
-// import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
-//Import JSX component files
-import Login from './components/forms/LoginForm.jsx';
-
-const bodyStyle = {
-  backgroundColor: 'lightcoral',
-  width: '100%',
-  height: '100%',
-  margin: '0'
-}
-
-const imgStyle = {
-  margin: '30px',
-  width: '100px',
-}
+import { Navbar, Button } from 'react-bootstrap';
+import './App.css';
 
 class App extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
+  }
+
   render() {
+    const { isAuthenticated } = this.props.auth;
+
     return (
-      <div style={bodyStyle} className="App">
-        <header className="App-header">
-          <img style={imgStyle} src={logo} alt="logo" />
-        </header>
-
-        {/* Routing Links and Routes */}
-        <Router>
-          <div>
-            <div id="Nav-header">
-              <div id="nav-bar">
-                {/* Links */}
-
-                <Link to="/">
-                  <button type="button">Home</button>
-                </Link>
-
-                <Link to="/login">
-                  <button type="button">Login</button>
-                </Link>
-
-                <Route path="/" />
-                <Route path="/login" component={Login} />
-
-              </div>
-            </div>
-          </div>
-        </Router>
-
+      <div>
+        <Navbar fluid>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#">Auth0 - React</a>
+            </Navbar.Brand>
+            <Button
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, 'home')}
+            >
+              Home
+            </Button>
+            {
+              !isAuthenticated() && (
+                  <Button
+                    id="qsLoginBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </Button>
+                )
+            }
+            {
+              isAuthenticated() && (
+                  <Button
+                    id="qsLogoutBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </Button>
+                )
+            }
+          </Navbar.Header>
+        </Navbar>
       </div>
     );
   }
