@@ -33,7 +33,6 @@ const Header = (props) => {
       {/* Navigation Links */}
       {props.children}
     </div>
-
   )
 }
 
@@ -81,7 +80,7 @@ class App extends Component {
               </div>
             </Header>
             <div id="component-section">
-              <Route exact path="/" component={PostsBoard} />
+              <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
               <Route path="/login" component={LoginForm} />
               <Route path="/signup" component={SignupForm} />
             </div>
