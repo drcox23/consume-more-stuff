@@ -33,7 +33,6 @@ const Header = (props) => {
       {/* Navigation Links */}
       {props.children}
     </div>
-
   )
 }
 
