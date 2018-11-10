@@ -70,7 +70,7 @@ class App extends Component {
               </div>
 
               <div id="component-section">
-                <Route exact path="/" render={(props) => <PostsBoard {...props} />} />
+                <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
 
                 <Route path="/login" component={LoginForm} />
 
