@@ -35,9 +35,101 @@ const archivedComments = require('./knex/models/archivedComments.js');
 app.use(express.static("public"));
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 
+// get all the posts when any user lands on home page
+app.get('/home', (req, res) => {
+  Posts
+    .fetchAll()
+    .then(items => {
+      res.json(items.serialize())
+    })
+    .catch(err => {
+      console.log('error', err)
+    })
+});
+
+// get the post by id
+app.get('/post/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('whats the id', id);
+
+  Posts
+    .where({id})
+    .fetch()
+    .then(results => {
+      const posts = results.toJSON()
+      console.log('can i see the posts!!!', posts);
+      // const postById = posts[0];
+      res.json(posts)
+    })
+    .catch(err => {
+      console.log("post by id error", err)
+    })
+  
+})
+
+// get the comments associated with a post
+app.get('/comments/:id', (req, res) => {
+  const id = req.params.id;
+  
+  Comments
+    .where({post_id: id})
+    .fetchAll()
+    .then(results => {
+      const comments = results.toJSON()
+      // console.log('can i see the comments???', comments);
+      res.json(comments)
+    })
+    .catch(err => {
+      console.log("comments by id error", err)
+    })
+})
+
+app.get('/mycomments/:id', (req, res) => {
+  const id = req.params.id;
+
+  Comments
+    .where({user_id: id})
+    .fetchAll()
+    .then(results => {
+      const comments = results.toJSON()
+      console.log('can i see the comments???', comments);
+      res.json(comments)
+    })
+    .catch(err => {
+      console.log("my comments by id error", err)
+    })
+})
+
+// get the post by id along with the ALL the comments associated with it. 
+// app.get('/post/:id', (req, res) => {
+//   const id = req.params.id;
+//   console.log("post parameters", id);
+//   Posts
+//     .where({id})
+//     .fetch()
+//     .then(results => {
+//       const posts = results.toJSON()
+//       // console.log('can i see the posts!!!', posts);
+//       // const postById = posts[0];
+//       // res.json(posts)
+//     })
+//   Comments
+//     .where({post_id: id})
+//     .fetchAll()
+//     .then(results => {
+//       const comments = results.toJSON()
+//       console.log('can i see the comments???', comments)
+//       // res.json(comments)
+//     })
+//     .catch(err => {
+//       console.log("post by id error", err)
+//     })
+// });
 
 app.get('*', (req, res) => {
   res.json('404 error, this is the last item before app.listen on the server.js file');
