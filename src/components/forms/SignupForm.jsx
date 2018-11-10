@@ -21,7 +21,14 @@ class SignupForm extends Component {
             </div>
           </div>
           <br />
-          <button>Sign Up for 2¢!</button>
+          <Router>
+            <div>
+              <Link to="/">
+                <button>Sign Up for 2¢!</button>
+              </Link>
+
+            </div>
+          </Router>
         </form>
       </div>
     );

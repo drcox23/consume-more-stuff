@@ -8,7 +8,7 @@ class LoginForm extends Component {
     return (
       <div id="container">
         <p id="login-title">2¢</p>
-        <form action="">
+        <form action="/">
           <div class="row">
             <div class="rowHeader">
               <label>Username:</label>
@@ -22,16 +22,11 @@ class LoginForm extends Component {
             </div>
           </div>
           <br />
-          <button>Sign In</button>
-          <Router>
-            <div>
-              <br />
-              <p>Not a 2¢ user?</p>
-              <br />
-              <Link to="/signup">Sign up now!</Link>
-              <Route path="/signup"></Route>
-            </div>
-          </Router>
+          <input type="submit" value="Submit" />
+          <br />
+          <p>Not a 2¢ user?</p>
+          <br />
+          <Link to="/signup">Sign up now!</Link>
         </form>
       </div>
     );
