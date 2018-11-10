@@ -1,7 +1,7 @@
 version: '3'
 services:
   consume-more-stuff:
-    image: maymc/consume-more-stuff:${IMAGE_VERSION}-local
+    image: drcox23/consume-more-stuff:${IMAGE_VERSION}-local
     depends_on:
       - pg
       - redis
