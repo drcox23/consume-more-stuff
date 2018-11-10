@@ -20,7 +20,7 @@ class App extends Component {
     super(props);
   }
 
-  //~~~~~~~~Lifecycle Methods~~~~~~~~~~//
+  //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
 
   }
