@@ -14,6 +14,7 @@ import SignupForm from './components/forms/SignupForm.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
+import { getAllPosts } from './actions/actions.js'
 
 const Header = (props) => {
   return (
@@ -44,6 +45,7 @@ const LinkButton = (props) => {
   )
 }
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +53,8 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-
+    console.log('App.js mounted')
+    this.props.dispatch(getAllPosts())
   }
 
   //~~~~~~~~App Component Methods~~~~~~~~~//
@@ -61,6 +64,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div>{console.log(this.props, 'hello?')}</div>
         {/* Fonts */}
         <style>
 
@@ -89,4 +93,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    items: state
+  }
+}
+
+export default connect(mapStateToProps)(App);

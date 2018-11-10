@@ -9,7 +9,7 @@ export const GET_PENDING_COMMENTS = 'GET_PENDING_COMMENTS' // get all pending co
 export const getAllPosts = () => {
   return dispatch => {
     axios
-      .get('/posts')
+      .get('/home')
       .then(response => {
         console.log("POSTS!!!", response);
         dispatch({
