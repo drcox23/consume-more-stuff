@@ -7,7 +7,7 @@ import {
 }
 from '../actions/actions.js'
 
-const postReducer = (state =[], action) => {
+const postReducer = (state = [], action) => {
   console.log('REDUCER ACTION');
 
   switch (action.type) {

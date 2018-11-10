@@ -35,6 +35,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <div>{console.log(this.props, 'hello?')}</div>
         {/* Fonts */}
         <style>
 
@@ -118,4 +119,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => {
+  return {
+    items: state
+  }
+}
+
+export default connect(mapStateToProps)(App);
