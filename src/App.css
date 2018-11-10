@@ -60,8 +60,9 @@ img{
 #linkBtns{
   margin: 0;
   padding: 0;
-  height: 50px;
-  border: 1px solid blue;
+  height: 29px;
+  width: 500px;
+  /* border: 1px solid blue; */
   display: flex;
   flex-flow: 1 1 auto;
   margin: 10px 20px 0 20px;
@@ -74,14 +75,14 @@ button{
   padding: 5px 0;
   border-radius: 3px;
   border: 1px solid gray;
-  /* font-size: 0.9em; */
+  font-size: 0.9em;
+  cursor: pointer;
 }
 
-/* button:hover{
+button:hover{
   background-color: rgb(218, 252, 218);
-  cursor: pointer;
-} */
+}
 
-/* #homeBtn, #loginBtn, #signupBtn{
+#homeBtn, #loginBtn, #signupBtn{
   margin-right: 10px;
-} */
+}
