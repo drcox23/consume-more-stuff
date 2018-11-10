@@ -40,40 +40,41 @@ class App extends Component {
         {/* Header */}
         <header className="App-header">
           <div id="headerBar">
-            <img src={logo} alt="logo" />
+            <div id="imgBox">
+              <img src={logo} alt="logo" />
+            </div>
             <input id="searchBar" type="text" placeholder="Search..." />
-
           </div>
 
           {/* Routing Links & Routes */}
           <Router>
             <div id="navbar">
 
-              {/* <div id="headerBar">
-                <img src={logo} alt="logo" />
-                <input id="searchBar" type="text" placeholder="Search..." /> */}
+              <div id="linkBtns">
 
+                <Link to="/">
+                  <button id="homeBtn" type="button">Home</button>
+                </Link>
 
-              <Link to="/">
-                <button id="homeBtn" type="button">Home</button>
-              </Link>
+                <Link to="/login">
+                  <button id="loginBtn" type="button">Log In</button>
+                </Link>
 
-              <Link to="/login">
-                <button id="loginBtn" type="button">Log In</button>
-              </Link>
+                <Link to="/signup">
+                  <button id="signupBtn" type="button">Sign Up</button>
+                </Link>
+              </div>
 
-              <Link to="/signup">
-                <button id="signupBtn" type="button">Sign Up</button>
-              </Link>
+              <div id="component-section">
+                <Route exact path="/" component={PostsBoard} />
 
-              <Route exact path="/" component={PostsBoard} />
+                <Route path="/login" component={LoginForm} />
 
-              <Route path="/login" component={LoginForm} />
+                <Route path="/signup" />
 
-              <Route path="/signup" />
+              </div>
 
             </div>
-            {/* </div> */}
           </Router>
         </header>
 

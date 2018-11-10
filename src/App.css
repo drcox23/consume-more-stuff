@@ -1,36 +1,3 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
 body{
   width: 100%;
   margin: 0;
@@ -46,14 +13,20 @@ header{
 #headerBar{
   display: flex;
   flex-flow: row nowrap;
-  height: 100px;
+  /* height: 100px; */
   /* border: 1px solid black; */
-  margin: 10px 20px;
+  /* margin: 0px 20px 0 20px; */
+  padding: 10px 120px;
 }
 
+#imgBox{
+  /* border: 1px solid blue; */
+  width: 65px;
+}
 img{
   flex: 0 1 auto;
-  width: 100px;
+  width: 100%;
+  height: auto;
   margin: 10px 0;
   cursor: pointer;
 }
@@ -63,15 +36,22 @@ img{
   width: 50%;
   height: 30px;
   padding: 5px 10px;
-  margin: 25px 25px 0 25px;
+  margin: 15px 25px 0 25px;
   border: 1px solid gray;
-  border-radius: 3px;
+  border-radius: 25px;
   cursor: text;
+  font-size: 0.8em;
 }
+
 #navbar{
+  display: flex;
+  flex-flow: column wrap;
   /* border: 1px solid black; */
   /* border-bottom: 10px double green; */
+  /* margin: 10px 20px 0 20px; */
+  padding: 0 100px;
 }
+
 button{
   flex: 1 1 auto;
   width: 160px;
@@ -79,7 +59,7 @@ button{
   font-size: 0.9em;
   margin: 0 0 0 20px;
   border-radius: 3px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 button:hover{
