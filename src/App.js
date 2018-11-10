@@ -17,9 +17,7 @@ import { connect } from 'react-redux';
 
 const Header = (props) => {
   return (
-
     <div id="headerBar">
-
       {/* imgBox is for resizing the logo with a fixed scale */}
       <div id="imgBox">
         <img src={logo} alt="logo" />
@@ -65,33 +63,14 @@ class App extends Component {
 
         </style>
 
-        {/* Header */}
-        {/* <header className="App-header">
-          <div id="headerBar">
-            <div id="imgBox">
-              <img src={logo} alt="logo" />
-            </div>
-            <input id="searchBar" type="text" placeholder="Search..." />
-          </div> */}
-
-
         {/* Routing Links & Routes */}
         <Router>
           <div id="navbar">
             <Header>
               <div id="linkBtns">
-
                 <LinkButton to={"/"} title={"Home"} />
-                {/* <button id="homeBtn" type="button">Home</button>
-              </LinkButton> */}
-
                 <LinkButton to={"/login"} title={"Login"} />
-                {/* <button id="loginBtn" type="button">Log In</button>
-              </LinkButton> */}
-
                 <LinkButton to={"/signup"} title={"Sign Up"} />
-                {/* <button id="signupBtn" type="button">Sign Up</button>
-              </LinkButton> */}
               </div>
             </Header>
             <div id="component-section">
@@ -99,10 +78,8 @@ class App extends Component {
               <Route path="/login" component={LoginForm} />
               <Route path="/signup" component={SignupForm} />
             </div>
-
           </div>
         </Router>
-        {/* </header> */}
 
       </div>
     );
