@@ -12,7 +12,7 @@ const postReducer = (state =[], action) => {
 
   switch (action.type) {
     case GET_ALL_POSTS:
-      console.log('GET_ALL_TASKS reducer')
+      console.log('GET_ALL_POSTS reducer', action.payload)
       return action.payload
     default:
       return state

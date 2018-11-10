@@ -12,6 +12,7 @@ import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
+import { getAllPosts } from './actions/actions.js'
 import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
 
@@ -22,7 +23,8 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-
+    console.log('App.js mounted')
+    this.props.dispatch(getAllPosts())
   }
 
   //~~~~~~~~App Component Methods~~~~~~~~~//
@@ -67,7 +69,7 @@ class App extends Component {
               </div>
 
               <div id="component-section">
-                <Route exact path="/" component={PostsBoard} />
+                <Route exact path="/" render={(props) => <PostsBoard {...props} />} />
 
                 <Route path="/login" component={LoginForm} />
 
@@ -116,4 +118,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

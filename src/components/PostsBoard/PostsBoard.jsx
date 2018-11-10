@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
+import { connect } from 'react-redux'
 
 class PostsBoard extends Component {
   constructor(props) {
