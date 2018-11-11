@@ -3,8 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const knex = require('./knex/knex.js');
 const cors = require('cors');
+const router = express.Router();
 
 require('dotenv').config();
+
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 
@@ -43,7 +45,7 @@ app.use(bodyParser.urlencoded({
 
 
 // get all the posts when any user lands on home page
-app.get('/home', (req, res) => {
+router.get('/home', (req, res) => {
   Posts
     .fetchAll()
     .then(items => {
@@ -55,7 +57,7 @@ app.get('/home', (req, res) => {
 });
 
 // get the post by id
-app.get('/post/:id', (req, res) => {
+router.get('/post/:id', (req, res) => {
   const id = req.params.id;
   console.log('whats the id', id);
 
@@ -75,7 +77,7 @@ app.get('/post/:id', (req, res) => {
 })
 
 // get the comments associated with a post
-app.get('/comments/:id', (req, res) => {
+router.get('/comments/:id', (req, res) => {
   const id = req.params.id;
   
   Comments
@@ -92,7 +94,7 @@ app.get('/comments/:id', (req, res) => {
 })
 
 // get the comments that a user has written, maybe not needed
-app.get('/mycomments/:id', (req, res) => {
+router.get('/mycomments/:id', (req, res) => {
   const id = req.params.id;
 
   Comments
@@ -108,7 +110,7 @@ app.get('/mycomments/:id', (req, res) => {
     })
 })
 
-app.post('/add', (req, res) => {
+router.post('/add', (req, res) => {
   const post_data = req.body
   console.log("post data we are adding to DB", req.body)
 
