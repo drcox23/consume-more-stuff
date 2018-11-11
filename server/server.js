@@ -6,6 +6,7 @@ const cors = require('cors');
 // const router = express.Router();
 
 const postDrafts = require('./routes/postDraftRoutes');
+const commentDrafts = require('./routes/commentDraftRoutes.js')
 
 require('dotenv').config();
 
@@ -46,7 +47,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 // app.use('/', router)
-app.use('/post-drafts', postDrafts)
+app.use('/post-draft', postDrafts)
+app.use('/comment-draft', commentDrafts)
 
 
 // get all the posts when any user lands on home page
