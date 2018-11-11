@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const knex = require('./knex/knex.js');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 
 //Models
@@ -89,6 +91,7 @@ app.get('/comments/:id', (req, res) => {
     })
 })
 
+// get the comments that a user has written, maybe not needed
 app.get('/mycomments/:id', (req, res) => {
   const id = req.params.id;
 
@@ -102,6 +105,24 @@ app.get('/mycomments/:id', (req, res) => {
     })
     .catch(err => {
       console.log("my comments by id error", err)
+    })
+})
+
+app.post('/add', (req, res) => {
+  const post_data = req.body
+  console.log("post data we are adding to DB", req.body)
+
+  Posts
+    .forge(post_data)
+    .save()
+    .then(results => {
+      return Posts.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("server post error", err)
     })
 })
 
