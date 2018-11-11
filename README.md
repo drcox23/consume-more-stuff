@@ -1,5 +1,18 @@
 ## DON'T WORK IN MASTER BRANCH
 
+# Getting Started
+For individuals who would like to continue developing this application as their own project.
+
+## Prerequisites
+1. Fork and clone this repo.
+2. Install docker.
+3. Run `npm install` to download all project dependencies.
+4. Create your own `.env` file. An example is shown as `.env.example`.
+5. Run `docker-compose up` and wait until the project compiles successfully and the server comes up.
+6. Run `npm run migrate` and `npm run seed` to seed data into database.
+7. Open browser to `localhost:3000` to see project.
+8. Have fun!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
