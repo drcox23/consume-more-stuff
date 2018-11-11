@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import Post from './post/post.jsx'
+import { connect } from 'react-redux';
+import Post from './post/post.jsx';
+import Comments from './comments/comments.jsx';
 
 import './PostDetail.css';
 
@@ -11,15 +12,21 @@ class PostsDetail extends Component {
     }
   
     render() {
-    console.log("SUCK", this.props);  
+      const { detailedItem, comments } = this.props;
+        
+      console.log(comments, "YUP");
+      console.log(detailedItem, "NO");
 
-      const { detailedItem } = this.props
-  
       return (
-        <div className="postDetail">
-            <Post detailedItem={detailedItem} />
+        <div className="detailedPage">
+            <div className="postDetail">
+                <Post detailedItem={detailedItem} />
+            </div>
+
+             <div className="comments">
+                <Comments comments={comments} />
+            </div>
         </div>
-  
       )
     }
   }
@@ -27,7 +34,8 @@ class PostsDetail extends Component {
   const mapStateToProps = state => {
   
     return {
-        detailedItem: state.detailedItem
+        detailedItem: state.detailedItem,
+        comments: state.comments
     }
   }
   

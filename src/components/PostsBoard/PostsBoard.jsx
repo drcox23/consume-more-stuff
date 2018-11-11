@@ -4,16 +4,16 @@ import './PostsBoard.css';
 import { connect } from 'react-redux'
 import Posts from './posts/posts.jsx'
 import PostDetail from '../PostDetail/PostDetail.jsx';
-import { getAllPosts, getPostById } from '../../actions/actions.js'
+import { getPostandCommentsById } from '../../actions/actions.js'
 
 class PostsBoard extends Component {
   constructor(props) {
     super(props);
   }
 
-  getPostById = (props) => {
+  getPostandCommentsById = (props) => {
     this.props.dispatch(
-      getPostById(props)
+      getPostandCommentsById(props),
     )
   }
 
@@ -23,7 +23,7 @@ class PostsBoard extends Component {
     return (
       <div className="postsBoard">
         <Link to="/post/specificPost">
-          <Posts items={items} getPostById={this.getPostById}/>
+          <Posts items={items} getPostandCommentsById={this.getPostandCommentsById}/>
         </Link>
       </div>
 
