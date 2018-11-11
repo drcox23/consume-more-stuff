@@ -56,6 +56,7 @@ img{
   cursor: text;
 }
 
+/* Navigation Button Styling */
 #linkBtns{
   display: flex;
   flex-flow: row nowrap;
@@ -67,7 +68,7 @@ img{
   margin: 8px 20px 0 20px;
 }
 
-button{
+.navbar-btns{
   font-family: 'Glass Antiqua', cursive;
   flex: 1 1 auto;
   width: 160px;

@@ -39,7 +39,7 @@ const Header = (props) => {
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button>{props.title}</button>
+      <button className="navbar-btns">{props.title}</button>
     </Link>
   )
 }
