@@ -38,6 +38,7 @@ router.get('/:id', (req, res) => {
     })
     .catch(err => {
       console.log("get all drafts error", err)
+      res.json(err)
     })
 });
 
@@ -59,6 +60,7 @@ router.route('/:id/:draftId')
       })
       .catch(err => {
         console.log("drafts by id error", err)
+        res.json(err)
       })
   })
 
@@ -114,6 +116,7 @@ router.route('/:id/:draftId')
       })
       .catch(err => {
         console.log("server post error", err)
+        res.json(err)
       })
   })
 
