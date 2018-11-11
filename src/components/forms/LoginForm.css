@@ -2,12 +2,6 @@ form{
   text-align: center;
 }
 
-#login-title{
-  text-align: center;
-  font-size: 3em;
-  padding: 30px;
-}
-
 #container {
   border-radius: 5px;
   /* background-color: #d0f0ff; */
@@ -15,26 +9,55 @@ form{
   height: 320px;
 }
 
+#login-logo-container{
+  width: 7%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .rowHeader {
   float: left;
   width: 100%;
   margin: 0 auto;
-  /* width: 50%; */
-}
-
-input{
-  width: 300px;
-  padding: 10px;
-  margin-right: 75px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  font-size: 0.7em;
 }
 
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
+  font-family: 'Kodchasan', sans-serif;
+}
+
+.user-input{
+  width: 300px;
+  padding: 10px;
+  margin-right: 75px;
+  border: 1px solid rgb(163, 161, 161);
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 1em;
+  font-family: 'Kodchasan', sans-serif;
+} 
+
+#user-login-btn{
+  width: 400px;
+  padding: 5px;
+  margin: 0 auto;
+  border: 1px solid rgb(163, 161, 161);
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 1.2em;
+  font-family: 'Kodchasan', sans-serif;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(88, 136, 88);
+
+} 
+
+#user-login-btn:hover{
+  color: black;
+  background-color: rgb(155, 192, 155);
+  font-weight: bold;
 }
 
 /* Clear floats after the columns */
@@ -44,6 +67,26 @@ label {
   clear: both;
 }
 
-button{
-  margin: 0;
+#login-question{
+  font-size: 1.2em;
+  font-family: 'Kodchasan', sans-serif;
+}
+
+#signup-link{
+  width: 10%;
+  margin: 0 auto;
+  padding: 10px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: 'Kodchasan', sans-serif;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(88, 136, 88);
+}
+
+#signup-link:hover{
+  color: black;
+  background-color: rgb(155, 192, 155);
+  border: 1px solid black;
+  font-weight: bold;
 }
