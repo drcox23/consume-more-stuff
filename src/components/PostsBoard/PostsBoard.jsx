@@ -15,12 +15,13 @@ class PostsBoard extends Component {
 
     const { items } = this.props
 
-    console.log("What is this", items)
-
     return (
       <div className="postsBoard">
-        <Posts items={items} />
+        <Link to="/post/:id">
+          <Posts items={items} />
+        </Link>
       </div>
+
     )
   }
 }
