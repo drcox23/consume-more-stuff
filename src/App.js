@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 //Import JSX component files
-import Login from './components/forms/LoginForm.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
