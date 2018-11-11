@@ -12,6 +12,7 @@ import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
+import PostDetail from './components/PostDetail/PostDetail';
 
 const Header = (props) => {
   return (
@@ -48,8 +49,14 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-    console.log('App.js mounted')
     this.props.dispatch(getAllPosts())
+  }
+
+  getAllPosts() {
+    console.log("IM SETTING THE STATE BACK TO ALL");
+    this.props.dispatch(
+      getAllPosts()
+    )
   }
 
   //~~~~~~~~App Component Methods~~~~~~~~~//
@@ -72,8 +79,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div>{console.log(this.props, 'hello?')}</div>
-
+        <div></div>
         {/* Fonts */}
         <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Kodchasan" rel="stylesheet" />
 
@@ -91,6 +97,7 @@ class App extends Component {
               </div>
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
+            <Route path="/post/specificPost" component={PostDetail} />
           </div>
         </Router>
 
@@ -107,7 +114,7 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    items: state
+    items: state.items
   }
 }
 
