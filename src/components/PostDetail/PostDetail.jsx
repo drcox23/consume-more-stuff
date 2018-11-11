@@ -11,14 +11,13 @@ class PostsDetail extends Component {
     }
   
     render() {
-  
-      const { items } = this.props
+    console.log("SUCK", this.props);  
 
-      console.log("WUT", items);
+      const { detailedItem } = this.props
   
       return (
         <div className="postDetail">
-            <Post items={items} />
+            <Post detailedItem={detailedItem} />
         </div>
   
       )
@@ -28,7 +27,7 @@ class PostsDetail extends Component {
   const mapStateToProps = state => {
   
     return {
-      items: state
+        detailedItem: state.detailedItem
     }
   }
   

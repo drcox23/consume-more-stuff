@@ -72,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>{console.log(this.props, 'hello?')}</div>
+        <div></div>
         {/* Fonts */}
         <link href="https://fonts.googleapis.com/css?family=Limelight" rel="stylesheet" />
 
@@ -109,7 +109,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state
+    items: state.items
   }
 }
 

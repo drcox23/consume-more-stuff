@@ -12,7 +12,6 @@ export const getAllPosts = () => {
     axios
       .get('/home')
       .then(response => {
-        console.log("POSTS!!!", response);
         dispatch({
           type: GET_ALL_POSTS,
           payload: response.data
@@ -34,7 +33,7 @@ export const getPostById = (id) => {
       .then(response => {
         console.log("DETAIL POST", response)
         dispatch({
-          type: GET_ALL_POSTS,
+          type: GET_POST_BY_ID,
           payload: response.data
         })
       })

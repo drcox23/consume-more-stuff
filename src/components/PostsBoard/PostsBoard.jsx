@@ -9,18 +9,6 @@ import { getAllPosts, getPostById } from '../../actions/actions.js'
 class PostsBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      posts: []
-    }
-  }
-
-  componentDidMount() {
-    this.props.dispatch(
-      getAllPosts()
-    )
-    this.setState({
-      posts: this.props.items
-    })
   }
 
   getPostById = (props) => {
@@ -30,8 +18,6 @@ class PostsBoard extends Component {
   }
 
   render() {
-    console.log("\nPostsBoards - props:", this.state);
-
     const { items } = this.props
 
     return (
@@ -47,7 +33,7 @@ class PostsBoard extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state
+    items: state.items
   }
 }
 
