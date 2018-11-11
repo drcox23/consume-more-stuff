@@ -96,7 +96,7 @@ button:hover{
   background-color: rgb(218, 252, 218);
 }
 
-/* Foot Styling */
+/* Footer Styling */
 
 footer {
   position: fixed;
@@ -109,6 +109,7 @@ footer {
   text-align: center;
   padding: 20px 0;
   font-family: 'Glass Antiqua', cursive;
+
 }
 
 a {
@@ -120,4 +121,8 @@ a {
 
 a:hover{
   color: palegreen;
+}
+
+a:visited{
+  color: white;
 }
