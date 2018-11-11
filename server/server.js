@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({
 
 
 // get all the posts when any user lands on home page
-router.get('/home', (req, res) => {
+app.get('/home', (req, res) => {
   Posts
     .fetchAll()
     .then(items => {
