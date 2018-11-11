@@ -68,9 +68,7 @@ class App extends Component {
       <div className="App">
         <div>{console.log(this.props, 'hello?')}</div>
         {/* Fonts */}
-        <style>
-
-        </style>
+        <link href="https://fonts.googleapis.com/css?family=Limelight" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
         <Router>
