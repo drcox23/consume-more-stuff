@@ -3,7 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const knex = require('./knex/knex.js');
 const cors = require('cors');
-const router = express.Router();
+// const router = express.Router();
+
+const postDrafts = require('./routes/postDraftRoutes');
 
 require('dotenv').config();
 
@@ -11,9 +13,9 @@ require('dotenv').config();
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 
 //Models
-const Users = require('./knex/models/Users.js');
 const Posts = require('./knex/models/Posts.js');
 const Comments = require('./knex/models/Comments.js');
+const Users = require('./knex/models/Users.js');
 const Transactions = require('./knex/models/Transactions.js');
 const Type = require('./knex/models/Type.js');
 const draftPosts = require('./knex/models/draftPosts.js');
@@ -42,11 +44,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use('/', router)
+
+// app.use('/', router)
+app.use('/post-drafts', postDrafts)
 
 
 // get all the posts when any user lands on home page
-router.get('/home', (req, res) => {
+app.get('/home', (req, res) => {
   Posts
     .fetchAll()
     .then(items => {
@@ -59,7 +63,7 @@ router.get('/home', (req, res) => {
 });
 
 // get the post by id
-router.get('/post/:id', (req, res) => {
+app.get('/post/:id', (req, res) => {
   const id = req.params.id;
   console.log('whats the id', id);
 
@@ -81,7 +85,7 @@ router.get('/post/:id', (req, res) => {
 })
 
 // get the comments associated with a post
-router.get('/comments/:id', (req, res) => {
+app.get('/comments/:id', (req, res) => {
   const id = req.params.id;
 
   Comments
@@ -100,7 +104,7 @@ router.get('/comments/:id', (req, res) => {
 })
 
 // get the comments that a user has written, maybe not needed
-router.get('/mycomments/:id', (req, res) => {
+app.get('/mycomments/:id', (req, res) => {
   const id = req.params.id;
 
   Comments
@@ -118,7 +122,7 @@ router.get('/mycomments/:id', (req, res) => {
     })
 })
 
-router.route('/add')
+app.route('/add')
   .post((req, res) => {
     const post_data = req.body
     console.log("post data we are adding to DB", req.body)
@@ -148,3 +152,4 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`)
 })
+
