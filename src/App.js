@@ -39,7 +39,7 @@ const Header = (props) => {
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button>{props.title}</button>
+      <button className="navbar-btns">{props.title}</button>
     </Link>
   )
 }
@@ -74,7 +74,7 @@ class App extends Component {
       <div className="App">
         <div></div>
         {/* Fonts */}
-        <link href="https://fonts.googleapis.com/css?family=Limelight" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Kodchasan" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
         <Router>
