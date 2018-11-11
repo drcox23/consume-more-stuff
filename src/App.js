@@ -14,6 +14,7 @@ import SignupForm from './components/forms/SignupForm.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
+import PostDetail from './components/PostDetail/PostDetail';
 
 const Header = (props) => {
   return (
@@ -54,8 +55,14 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-    console.log('App.js mounted')
     this.props.dispatch(getAllPosts())
+  }
+
+  getAllPosts() {
+    console.log("IM SETTING THE STATE BACK TO ALL");
+    this.props.dispatch(
+      getAllPosts()
+    )
   }
 
   //~~~~~~~~App Component Methods~~~~~~~~~//
@@ -80,9 +87,10 @@ class App extends Component {
               </div>
             </Header>
             <div id="component-section">
-              <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
+              <Route exact path="/" component={PostsBoard}/>
               <Route path="/login" component={LoginForm} />
               <Route path="/signup" component={SignupForm} />
+              <Route path="/post/specificPost" component={PostDetail} />
             </div>
           </div>
         </Router>

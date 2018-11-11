@@ -2,11 +2,14 @@ import React from 'react';
 
 import './post.css'
 
-const Post = (post) => {
-    <div key={card.id} className="specificPost">
-    <Body info={card} className="title" />
-    <div className="subject">{post.subject}</div>
-    <div className="body">{post.body}</div>
-    <div className="price">Price: {`${post.price}`}</div>
+const Post = (props) => {
+  return(
+    <div key={props.items.id} className="specificPost">
+    <div className="subject">{props.items.subject}</div>
+    <div className="body">{props.items.body}</div>
+    <div className="price">Price: {`${props.items.price}`}</div>
   </div>
+  )
 }
+
+export default Post
