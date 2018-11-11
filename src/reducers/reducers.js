@@ -1,5 +1,6 @@
 import {
   GET_ALL_POSTS,
+  GET_POST_BY_ID,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -7,13 +8,15 @@ import {
 }
 from '../actions/actions.js'
 
-const postReducer = (state = [], action) => {
-  console.log('REDUCER ACTION');
-
+const postReducer = (state = {
+  items: [], detailedItem: {}
+}, action) => {
   switch (action.type) {
     case GET_ALL_POSTS:
-      console.log('GET_ALL_POSTS reducer', action.payload)
-      return action.payload
+      return {...state, items: action.payload }
+    case GET_POST_BY_ID:
+      console.log("YUPYUP", action.payload)
+      return {...state, detailedItem: action.payload }
     default:
       return state
   }

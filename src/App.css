@@ -56,6 +56,7 @@ img{
   cursor: text;
 }
 
+/* Navigation Button Styling */
 #linkBtns{
   display: flex;
   flex-flow: row nowrap;
@@ -64,17 +65,17 @@ img{
   height: 29px;
   width: 500px;
   /* border: 1px solid blue; */
-  margin: 12px 20px 0 20px;
+  margin: 8px 20px 0 20px;
 }
 
-button{
-  font-family: 'Limelight', cursive;
+.navbar-btns{
+  font-family: 'Glass Antiqua', cursive;
   flex: 1 1 auto;
   width: 160px;
   padding: 5px 0;
   border-radius: 3px;
   border: 1px solid gray;
-  font-size: 1.5em;
+  font-size: 1.8em;
   cursor: pointer;
 }
 
@@ -94,6 +95,7 @@ footer {
   color: white;
   text-align: center;
   padding: 20px 0;
+  font-family: 'Glass Antiqua', cursive;
 }
 
 a {
