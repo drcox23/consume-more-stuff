@@ -7,7 +7,7 @@ body{
 #navbar{
   display: flex;
   flex-flow: column wrap;
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
 }
 
 #component-section{
@@ -49,7 +49,7 @@ img{
   width: 100%;
   height: 40px;
   padding: 0px 20px;
-  margin: 5px 20px 0 20px;
+  margin: 8px 20px 0 20px;
   border: 1px solid gray;
   border-radius: 25px;
   font-size: 0.8em;
@@ -60,7 +60,7 @@ img{
 #linkBtns{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 0;
   height: 29px;
   width: 500px;
@@ -77,6 +77,7 @@ img{
   border: 1px solid gray;
   font-size: 1.8em;
   cursor: pointer;
+  color: black;
 }
 
 #loginBtn, #logoutBtn{
@@ -88,6 +89,7 @@ img{
   border: 1px solid gray;
   font-size: 1.4em;
   cursor: pointer;
+  color: black;
 }
 
 button:hover{
