@@ -137,7 +137,8 @@ router.route('/add')
       })
   });
 
-router.get('/drafts/:id', (req, res) => {
+// get all drafted posts by user id
+router.get('/post-drafts/:id', (req, res) => {
   const id = req.params.id
 
   draftPosts
@@ -154,7 +155,8 @@ router.get('/drafts/:id', (req, res) => {
     })
 });
 
-router.route('/drafts/:id/:draftId')
+// CRUD for saved draft items
+router.route('/post-drafts/:id/:draftId')
   .get((req, res) => {
     const id = req.params.id //supposed to be for userid
     const draftId = req.params.draftId //post draft id
@@ -174,7 +176,7 @@ router.route('/drafts/:id/:draftId')
       })
   })
 
-
+  // update the drafted post and save.
   .put((req, res) => {
 
     const draftId = req.params.draftId //post draft id
@@ -205,6 +207,7 @@ router.route('/drafts/:id/:draftId')
 
   })
 
+  // insert the drafted post into Posts table, destroy entry in draftPosts table
   .post((req, res) => {
     const post_data = req.body
     const draftId = req.params.draftId //post draft id
@@ -228,6 +231,10 @@ router.route('/drafts/:id/:draftId')
       })
   })
 
+// *********
+
+
+  
 // get the post by id along with the ALL the comments associated with it. 
 // app.get('/post/:id', (req, res) => {
 //   const id = req.params.id;
