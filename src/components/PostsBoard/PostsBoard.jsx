@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
 import { connect } from 'react-redux'
+import Posts from './posts/posts.jsx'
 
 class PostsBoard extends Component {
   constructor(props) {
@@ -11,20 +12,24 @@ class PostsBoard extends Component {
 
   render() {
     console.log("\nPostsBoards - props:", this.props);
+
+    const { items } = this.props
+
+    console.log("What is this", items)
+
     return (
-      <div class="postsBoard">
-        <div class="posting">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-        </div>
-        <div class="posting">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-        </div>
-        <div class="posting">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat dolor, finibus ac eros sed, feugiat facilisis leo. Nullam mollis leo nisi, ultrices ornare libero feugiat eu. Nam nisl tellus, rhoncus aliquet venenatis in, egestas nec sapien. Duis eleifend, velit non ullamcorper lobortis, neque justo ultricies urna, at tempus orci ligula quis lorem. </p>
-        </div>
+      <div className="postsBoard">
+        <Posts items={items} />
       </div>
     )
   }
 }
 
-export default PostsBoard;
+const mapStateToProps = state => {
+
+  return {
+    items: state
+  }
+}
+
+export default connect(mapStateToProps)(PostsBoard);
