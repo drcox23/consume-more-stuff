@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
-import { connect } from 'react-redux'
-import Posts from './posts/posts.jsx'
-import PostDetail from '../PostDetail/PostDetail.jsx';
-import { getPostandCommentsById } from '../../actions/actions.js'
+import { connect } from 'react-redux';
+import Posts from './posts/posts.jsx';
+import { getPostandCommentsById } from '../../actions/actions.js';
 
 class PostsBoard extends Component {
   constructor(props) {
@@ -26,7 +25,6 @@ class PostsBoard extends Component {
           <Posts items={items} getPostandCommentsById={this.getPostandCommentsById}/>
         </Link>
       </div>
-
     )
   }
 }
