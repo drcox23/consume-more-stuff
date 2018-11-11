@@ -1,4 +1,4 @@
-//CLIENT
+//CLIENT - UNAUTHENTICATED USER VIEW
 
 import React, { Component } from 'react';
 import logo from './2cents.png';
@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 //Import JSX component files
+import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
@@ -89,6 +90,7 @@ class App extends Component {
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
               </div>
             </Header>
+            <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
           </div>
         </Router>
 

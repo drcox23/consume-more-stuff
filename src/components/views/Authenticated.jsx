@@ -1,4 +1,4 @@
-//CLIENT
+//CLIENT - AUTHENTICATED USER VIEW
 
 import React, { Component } from 'react';
 import logo from './2cents.png';

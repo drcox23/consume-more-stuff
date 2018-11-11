@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import App from './App';
-import Home from './Home/Home';
-import Callback from './Callback/Callback';
-import Auth from './Auth/Auth';
-import history from './history';
+import App from './App.js';
+import Home from './Home/Home.js';
+import Callback from './Callback/Callback.js';
+import Auth from './Auth/Auth.js';
+import history from './history.js';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
@@ -37,13 +37,16 @@ export const makeMainRoutes = () => {
       <Provider store={store}>
         <div>
           <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
-          {/* <Route path="/login" component={LoginForm} /> */}
+
           <Route path="/signup" component={SignupForm} />
+
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} />
           }} />
+
         </div>
       </Provider>
     </Router>
