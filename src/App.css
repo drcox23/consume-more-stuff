@@ -47,8 +47,8 @@ img{
 #searchBar{
   flex: 1 1 auto;
   width: 100%;
-  height: 25px;
-  padding: 5px 20px;
+  height: 40px;
+  padding: 0px 20px;
   margin: 8px 20px 0 20px;
   border: 1px solid gray;
   border-radius: 25px;
@@ -60,7 +60,7 @@ img{
 #linkBtns{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 0;
   height: 29px;
   width: 500px;
@@ -77,13 +77,26 @@ img{
   border: 1px solid gray;
   font-size: 1.8em;
   cursor: pointer;
+  color: black;
+}
+
+#loginBtn, #logoutBtn{
+  font-family: 'Glass Antiqua', cursive;
+  width: 160px;
+  height: 40px;
+  padding: 5px 0;
+  border-radius: 3px;
+  border: 1px solid gray;
+  font-size: 1.4em;
+  cursor: pointer;
+  color: black;
 }
 
 button:hover{
   background-color: rgb(218, 252, 218);
 }
 
-/* Foot Styling */
+/* Footer Styling */
 
 footer {
   position: fixed;
@@ -96,6 +109,7 @@ footer {
   text-align: center;
   padding: 20px 0;
   font-family: 'Glass Antiqua', cursive;
+
 }
 
 a {
@@ -107,4 +121,8 @@ a {
 
 a:hover{
   color: palegreen;
+}
+
+a:visited{
+  color: white;
 }
