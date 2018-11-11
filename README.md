@@ -1,9 +1,9 @@
 ## DON'T WORK IN MASTER BRANCH
 
-#Getting Started
+# Getting Started
 For individuals who would like to continue developing this application as their own project.
 
-##Prerequisites
+## Prerequisites
 1. Fork and clone this repo.
 2. Install docker.
 3. Run `npm install` to download all project dependencies.
