@@ -36,12 +36,12 @@ body{
   /* border: 1px solid blue; */
 }
 
-img{
-  flex: 0 0 auto;
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-}
+  img{
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
 
 /* Search Bar Styling */
 #searchBar{
@@ -68,33 +68,34 @@ img{
   margin: 8px 20px 0 20px;
 }
 
-.navbar-btns{
-  font-family: 'Glass Antiqua', cursive;
-  flex: 1 1 auto;
-  width: 160px;
-  padding: 5px 0;
-  border-radius: 3px;
-  border: 1px solid gray;
-  font-size: 1.8em;
-  cursor: pointer;
-  color: black;
-}
+  .navbar-btns{
+    font-family: 'Glass Antiqua', cursive;
+    flex: 1 1 auto;
+    width: 160px;
+    padding: 5px 0;
+    border-radius: 3px;
+    border: 1px solid gray;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: black;
+  }
 
-#loginBtn, #logoutBtn{
-  font-family: 'Glass Antiqua', cursive;
-  width: 160px;
-  height: 40px;
-  padding: 5px 0;
-  border-radius: 3px;
-  border: 1px solid gray;
-  font-size: 1.4em;
-  cursor: pointer;
-  color: black;
-}
+  #loginBtn, #logoutBtn{
+    font-family: 'Glass Antiqua', cursive;
+    width: 160px;
+    height: 40px;
+    padding: 5px 0;
+    border-radius: 3px;
+    border: 1px solid gray;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: black;
+  }
 
-button:hover{
-  background-color: rgb(218, 252, 218);
-}
+  button:hover{
+    /* background-color: rgb(218, 252, 218); */
+    background-color: rgb(164, 204, 164);
+  }
 
 /* Footer Styling */
 
@@ -119,10 +120,10 @@ a {
   font-size: 0.8em;
 }
 
-a:hover{
-  color: palegreen;
-}
+  a:hover{
+    color: palegreen;
+  }
 
-a:visited{
-  color: white;
-}
+  a:visited{
+    color: white;
+  }
