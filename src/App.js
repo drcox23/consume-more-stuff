@@ -49,6 +49,7 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
+    console.log('App.js mounted')
     this.props.dispatch(getAllPosts())
   }
 
@@ -79,6 +80,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div>{console.log(this.props, 'hello?')}</div>
         <div></div>
         {/* Fonts */}
         <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Kodchasan" rel="stylesheet" />
