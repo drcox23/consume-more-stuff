@@ -6,17 +6,17 @@ import {
   // ADD_POST,
   // ADD_COMMENT
 }
-from '../actions/actions.js'
+  from '../actions/actions.js'
 
 const postReducer = (state = {
   items: [], detailedItem: {}
 }, action) => {
   switch (action.type) {
     case GET_ALL_POSTS:
-      return {...state, items: action.payload }
+      return { ...state, items: action.payload }
     case GET_POST_BY_ID:
-      console.log("YUPYUP", action.payload)
-      return {...state, detailedItem: action.payload }
+      console.log("REDUCERS - GET_POST_BY_ID", action.payload)
+      return { ...state, detailedItem: action.payload }
     default:
       return state
   }

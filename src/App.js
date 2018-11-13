@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   getAllPosts() {
-    console.log("IM SETTING THE STATE BACK TO ALL");
+    console.log("App.js - Setting state back to all");
     this.props.dispatch(
       getAllPosts()
     )
