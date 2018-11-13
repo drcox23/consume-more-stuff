@@ -19,8 +19,8 @@ const Comments = require('./knex/models/Comments.js');
 // const Users = require('./knex/models/Users.js');
 // const Transactions = require('./knex/models/Transactions.js');
 // const Type = require('./knex/models/Type.js');
-// const draftPosts = require('./knex/models/draftPosts.js');
-// const draftComments = require('./knex/models/draftComments.js');
+const draftPosts = require('./knex/models/draftPosts.js');
+const draftComments = require('./knex/models/draftComments.js');
 // const archivedPosts = require('./knex/models/archivedPosts.js');
 // const archivedComments = require('./knex/models/archivedComments.js');
 
@@ -127,8 +127,8 @@ app.get('/mycomments/:id', (req, res) => {
     })
 })
 
-app.route('/add')
-  .post((req, res) => {
+// add a new post
+app.post('/add', (req, res) => {
     const post_data = req.body
     console.log("post data we are adding to DB", req.body)
 
@@ -137,6 +137,46 @@ app.route('/add')
       .save()
       .then(results => {
         return Posts.fetchAll()
+      })
+      .then(results => {
+        res.json(results.serialize())
+      })
+      .catch(err => {
+        console.log("server post error", err)
+        res.json(err)
+      })
+  });
+
+  // initial post save
+  app.post('/save-post', (req, res) => {
+    const post_data = req.body
+    console.log("post data we are adding to DB", req.body)
+
+    draftPosts
+      .forge(post_data)
+      .save()
+      .then(results => {
+        return draftPosts.fetchAll()
+      })
+      .then(results => {
+        res.json(results.serialize())
+      })
+      .catch(err => {
+        console.log("server post error", err)
+        res.json(err)
+      })
+  });
+
+  // initial comment save
+  app.post('/save-comment', (req, res) => {
+    const comment_data = req.body
+    console.log("post data we are adding to DB", req.body)
+
+    draftComments
+      .forge(comment_data)
+      .save()
+      .then(results => {
+        return draftComments.fetchAll()
       })
       .then(results => {
         res.json(results.serialize())
