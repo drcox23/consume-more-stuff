@@ -16,6 +16,8 @@ const Posts = (props) => {
                     <p className="postSubject">{post.subject}</p>
                 </div>
 
+                <div className="viewPosting">view posting</div>
+
             </p>
         </div>
     )
