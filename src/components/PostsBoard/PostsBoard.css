@@ -1,24 +1,74 @@
 .postsBoard{
-  width: 100%;
-  margin: 40px 10px 0 20px;
-  /* border: 1px solid pink; */
+  /* width: 100%; */
+  /* margin: 40px 10px 0 20px; */
+  border: 3px solid pink;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 70px;
 }
+
+  #postings-section{
+    /* border: 1px outset rgb(0, 0, 0); */
+    margin: 20px 120px;
+    border-radius: 15px;
+    /* background-color: rgb(198, 219, 198); */
+  }
+
+  #postings-section-title{
+    font-size: 2em;
+    /* font-weight: bold; */
+    border-bottom: 1px solid gray;
+    padding: 0 20px;
+    font-family: 'Glass Antiqua', cursive;
+  }
 
 .posting{
-  border: 2px outset lightgray;
-  border-radius: 3px;
-  margin: 15px;
-  padding: 15px;
+  flex: 1 1 auto;
+  margin: 8px 15px;
+  padding: 10px;
+  border: 1px outset rgb(226, 224, 224);
+  border-left: 10px solid rgb(164, 204, 164);
+  /* border-radius:  10px  10px 2px 10px; */
   width: 60%;
   cursor: pointer;
+  background-color: white;
+  box-shadow: 0 3px 0 0 #999;
+  display: inline-block;
 }
 
-.posting:hover{
-  background-color: rgb(221, 219, 219);
-}
+  .posting:hover{
+    background-color: rgb(221, 219, 219);
+  }
+  
+  .posting:active {
+    background-color: rgb(164, 204, 164);
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+  }
 
-p{
+.single-posting-container{
   margin: 0;
   padding: 0;
   color: black;
+  display: flex;
+  /* flex-flow: row wrap; */
 }
+
+  .userIcon{
+    /* border: 1px solid black; */
+    /* border-radius: 100%; */
+    display: inline-block;
+    padding: 5px;
+  }
+
+  .postSubject-container{
+    /* border: 1px solid orange; */
+
+  }
+
+  .postSubject{
+    margin: 10px;
+    height: 100%;
+    font-size: 1.4em;
+  }
+
