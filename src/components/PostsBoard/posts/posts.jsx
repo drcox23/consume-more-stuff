@@ -4,7 +4,7 @@ const Posts = (props) => {
     console.log("Posts - props:", props);
 
     return props.items.map(post =>
-        <div key={post.id} className="posting" onClick={() => props.getPostById(post.id)}>
+        <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
             <p className="single-posting-container">
 
                 <div className="userIcon">
