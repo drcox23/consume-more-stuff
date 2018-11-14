@@ -8,7 +8,7 @@ import { getPostandCommentsById } from '../../actions/actions.js';
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="navbar-btns">{props.title}</button>
+      <button className="auth-navbar-btns">{props.title}</button>
     </Link>
   )
 }
@@ -43,9 +43,11 @@ class PostsBoard extends Component {
 
         <div className="auth-user-btns">
           {isAuthenticated() &&
-            <LinkButton to={"/my-requests"} title={"My Requests"} />}
+            <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
+          <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/my-comments"} title={"My Comments"} />}
+          <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/new-request"} title={"New Request"} />}
         </div>
