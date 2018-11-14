@@ -6,37 +6,37 @@ import Comments from './comments/comments.jsx';
 import './PostDetail.css';
 
 class PostsDetail extends Component {
-    constructor(props) {
-      super(props);
-  
-    }
-  
-    render() {
-      const { detailedItem, comments } = this.props;
-        
-      console.log(comments, "YUP");
-      console.log(detailedItem, "NO");
+  constructor(props) {
+    super(props);
+  }
 
-      return (
-        <div className="detailedPage">
-            <div className="postDetail">
-                <Post detailedItem={detailedItem} />
-            </div>
+  render() {
+    console.log("PostDetail - props", this.props);
+    const { detailedItem, comments } = this.props;
 
-             <div className="comments">
-                <Comments comments={comments} />
-            </div>
+    console.log("PostDetail - comments", comments);
+    console.log("PostDetail - detailedItem", detailedItem);
+
+    return (
+      <div className="detailedPage">
+        <div className="postDetail">
+          <Post detailedItem={detailedItem} />
         </div>
-      )
-    }
+
+        <div className="comments">
+          <Comments comments={comments} />
+        </div>
+      </div>
+    )
   }
-  
-  const mapStateToProps = state => {
-  
-    return {
-        detailedItem: state.detailedItem,
-        comments: state.comments
-    }
+}
+
+const mapStateToProps = state => {
+
+  return {
+    detailedItem: state.detailedItem,
+    comments: state.comments
   }
-  
-  export default connect(mapStateToProps)(PostsDetail);
+}
+
+export default connect(mapStateToProps)(PostsDetail);

@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+}
+
+#welcome-greeting{
+  text-align: center;
+  font-family: 'Glass Antiqua', cursive;
+}
+
+#auth-imgBox{
+  width: 25%;
+  /* height: 500px; */
+  margin: auto auto;
+
+}
+
+#valid-user-login-msg{
+  color: black
+}
+
+#invalid-user-login-msg{
+  color: black
+}
