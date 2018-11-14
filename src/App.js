@@ -8,11 +8,13 @@ import axios from 'axios';
 
 //Import JSX component files
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
+import PostDetail from './components/PostDetail/PostDetail.jsx';
+import UserProfile from './components/UserProfile/UserProfile.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
-import PostDetail from './components/PostDetail/PostDetail';
+
 
 const Header = (props) => {
   return (
@@ -98,6 +100,7 @@ class App extends Component {
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/specificPost" component={PostDetail} />
+            <Route path="/user/profile" component={UserProfile} />
           </div>
         </Router>
 
