@@ -6,7 +6,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const GET_ALL_APPROVED_COMMENTS = 'GET_ALL_APPROVED_COMMENTS' //get all approved comments by id for a particular post
 export const GET_PENDING_COMMENTS = 'GET_PENDING_COMMENTS' // get all pending comments needing approval for a post.
 export const GET_POST_BY_ID = 'GET_POST_BY_ID';
-export const GET_COMMENT_BY_POST_ID = 'GET_COMMENT_BY_POST_ID'
+export const GET_COMMENT_BY_POST_ID = 'GET_COMMENT_BY_POST_ID';
 
 export const getAllPosts = () => {
   return dispatch => {

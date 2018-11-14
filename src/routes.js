@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Switch, Route, Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './App.js';
@@ -10,6 +10,7 @@ import history from './history.js';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
+import NotFound from './components/Error/404.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -36,17 +37,21 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <Provider store={store}>
         <div>
-          <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
+          <Switch>
+            <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
 
-          <Route path="/signup" component={SignupForm} />
+            <Route path="/signup" component={SignupForm} />
 
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+            <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
-          <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
-            return <Callback {...props} />
-          }} />
+            <Route path="/callback" render={(props) => {
+              handleAuthentication(props);
+              return <Callback {...props} />
+            }} />
 
+            <Route component={NotFound}/>
+
+          </Switch>
         </div>
       </Provider>
     </Router>
