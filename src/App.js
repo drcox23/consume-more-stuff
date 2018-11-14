@@ -14,7 +14,12 @@ import UserProfile from './components/UserProfile/UserProfile.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
+<<<<<<< HEAD
 
+=======
+import PostDetail from './components/PostDetail/PostDetail';
+import Profile from './components/Profile/Profile.jsx';
+>>>>>>> development
 
 const Header = (props) => {
   return (
@@ -51,11 +56,12 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
+    console.log('App.js mounted')
     this.props.dispatch(getAllPosts())
   }
 
   getAllPosts() {
-    console.log("IM SETTING THE STATE BACK TO ALL");
+    console.log("App.js - Setting state back to all");
     this.props.dispatch(
       getAllPosts()
     )
@@ -74,16 +80,22 @@ class App extends Component {
     this.props.auth.logout();
   }
 
+  getProfile() {
+    this.props.auth.getProfile();
+  }
+
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
   render() {
     const { isAuthenticated } = this.props.auth;
     console.log("isAuthenticated:", isAuthenticated());
+    console.log(this.props, 'Props');
 
     return (
       <div className="App">
+        <div>{console.log(this.props, 'hello?')}</div>
         <div></div>
         {/* Fonts */}
-        <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Kodchasan" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Kodchasan|Quicksand" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
         <Router>
@@ -96,6 +108,10 @@ class App extends Component {
 
                 {isAuthenticated() &&
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
+
+                {isAuthenticated() && 
+                <p>Hello, <Profile /></p>}
+
               </div>
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
@@ -105,7 +121,7 @@ class App extends Component {
         </Router>
 
         <footer>
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossOrigin="anonymous">
           </link>
           <i className="fab fa-github-alt fa-2x">
             <a href="https://github.com/maymc/consume-more-stuff" target="_blank"> Visit our Github!</a>
