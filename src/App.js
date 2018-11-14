@@ -14,12 +14,7 @@ import UserProfile from './components/UserProfile/UserProfile.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
-<<<<<<< HEAD
-
-=======
-import PostDetail from './components/PostDetail/PostDetail';
 import Profile from './components/Profile/Profile.jsx';
->>>>>>> development
 
 const Header = (props) => {
   return (

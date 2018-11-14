@@ -3,7 +3,6 @@ import React from 'react';
 import './post.css'
 
 const Post = (props) => {
-  console.log("Post - props:", props);
   return (
     <div key={props.detailedItem.id} className="specificPost">
       <div className="subject-container">{props.detailedItem.subject}</div>
