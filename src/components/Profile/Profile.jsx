@@ -13,10 +13,7 @@ class Profile extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.state.username}
-      </div>
+    return (this.state.username
     )
   }
 }
