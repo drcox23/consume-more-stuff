@@ -13,6 +13,7 @@ import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
 import PostDetail from './components/PostDetail/PostDetail';
+import Profile from './components/Profile/Profile.jsx';
 
 const Header = (props) => {
   return (
@@ -72,10 +73,15 @@ class App extends Component {
     this.props.auth.logout();
   }
 
+  getProfile() {
+    this.props.auth.getProfile();
+  }
+
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
   render() {
     const { isAuthenticated } = this.props.auth;
     console.log("isAuthenticated:", isAuthenticated());
+    console.log(this.props, 'Props');
 
     return (
       <div className="App">
@@ -94,6 +100,10 @@ class App extends Component {
 
                 {isAuthenticated() &&
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
+
+                {isAuthenticated() && 
+                <p>Hello, <Profile /></p>}
+
               </div>
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
