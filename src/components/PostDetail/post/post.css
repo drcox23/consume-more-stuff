@@ -1,0 +1,46 @@
+.specificPost{
+  border: 1px solid rgb(214, 214, 214);
+  margin: 20px 200px;
+}
+
+.subject-container{
+  border-bottom: 5px solid rgb(198, 219, 198);
+  /* border-left: 5px double rgb(198, 219, 198); */
+  margin: 20px 20px 0 20px;
+  padding: 15px;
+  text-align: center;
+  /* border-radius: 25px 25px 0 25px; */
+  /* border-width: 10px; */
+  font-size: 1em;
+  /* background: rgb(198, 219, 198); */
+  font-weight: bold;
+}
+
+.body-container{
+  /* border: 1px solid gray; */
+  /* border-radius: 15px; */
+  margin: 0 20px;
+  padding: 15px;
+  text-align: justify;
+  font-size: 1em;
+}
+
+.price-container{
+  /* border: 1px solid gray; */
+  /* border-radius: 15px; */
+  margin: 0 20px;
+  /* margin: 0 20px 20px 20px; */
+  padding: 0 15px;
+  text-align: right;
+  font-size: 1em;
+}
+
+.createdAt-container{
+  /* border: 1px solid gray; */
+  /* border-radius: 15px; */
+  margin: 0 20px;
+  padding: 15px 15px 15px 15px;
+  text-align: left;
+  font-size: 1em;
+  color: gray;
+}

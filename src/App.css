@@ -83,7 +83,7 @@ body{
   #loginBtn, #logoutBtn{
     font-family: 'Glass Antiqua', cursive;
     width: 160px;
-    height: 40px;
+    height: 36px;
     padding: 5px 0;
     border-radius: 3px;
     border: 1px solid gray;
