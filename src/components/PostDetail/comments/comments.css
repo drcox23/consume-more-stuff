@@ -1,0 +1,30 @@
+.comment-container{
+  /* border: 1px solid lawngreen; */
+  width: 20%;
+  /* height: auto; */
+  margin: 25px;
+  padding: 25px 50px;
+  background-color: rgb(154, 209, 170);
+  border-radius: 100px 0px 100px 0px;
+  color: black;
+}
+
+.comment-user-id{
+  color: gray;
+  font-size: 0.9em;
+  text-align: left;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.comment-body{
+  font-size: 1.0em;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.comment-created-timestamp, .comment-updated-timestamp{
+  color: gray;
+  font-size: 0.9em;
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+}
