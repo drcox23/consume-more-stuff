@@ -9,24 +9,21 @@ class UserProfile extends Component {
   
     }
 
-    getDraftPost = (id) => {
+    componentDidMount() {
         this.props.dispatch(
-            getDraftPost(id)
-        )
-    }
+            getUserData())
+      }
   
     render() {
 
       return (
-        <div className="detailedPage">
-            <div className="postDetail">
-                <Post detailedItem={detailedItem} />
-            </div>
-
-             <div className="comments">
-                <Comments comments={comments} />
-            </div>
+        <Router>
+        <div id="userNav">
+          <Route path="/user/profile/draftposts" render={(props) => <DraftPost {...this.props} />} />
+          <Route path="/user/profile/draftcomments" render={(props) => <DraftComments {...this.props} />} />
+          {/* <Route path="/user/profile/accountcredit" component={UserProfile} /> */}
         </div>
+      </Router>
       )
     }
   }

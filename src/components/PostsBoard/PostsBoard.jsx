@@ -11,6 +11,7 @@ class PostsBoard extends Component {
   }
 
   getPostandCommentsById = (props) => {
+    console.log(this.props, "WTF");
     this.props.dispatch(
       getPostandCommentsById(props),
     )
