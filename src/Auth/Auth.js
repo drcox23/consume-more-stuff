@@ -1,6 +1,7 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
+import jwtDecode from 'jwt-decode';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -8,7 +9,8 @@ export default class Auth {
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: 'token id_token',
-    scope: 'openid'
+    audience: 'https://twocentsforyou.auth0.com/api/v2/',
+    scope: 'openid profile read:users'
   });
 
   constructor() {
@@ -26,9 +28,9 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/home');
+        history.replace('/');
       } else if (err) {
-        history.replace('/home');
+        history.replace('/');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -42,7 +44,7 @@ export default class Auth {
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/');
   }
 
   logout() {
@@ -51,7 +53,7 @@ export default class Auth {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/');
   }
 
   isAuthenticated() {
@@ -59,5 +61,14 @@ export default class Auth {
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  getProfile() {
+    if (localStorage.getItem('id_token')){
+      console.log(jwtDecode(localStorage.getItem('id_token')), 'JWT storage')
+      return jwtDecode(localStorage.getItem('id_token'));
+    } else {
+      return {};
+    }
   }
 }
