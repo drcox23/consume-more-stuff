@@ -96,15 +96,17 @@ class App extends Component {
           <div id="navbar">
             <Header>
               <div id="linkBtns">
+                {isAuthenticated() &&
+                  <p id="user-greeting">Hello, <Profile /></p>}
+
                 <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
+
 
                 {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
 
                 {isAuthenticated() &&
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
 
-                {isAuthenticated() && 
-                <p>Hello, <Profile /></p>}
 
               </div>
             </Header>
