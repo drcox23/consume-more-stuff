@@ -101,7 +101,6 @@ class App extends Component {
 
                 <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
 
-
                 {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
 
                 {isAuthenticated() &&
@@ -112,6 +111,7 @@ class App extends Component {
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/specificPost" component={PostDetail} />
+
           </div>
         </Router>
 
