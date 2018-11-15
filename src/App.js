@@ -1,9 +1,7 @@
 //CLIENT - UNAUTHENTICATED USER VIEW
 
 import React, { Component } from 'react';
-import logo from './2cents.png';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 //Import JSX component files
@@ -15,36 +13,8 @@ import NewRequest from './components/forms/NewRequest.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
-import Greeting from './components/Greeting/Greeting.jsx';
 
-const Header = (props) => {
-  console.log("props.children:", props.children);
-  return (
-    <div id="headerBar">
 
-      <div id="subheader-container">
-        {/* imgBox is for resizing the logo with a fixed scale */}
-        <div id="imgBox">
-          <img src={logo} alt="logo" />
-        </div>
-
-        {/* Search Bar */}
-        <input id="searchBar" type="text" placeholder="Search..." />
-      </div>
-
-      {/* Navigation Links */}
-      {props.children}
-    </div>
-  )
-}
-
-const LinkButton = (props) => {
-  return (
-    <Link to={props.to}>
-      <button className="navbar-btns">{props.title}</button>
-    </Link>
-  )
-}
 
 
 class App extends Component {
@@ -96,7 +66,7 @@ class App extends Component {
         <link href="https://fonts.googleapis.com/css?family=Kodchasan|Quicksand|Unica+One" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
-        <Router>
+        {/* <Router>
           <div id="navbar">
             <Header>
               <div id="linkBtns">
@@ -116,12 +86,8 @@ class App extends Component {
 
               </div>
             </Header>
-            <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
-            <Route path="/post/:id" component={PostDetail} />
-            <Route path="/user/profile" component={UserProfile} />
-            <Route path="/new-request" component={NewRequest} />
           </div>
-        </Router>
+        </Router> */}
 
         <footer>
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossOrigin="anonymous">

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
-import { getPostandCommentsById } from '../../actions/actions.js';
+import { getPostandCommentsById, getAllPosts } from '../../actions/actions.js';
 import NewRequest from '../forms/NewRequest.jsx';
 
 const LinkButton = (props) => {
@@ -18,6 +18,10 @@ class PostsBoard extends Component {
   constructor(props) {
     super(props);
   }
+
+componentDidMount = () => {
+  this.props.dispatch(getAllPosts())
+}
 
   getPostandCommentsById = (props) => {
     this.props.dispatch(

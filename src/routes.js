@@ -12,6 +12,10 @@ import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 
+import Header from './components/Header/Header.jsx';
+import UserProfile from './components/UserProfile/UserProfile.jsx';
+import NewRequest from './components/forms/NewRequest.jsx';
+
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers/reducers.js';
@@ -37,7 +41,9 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <Provider store={store}>
         <div>
-          <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
+          <Header auth={auth} props={store} />
+
+          <Route exact path="/" render={(props) => <PostsBoard auth={auth} {...props} />} />
 
           <Route path="/signup" component={SignupForm} />
 
@@ -49,6 +55,10 @@ export const makeMainRoutes = () => {
             handleAuthentication(props);
             return <Callback {...props} />
           }} />
+
+          <Route path="/user/profile" component={UserProfile} />
+
+          <Route path="/new-request" component={NewRequest} />
 
         </div>
       </Provider>
