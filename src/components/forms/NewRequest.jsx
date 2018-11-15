@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../../2cents.png';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './NewRequest.css';
 
@@ -11,7 +10,7 @@ class NewRequest extends Component {
         <div id="new-request-title">New Feedback Request</div>
 
         {/* New Request form */}
-        <form action="/">
+        <form action="/add">
 
           <div class="row">
             <div class="rowHeader">
