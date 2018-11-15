@@ -44,6 +44,7 @@ const LinkButton = (props) => {
   )
 }
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -97,15 +98,19 @@ class App extends Component {
           <div id="navbar">
             <Header>
               <div id="linkBtns">
+                {isAuthenticated() &&
+                  <p id="user-greeting">Hello, <Profile /></p>}
+
                 <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
 
                 {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
 
                 {isAuthenticated() &&
+                  <LinkButton to={"/my-profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'profile')} />}
+
+                {isAuthenticated() &&
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
 
-                {isAuthenticated() && 
-                <p>Hello, <Profile /></p>}
 
               </div>
             </Header>
