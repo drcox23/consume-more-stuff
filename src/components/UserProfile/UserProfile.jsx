@@ -17,10 +17,10 @@ class UserProfile extends Component {
   
     }
 
-    componentDidMount() {
-        this.props.dispatch(
-            getAllUserProfileData())
-      }
+    // componentDidMount() {
+    //     this.props.dispatch(
+    //         getAllUserProfileData())
+    //   }
   
     render() {
 

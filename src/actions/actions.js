@@ -55,6 +55,7 @@ export const getPostandCommentsById = (id) => {
 
 export const getUserProfileData = () => {
   return dispatch => [
-    c
+    axios
+      .get()
   ]
 }
