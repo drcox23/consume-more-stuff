@@ -108,7 +108,7 @@ class App extends Component {
                 {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
 
                 {isAuthenticated() &&
-                  <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'profile')} />}
+                  <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
 
                 {isAuthenticated() &&
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}

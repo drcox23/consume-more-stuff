@@ -35,11 +35,16 @@ class UserProfile extends Component {
     return (
       <div id="userProfileContainer">
         <Router>
-          <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'profile')} />                <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />                <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />                <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
+          <div className="userProfileNav">
+            <LinkButton to={"/user/profile"} title={"My Profile"} />
+
+            <LinkButton to={"/user/profile/draftposts"} title={"Drafts Posts"} />
+
+            <LinkButton to={"/user/profile/draftcomments"} title={"Draft Comments"} />
+
+            <LinkButton to={"/user/profile/accountcredit"} title={"Account Credit"} />
 
 
-
-          <div id="userProfileNav">
             <Route path="/user/profile" render={(props) => <ProfileData {...this.props} />} />
 
             <Route path="/user/profile/draftposts" render={(props) => <DraftPosts {...this.props} />} />
