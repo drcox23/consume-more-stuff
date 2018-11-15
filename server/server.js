@@ -16,7 +16,7 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 //Models
 const Posts = require('./knex/models/Posts.js');
 const Comments = require('./knex/models/Comments.js');
-// const Users = require('./knex/models/Users.js');
+const Users = require('./knex/models/Users.js');
 // const Transactions = require('./knex/models/Transactions.js');
 // const Type = require('./knex/models/Type.js');
 const draftPosts = require('./knex/models/draftPosts.js');
@@ -187,6 +187,22 @@ app.post('/add', (req, res) => {
       })
   });
 
+  
+// get the user profile data 
+app.get('/user-profile/:id', (req, res) => {
+const id = req.params.id
+
+  Users
+    .where({id})
+    .fetch()
+    .then(items => {
+      res.json(items)
+    })
+    .catch(err => {
+      console.log("user-profile get error", err)
+      res.json(err)
+    })
+})
 
 // *********
 
