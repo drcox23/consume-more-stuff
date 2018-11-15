@@ -5,6 +5,14 @@ import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
 import { getAllPosts, getPostandCommentsById } from '../../actions/actions.js';
 
+const LinkButton = (props) => {
+  return (
+    <Link to={props.to}>
+      <button className="auth-navbar-btns">{props.title}</button>
+    </Link>
+  )
+}
+
 class PostsBoard extends Component {
   constructor(props) {
     super(props);
@@ -18,16 +26,29 @@ class PostsBoard extends Component {
 
   render() {
     const { items } = this.props
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="postsBoard">
 
         <div id="postings-section">
-
           <div id="postings-section-title">All Postings</div>
-          
-            <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
 
+          <Link to="/post/specificPost">
+            <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
+          </Link>
+
+        </div>
+
+        <div className="auth-user-btns">
+          {isAuthenticated() &&
+            <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
+          <br /><br />
+          {isAuthenticated() &&
+            <LinkButton to={"/my-comments"} title={"My Comments"} />}
+          <br /><br />
+          {isAuthenticated() &&
+            <LinkButton to={"/new-request"} title={"New Request"} />}
         </div>
       </div>
     )
