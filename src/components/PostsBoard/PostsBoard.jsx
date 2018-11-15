@@ -4,6 +4,7 @@ import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
 import { getPostandCommentsById } from '../../actions/actions.js';
+import { getAllPosts } from '../../actions/actions.js';
 
 const LinkButton = (props) => {
   return (
@@ -18,11 +19,22 @@ class PostsBoard extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.dispatch(getAllPosts())
+  }
+
+  getAllPosts() {
+    this.props.dispatch(
+      getAllPosts()
+    )
+  }
+
   getPostandCommentsById = (props) => {
     this.props.dispatch(
       getPostandCommentsById(props),
     )
   }
+  
 
   render() {
     const { items } = this.props
@@ -35,9 +47,7 @@ class PostsBoard extends Component {
 
           <div id="postings-section-title">All Postings</div>
 
-          <Link to="/post/specificPost">
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
-          </Link>
 
         </div>
 

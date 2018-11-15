@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from './post/post.jsx';
 import Comments from './comments/comments.jsx';
+import { getPostandCommentsById } from '../../actions/actions.js';
 
 import './PostDetail.css';
 
@@ -20,7 +21,7 @@ class PostsDetail extends Component {
     return (
       <div className="detailedPage">
         <div className="postDetail">
-          <Post detailedItem={detailedItem} />
+          <Post props={this.props} detailedItem={detailedItem} />
         </div>
 
         <div className="comments">

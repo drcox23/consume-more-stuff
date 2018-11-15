@@ -9,6 +9,8 @@ import Auth from './Auth/Auth.js';
 import history from './history.js';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
+import Post from './components/PostDetail/post/post.jsx';
+import PostDetail from './components/PostDetail/PostDetail.jsx';
 import Posts from './components/PostsBoard/posts/posts.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
 import NotFound from './components/Error/404.jsx';
@@ -50,7 +52,11 @@ export const makeMainRoutes = () => {
               return <Callback {...props} />
             }} />
 
-            <Route path="/posts" render={(props) => <Posts auth={auth} {...props} />} />
+            <Route exact path="/posts" render={(props) => <PostsBoard auth={auth} {...props} />} />
+
+            <Route path="/posts/:id" render={(props) => <PostDetail auth={auth} {...props} />} />
+
+            {/* <Route name=":id" path="posts/:testvalue" handler={Posts} /> */}
 
             <Route component={NotFound}/>
 
