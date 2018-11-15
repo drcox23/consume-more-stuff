@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 //Import JSX component files
+import Header from './components/Header/Header.jsx'
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
@@ -16,25 +17,25 @@ import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
 import Profile from './components/Profile/Profile.jsx';
 
-const Header = (props) => {
-  return (
-    <div id="headerBar">
+// const Header = (props) => {
+//   return (
+//     <div id="headerBar">
 
-      <div id="subheader-container">
-        {/* imgBox is for resizing the logo with a fixed scale */}
-        <div id="imgBox">
-          <img src={logo} alt="logo" />
-        </div>
+//       <div id="subheader-container">
+//         {/* imgBox is for resizing the logo with a fixed scale */}
+//         <div id="imgBox">
+//           <img src={logo} alt="logo" />
+//         </div>
 
-        {/* Search Bar */}
-        <input id="searchBar" type="text" placeholder="Search..." />
-      </div>
+//         {/* Search Bar */}
+//         <input id="searchBar" type="text" placeholder="Search..." />
+//       </div>
 
-      {/* Navigation Links */}
-      {props.children}
-    </div>
-  )
-}
+//       {/* Navigation Links */}
+//       {props.children}
+//     </div>
+//   )
+// }
 
 const LinkButton = (props) => {
   return (
@@ -96,7 +97,7 @@ class App extends Component {
         {/* Routing Links & Routes */}
         <Router>
           <div id="navbar">
-            <Header>
+            <Header children={this.props.children} logo={logo}>
               <div id="linkBtns">
                 {isAuthenticated() &&
                   <p id="user-greeting">Hello, <Profile /></p>}

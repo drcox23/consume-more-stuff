@@ -17,10 +17,10 @@ class UserProfile extends Component {
   
     }
 
-    // componentDidMount() {
-    //     this.props.dispatch(
-    //         getAllUserProfileData())
-    //   }
+    componentDidMount() {
+        this.props.dispatch(
+            getAllUserProfileData())
+      }
   
     render() {
 
@@ -28,12 +28,16 @@ class UserProfile extends Component {
         <div id="userProfileContainer">
           <Router>
             <div id="userNav">
-              <Route path="/user/profile" render={(props) => <ProfileData {...this.props} />} />
-              <Route path="/user/profile/draftposts" render={(props) => <DraftPosts {...this.props} />} />
-              <Route path="/user/profile/draftcomments" render={(props) => <DraftComments {...this.props} />} />
-              <Route path="/user/profile/accountcredit" render={(props) => <AddAccountCredit {...this.props} />}  />
+              {/* <Route path="/user/profile" render={(props) => <ProfileData {...this.props} />} /> */}
+              <Route path="/user/profile/draftposts" component={() =>  <DraftPosts {...this.props} />} />
+              <Route path="/user/profile/draftcomments" component={() => <DraftComments {...this.props} />} />
+              <Route path="/user/profile/accountcredit" component={() => <AddAccountCredit {...this.props} />}  />
             </div>
+          <div>
+          </div>
+
         </Router>
+
       </div>
       )
     }

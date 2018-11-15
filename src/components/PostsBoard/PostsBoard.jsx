@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
-import { getPostandCommentsById } from '../../actions/actions.js';
+import { getAllPosts, getPostandCommentsById } from '../../actions/actions.js';
 
 class PostsBoard extends Component {
   constructor(props) {
