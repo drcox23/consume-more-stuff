@@ -10,6 +10,7 @@ import axios from 'axios';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
+import NewRequest from './components/forms/NewRequest.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
@@ -17,6 +18,7 @@ import { getAllPosts } from './actions/actions.js'
 import Profile from './components/Profile/Profile.jsx';
 
 const Header = (props) => {
+  console.log("props.children:", props.children);
   return (
     <div id="headerBar">
 
@@ -117,6 +119,7 @@ class App extends Component {
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/:id" component={PostDetail} />
             <Route path="/user/profile" component={UserProfile} />
+            <Route path="/new-request" component={NewRequest} />
           </div>
         </Router>
 

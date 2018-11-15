@@ -4,6 +4,7 @@ import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
 import { getPostandCommentsById } from '../../actions/actions.js';
+import NewRequest from '../forms/NewRequest.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -50,6 +51,7 @@ class PostsBoard extends Component {
           {isAuthenticated() &&
             <LinkButton to={"/new-request"} title={"New Request"} />}
         </div>
+
       </div>
     )
   }
