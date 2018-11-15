@@ -16,11 +16,11 @@
   }
 
   #postings-section-title{
-    font-size: 2em;
+    font-size: 1.5em;
     /* font-weight: bold; */
     border-bottom: 1px solid lightgray;
     padding: 10px 20px;
-    font-family: 'Glass Antiqua', cursive;
+    font-family: 'PT Serif', serif;
     width: 93%;
     margin-bottom: 10px;
     display: inline-block;
@@ -91,13 +91,13 @@
 }
 
 .auth-navbar-btns{
-  font-family: 'Glass Antiqua', cursive;
+  font-family: 'PT Serif', serif;
   flex: 1 1 auto;
   width: 140px;
   padding: 10px 0;
   border-radius: 3px;
   border: 1px solid gray;
-  font-size: 1.5em;
+  font-size: 1.1em;
   cursor: pointer;
   color: black;
 }
