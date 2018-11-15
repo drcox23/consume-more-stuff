@@ -4,11 +4,11 @@ import Auth from '../../Auth/Auth.js';
 
 const auth = new Auth();
 
-class Profile extends Component {
+class Greeting extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: auth.getProfile().given_name || "User",
+      username: auth.getGreeting().given_name || "User",
     }
   }
 
@@ -17,4 +17,4 @@ class Profile extends Component {
   }
 }
 
-export default connect()(Profile);
+export default connect()(Greeting);

@@ -11,7 +11,16 @@ import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
 //CSS
 import './UserProfile.css';
 
+const LinkButton = (props) => {
+  return (
+    <Link to={props.to}>
+      <button className="userProfile-btns">{props.title}</button>
+    </Link>
+  )
+}
+
 class UserProfile extends Component {
+<<<<<<< HEAD
     constructor(props) {
       super(props);
   
@@ -36,16 +45,51 @@ class UserProfile extends Component {
           <div>
           </div>
 
+=======
+  constructor(props) {
+    super(props);
+
+  }
+
+  // componentDidMount() {
+  //     this.props.dispatch(
+  //         getAllUserProfileData())
+  //   }
+
+  render() {
+
+    return (
+      <div id="userProfileContainer">
+        <Router>
+          <div className="userProfileNav">
+            <LinkButton to={"/user/profile"} title={"My Profile"} />
+
+            <LinkButton to={"/user/profile/draftposts"} title={"Drafts Posts"} />
+
+            <LinkButton to={"/user/profile/draftcomments"} title={"Draft Comments"} />
+
+            <LinkButton to={"/user/profile/accountcredit"} title={"Account Credit"} />
+
+
+            <Route path="/user/profile" render={(props) => <ProfileData {...this.props} />} />
+
+            <Route path="/user/profile/draftposts" render={(props) => <DraftPosts {...this.props} />} />
+
+            <Route path="/user/profile/draftcomments" render={(props) => <DraftComments {...this.props} />} />
+
+            <Route path="/user/profile/accountcredit" render={(props) => <AddAccountCredit {...this.props} />} />
+          </div>
+>>>>>>> development
         </Router>
 
       </div>
-      )
-    }
+    )
   }
-  
-  const mapStateToProps = state => {
-    return {
-    }
+}
+
+const mapStateToProps = state => {
+  return {
   }
-  
-  export default connect(mapStateToProps)(UserProfile);
+}
+
+export default connect(mapStateToProps)(UserProfile);

@@ -11,15 +11,23 @@ import Header from './components/Header/Header.jsx'
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
+import NewRequest from './components/forms/NewRequest.jsx';
 
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
-import Profile from './components/Profile/Profile.jsx';
+import Greeting from './components/Greeting/Greeting.jsx';
 
+<<<<<<< HEAD
 // const Header = (props) => {
 //   return (
 //     <div id="headerBar">
+=======
+const Header = (props) => {
+  console.log("props.children:", props.children);
+  return (
+    <div id="headerBar">
+>>>>>>> development
 
 //       <div id="subheader-container">
 //         {/* imgBox is for resizing the logo with a fixed scale */}
@@ -77,8 +85,8 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-  getProfile() {
-    this.props.auth.getProfile();
+  getGreeting() {
+    this.props.auth.getGreeting();
   }
 
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
@@ -100,14 +108,14 @@ class App extends Component {
             <Header children={this.props.children} logo={logo}>
               <div id="linkBtns">
                 {isAuthenticated() &&
-                  <p id="user-greeting">Hello, <Profile /></p>}
+                  <p id="user-greeting">Hello, <Greeting /></p>}
 
                 <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
 
                 {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
 
                 {isAuthenticated() &&
-                  <LinkButton to={"/my-profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'profile')} />}
+                  <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
 
                 {isAuthenticated() &&
                   <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
@@ -118,6 +126,7 @@ class App extends Component {
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/:id" component={PostDetail} />
             <Route path="/user/profile" component={UserProfile} />
+            <Route path="/new-request" component={NewRequest} />
           </div>
         </Router>
 
