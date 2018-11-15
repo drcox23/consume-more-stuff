@@ -63,8 +63,8 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 
-  getProfile() {
-    if (localStorage.getItem('id_token')){
+  getGreeting() {
+    if (localStorage.getItem('id_token')) {
       console.log(jwtDecode(localStorage.getItem('id_token')), 'JWT storage')
       return jwtDecode(localStorage.getItem('id_token'));
     } else {

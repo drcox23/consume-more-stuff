@@ -15,7 +15,7 @@ import NewRequest from './components/forms/NewRequest.jsx';
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
-import Profile from './components/Profile/Profile.jsx';
+import Greeting from './components/Greeting/Greeting.jsx';
 
 const Header = (props) => {
   console.log("props.children:", props.children);
@@ -78,8 +78,8 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-  getProfile() {
-    this.props.auth.getProfile();
+  getGreeting() {
+    this.props.auth.getGreeting();
   }
 
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
@@ -101,7 +101,7 @@ class App extends Component {
             <Header>
               <div id="linkBtns">
                 {isAuthenticated() &&
-                  <p id="user-greeting">Hello, <Profile /></p>}
+                  <p id="user-greeting">Hello, <Greeting /></p>}
 
                 <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
 
