@@ -2,6 +2,7 @@ import {
   GET_ALL_POSTS,
   GET_POST_BY_ID,
   GET_COMMENT_BY_POST_ID,
+  ADD_NEW_POST,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -20,6 +21,9 @@ const postReducer = (state = {
       return { ...state, detailedItem: action.payload }
     case GET_COMMENT_BY_POST_ID:
       return { ...state, comments: action.payload }
+    case ADD_NEW_POST:
+      console.log("REDUCERS - ADD_NEW_POST", action.payload)
+      return { ...state, items: action.payload }
     default:
       return state
   }
