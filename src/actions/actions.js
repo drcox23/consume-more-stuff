@@ -29,6 +29,7 @@ export const getAllPosts = () => {
 
 export const getPostandCommentsById = (id) => {
   return dispatch => {
+    console.log("I hit from componentdidmount")
     axios
       .get(`/post/${id}`)
       .then(response => {

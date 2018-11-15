@@ -10,6 +10,7 @@ import history from './history.js';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
+import PostDetail from './components/PostDetail/PostDetail.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -41,6 +42,8 @@ export const makeMainRoutes = () => {
           <Route path="/signup" component={SignupForm} />
 
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+
+          <Route path='/post/:id' component={PostDetail} />
 
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);

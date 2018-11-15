@@ -110,7 +110,7 @@ class App extends Component {
               </div>
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
-            <Route path="/post/specificPost" component={PostDetail} />
+            <Route path="/post/:id" component={PostDetail} />
             <Route path="/user/profile" component={UserProfile} />
           </div>
         </Router>

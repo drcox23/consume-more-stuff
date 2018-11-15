@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from './post/post.jsx';
 import Comments from './comments/comments.jsx';
+import { getPostandCommentsById } from '../../actions/actions.js';
 
 import './PostDetail.css';
 
@@ -10,12 +11,16 @@ class PostsDetail extends Component {
     super(props);
   }
 
-  render() {
-    console.log("PostDetail - props", this.props);
-    const { detailedItem, comments } = this.props;
+  componentDidMount() {
+    const { id } = this.props.match.params
 
-    console.log("PostDetail - comments", comments);
-    console.log("PostDetail - detailedItem", detailedItem);
+    this.props.dispatch(
+      getPostandCommentsById(id),
+    )
+  }
+
+  render() {
+    const { detailedItem, comments } = this.props;
 
     return (
       <div className="detailedPage">

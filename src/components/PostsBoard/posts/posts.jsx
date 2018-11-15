@@ -1,9 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const Posts = (props) => {
     console.log("Posts - props:", props);
 
     return props.items.map(post =>
+    <Link to={`/post/${post.id}`}>  
         <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
             <p className="single-posting-container">
 
@@ -21,6 +23,7 @@ const Posts = (props) => {
 
             </p>
         </div>
+    </Link>
     )
 }
 

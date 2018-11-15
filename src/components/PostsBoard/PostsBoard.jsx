@@ -11,7 +11,6 @@ class PostsBoard extends Component {
   }
 
   getPostandCommentsById = (props) => {
-    console.log(this.props, "WTF");
     this.props.dispatch(
       getPostandCommentsById(props),
     )
@@ -26,10 +25,8 @@ class PostsBoard extends Component {
         <div id="postings-section">
 
           <div id="postings-section-title">All Postings</div>
-
-          <Link to="/post/specificPost">
+          
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
-          </Link>
 
         </div>
       </div>
