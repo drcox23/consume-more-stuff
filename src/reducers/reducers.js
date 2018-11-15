@@ -5,7 +5,7 @@ import {
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
-  // ADD_COMMENT
+  // ADD_COMMENT,
 }
   from '../actions/actions.js'
 
@@ -20,7 +20,6 @@ const postReducer = (state = {
       return { ...state, detailedItem: action.payload }
     case GET_COMMENT_BY_POST_ID:
       return { ...state, comments: action.payload }
-
     default:
       return state
   }

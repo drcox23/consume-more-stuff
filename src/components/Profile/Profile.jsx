@@ -13,8 +13,7 @@ class Profile extends Component {
   }
 
   render() {
-    return (this.state.username
-    )
+    return (this.state.username)
   }
 }
 

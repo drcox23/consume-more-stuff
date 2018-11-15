@@ -25,7 +25,7 @@ class PostsDetail extends Component {
     return (
       <div className="detailedPage">
         <div className="postDetail">
-          <Post detailedItem={detailedItem} />
+          <Post props={this.props} detailedItem={detailedItem} />
         </div>
 
         <div className="comments">
