@@ -32,13 +32,11 @@ class PostsBoard extends Component {
       <div className="postsBoard">
 
         <div id="postings-section">
-
           <div id="postings-section-title">All Postings</div>
 
           <Link to="/post/specificPost">
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
           </Link>
-
         </div>
 
         <div className="auth-user-btns">
