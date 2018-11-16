@@ -6,4 +6,4 @@ const Users = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = Users
+module.exports = Users;

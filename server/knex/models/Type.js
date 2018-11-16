@@ -6,4 +6,4 @@ const Type = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = Type
+module.exports = Type;
