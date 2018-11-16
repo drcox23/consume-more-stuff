@@ -63,7 +63,7 @@ export const makeMainRoutes = () => {
 
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
-          <Route path='/post/:id' component={PostDetail} />
+          <Route path='/dashboard/post/:id' component={PostDetail} />
 
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
