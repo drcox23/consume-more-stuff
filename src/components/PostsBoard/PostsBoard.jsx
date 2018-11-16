@@ -4,7 +4,6 @@ import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
 import { getPostandCommentsById } from '../../actions/actions.js';
-import NewRequest from '../forms/NewRequest.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -43,13 +42,16 @@ class PostsBoard extends Component {
 
         <div className="auth-user-btns">
           {isAuthenticated() &&
-            <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
+            <LinkButton to={"/my-posts"} title={"My Posts"} />}
+          <br /><br />
+          {isAuthenticated() &&
+            <LinkButton to={"/my-draft-posts"} title={"My Drafts Posts"} />}
           <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/my-comments"} title={"My Comments"} />}
           <br /><br />
           {isAuthenticated() &&
-            <LinkButton to={"/my-drafts"} title={"My Drafts"} />}
+            <LinkButton to={"/my-draft-comments"} title={"My Draft Comments"} />}
           <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/new-request"} title={"New Request"} />}
