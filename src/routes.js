@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import App from './App.js';
+import App from './Dashboard.jsx';
 import Home from './Home/Home.js';
 import Callback from './Callback/Callback.js';
 import Auth from './Auth/Auth.js';
@@ -17,6 +17,7 @@ import UserProfile from './components/UserProfile/UserProfile.jsx';
 import NewRequest from './components/forms/NewRequest.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import NotFound from './components/Error/404.jsx';
+import Dashboard from './Dashboard.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -46,9 +47,11 @@ export const makeMainRoutes = () => {
 
           <Header auth={auth} props={store} />
 
-          <Switch>
+          {/* <Switch> */}
 
-          <Route exact path="/" render={(props) => <PostsBoard auth={auth} {...props} />} />
+          <Route exact path="/" render={(props) => <Dashboard auth={auth} {...props} />} />
+
+          <Route path="/dashboard" render={(props) => <PostsBoard auth={auth} {...props} />} />
 
           <Route path="/signup" component={SignupForm} />
 
@@ -65,9 +68,9 @@ export const makeMainRoutes = () => {
 
           <Route path="/new-request" component={NewRequest} />
 
-          <Route component={NotFound}/>
+          {/* <Route component={NotFound}/> */}
 
-          </Switch>
+          {/* </Switch> */}
 
           <Footer />
           
