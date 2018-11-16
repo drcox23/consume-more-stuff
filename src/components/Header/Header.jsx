@@ -68,8 +68,7 @@ class Header extends Component {
   
         {/* Navigation Links */}
         {this.props.children}
-      </div>
-                    <div id="linkBtns">
+        <div id="linkBtns">
                     {isAuthenticated() &&
                       <p id="user-greeting">Hello, <Greeting /></p>}
     
@@ -85,6 +84,7 @@ class Header extends Component {
     
     
                   </div>
+      </div>
                   </div>
       );
     }
