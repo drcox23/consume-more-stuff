@@ -29,34 +29,35 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    console.log("Props", this.props)
+    console.log("PROPS WHEN LOADING", this.props)
     // this.props.dispatch(
     //     getAllUserProfileData()
     // )
   }
 
   render() {
-
+    const { id } = this.props.user;
+    
     return (
       <div id="userProfileContainer">
         <Router>
           <div className="userProfileNav">
-            <LinkButton to={"/user/profile/:id/data"} title={"My Profile"} />
+            <LinkButton to={`/user/profile/${id}/data`} title={"My Profile"} />
 
-            <LinkButton to={"/user/profile/:id/draftposts"} title={"Drafts Posts"} />
+            <LinkButton to={`/user/profile/${id}/draftposts`} title={"Drafts Posts"} />
 
-            <LinkButton to={"/user/profile/:id/draftcomments"} title={"Draft Comments"} />
+            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"Draft Comments"} />
 
-            <LinkButton to={"/user/profile/:id/accountcredit"} title={"Account Credit"} />
+            <LinkButton to={`/user/profile/${id}/accountcredit`} title={"Account Credit"} />
 
 
-            <Route path="/user/profile/:id/data" component={() => <ProfileData {...this.props} />} />
+            <Route path={`/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} />
 
-            <Route path="/user/profile/:id/draftposts" component={() => <DraftPosts {...this.props} />} />
+            <Route path={`/user/profile/${id}/draftposts`}component={() => <DraftPosts {...this.props} />} />
 
-            <Route path="/user/profile/:id/draftcomments" component={() => <DraftComments {...this.props} />} />
+            <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
 
-            <Route path="/user/profile/:id/accountcredit" component={() => <AddAccountCredit {...this.props} />} />
+            <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} />} />
           </div>
         </Router>
 
@@ -67,6 +68,7 @@ class UserProfile extends Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
     draftPosts: state.draftPosts,
     draftComments: state.draftComments
   }

@@ -59,7 +59,6 @@ class App extends Component {
     if (!this.props.auth.isAuthenticated()) {
       this.props.dispatch(getAllPosts())
     } else {
-      console.log(this.props, "Wut is this????")
       const { nickname } = jwtDecode(localStorage.getItem('id_token'))
       this.props.dispatch(getAll(nickname))
     }
