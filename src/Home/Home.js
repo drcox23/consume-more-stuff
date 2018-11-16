@@ -3,12 +3,12 @@ import logo from '../2cents.png';
 import './Home.css';
 
 class Home extends Component {
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
-  login() {
-    this.props.auth.login();
-  }
+  // goTo(route) {
+  //   this.props.history.replace(`/${route}`)
+  // }
+  // login() {
+  //   this.props.auth.login();
+  // }
   render() {
     const { isAuthenticated } = this.props.auth;
     return (

@@ -31,21 +31,21 @@ class Header extends Component {
     // }
   
     //~~~~~~~~App Component Methods~~~~~~~~~//
-    goTo(route) {
-      this.props.history.replace(`/${route}`)
-    }
+    // goTo(route) {
+    //   this.props.history.replace(`/${route}`)
+    // }
   
-    login() {
-      this.props.auth.login();
-    }
+    // login() {
+    //   this.props.auth.login();
+    // }
   
-    logout() {
-      this.props.auth.logout();
-    }
+    // logout() {
+    //   this.props.auth.logout();
+    // }
   
-    getGreeting() {
-      this.props.auth.getGreeting();
-    }
+    // getGreeting() {
+    //   this.props.auth.getGreeting();
+    // }
   
     //~~~~~~~~App Component - RENDER~~~~~~~~~//
     render() {
