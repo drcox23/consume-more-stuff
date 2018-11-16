@@ -69,14 +69,14 @@ body{
 }
 
   #user-greeting{
-    font-family: 'PT Serif', serif;
+    font-family: 'Lato', sans-serif;
     margin: auto 0;
     font-size: 1.2em;
     padding: 5px;
   }
 
   .navbar-btns{
-    font-family: 'PT Serif', serif;
+    font-family: 'Lato', sans-serif;
     flex: 1 1 auto;
     width: 120px;
     padding: 5px 0;
@@ -88,9 +88,9 @@ body{
   }
 
   #loginBtn, #logoutBtn{
-    font-family: 'PT Serif', serif;
+    font-family: 'Lato', sans-serif;
     width: 120px;
-    height: 34px;
+    height: 32px;
     padding: 2px 0;
     border-radius: 3px;
     border: 1px solid gray;
@@ -116,7 +116,7 @@ footer {
   color: white;
   text-align: center;
   padding: 20px 0;
-  font-family: 'PT Serif', serif;
+  font-family: 'Lato', sans-serif;
 
 }
 

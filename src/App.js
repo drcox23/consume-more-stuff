@@ -56,7 +56,7 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-    if(!this.props.auth.isAuthenticated()) {
+    if (!this.props.auth.isAuthenticated()) {
       this.props.dispatch(getAllPosts())
     } else {
       const { nickname } = jwtDecode(localStorage.getItem('id_token'))
@@ -99,7 +99,7 @@ class App extends Component {
         <div>{console.log(this.props, 'hello?')}</div>
         <div></div>
         {/* Fonts */}
-        <link href="https://fonts.googleapis.com/css?family=Kodchasan|Quicksand|Unica+One" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan|Lato|Quicksand|Raleway" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
         <Router>
@@ -109,22 +109,22 @@ class App extends Component {
                 {isAuthenticated() &&
                   <p id="user-greeting">Hello, <Greeting /></p>}
 
-                <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
+                <LinkButton to={"/"} title={"HOME"} onClick={this.goTo.bind(this, 'home')} />
 
-                {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
-
-                {isAuthenticated() &&
-                  <LinkButton to={`/user/profile/${this.props.user.id}`} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
+                {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>LOGIN</button>}
 
                 {isAuthenticated() &&
-                  <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
+                  <LinkButton to={`/user/profile/${this.props.user.id}`} title={"MY PROFILE"} onClick={this.goTo.bind(this, 'user/profile')} />}
+
+                {isAuthenticated() &&
+                  <button id="logoutBtn" onClick={this.logout.bind(this)}>LOGOUT</button>}
 
 
               </div>
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/:id" component={PostDetail} />
-            <Route path='/user/profile/:id' component={ () => <UserProfile {...this.props} />} />
+            <Route path='/user/profile/:id' component={() => <UserProfile {...this.props} />} />
             <Route path="/new-request" component={NewRequest} />
           </div>
         </Router>
