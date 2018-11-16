@@ -3,12 +3,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
-<<<<<<< HEAD
-import { getAllPosts, getPostandCommentsById } from '../../actions/actions.js';
-=======
 import { getPostandCommentsById } from '../../actions/actions.js';
 import NewRequest from '../forms/NewRequest.jsx';
->>>>>>> development
 
 const LinkButton = (props) => {
   return (

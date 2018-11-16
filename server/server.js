@@ -204,6 +204,23 @@ const id = req.params.id
     })
 })
 
+app.get('/user-profile/email/:email', (req, res) => {
+  const { email } = req.params;
+
+  Users
+    .query(function (qb) {
+      qb.whereRaw(`email LIKE ?`, [`%${email}%`])
+    })
+    .fetch()
+    .then(items => {
+      res.json(items)
+    })
+    .catch(err => {
+      console.log("user-profile get error", err)
+      res.json(err)
+    })
+})
+
 // *********
 
 

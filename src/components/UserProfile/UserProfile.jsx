@@ -8,6 +8,9 @@ import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
 
+//Actions
+import { getAllUserProfileData } from '../../actions/actions.js';
+
 //CSS
 import './UserProfile.css';
 
@@ -20,41 +23,17 @@ const LinkButton = (props) => {
 }
 
 class UserProfile extends Component {
-<<<<<<< HEAD
-    constructor(props) {
-      super(props);
-  
-    }
-
-    // componentDidMount() {
-    //     this.props.dispatch(
-    //         getAllUserProfileData())
-    //   }
-  
-    render() {
-
-      return (
-        <div id="userProfileContainer">
-          <Router>
-            <div id="userNav">
-              {/* <Route path="/user/profile" render={(props) => <ProfileData {...this.props} />} /> */}
-              <Route path="/user/profile/draftposts" component={() =>  <DraftPosts {...this.props} />} />
-              <Route path="/user/profile/draftcomments" component={() => <DraftComments {...this.props} />} />
-              <Route path="/user/profile/accountcredit" component={() => <AddAccountCredit {...this.props} />}  />
-            </div>
-          <div>
-          </div>
-
-=======
   constructor(props) {
     super(props);
 
   }
 
-  // componentDidMount() {
-  //     this.props.dispatch(
-  //         getAllUserProfileData())
-  //   }
+  componentDidMount() {
+    console.log("Props", this.props)
+      // this.props.dispatch(
+      //     getAllUserProfileData()
+      // )
+    }
 
   render() {
 
@@ -62,24 +41,23 @@ class UserProfile extends Component {
       <div id="userProfileContainer">
         <Router>
           <div className="userProfileNav">
-            <LinkButton to={"/user/profile"} title={"My Profile"} />
+            <LinkButton to={"/user/profile/:id"} title={"My Profile"} />
 
-            <LinkButton to={"/user/profile/draftposts"} title={"Drafts Posts"} />
+            <LinkButton to={"/user/profile/:id/draftposts"} title={"Drafts Posts"} />
 
-            <LinkButton to={"/user/profile/draftcomments"} title={"Draft Comments"} />
+            <LinkButton to={"/user/profile/:id/draftcomments"} title={"Draft Comments"} />
 
-            <LinkButton to={"/user/profile/accountcredit"} title={"Account Credit"} />
+            <LinkButton to={"/user/profile/:id/accountcredit"} title={"Account Credit"} />
 
 
-            <Route path="/user/profile" render={(props) => <ProfileData {...this.props} />} />
+            <Route path="/user/profile/:id" render={() => <ProfileData {...this.props} />} />
 
-            <Route path="/user/profile/draftposts" render={(props) => <DraftPosts {...this.props} />} />
+            <Route path="/user/profile/:id/draftposts" component={() => <DraftPosts {...this.props} />} />
 
-            <Route path="/user/profile/draftcomments" render={(props) => <DraftComments {...this.props} />} />
+            <Route path="/user/profile/:id/draftcomments" component={() => <DraftComments {...this.props} />} />
 
-            <Route path="/user/profile/accountcredit" render={(props) => <AddAccountCredit {...this.props} />} />
+            <Route path="/user/profile/:id/accountcredit" component={() => <AddAccountCredit {...this.props} />} />
           </div>
->>>>>>> development
         </Router>
 
       </div>
