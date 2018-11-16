@@ -15,6 +15,7 @@ import PostDetail from './components/PostDetail/PostDetail.jsx';
 import Header from './components/Header/Header.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
 import NewRequest from './components/forms/NewRequest.jsx';
+import Footer from './components/Footer/Footer.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -59,6 +60,8 @@ export const makeMainRoutes = () => {
           <Route path="/user/profile" component={UserProfile} />
 
           <Route path="/new-request" component={NewRequest} />
+
+          <Footer />
 
         </div>
       </Provider>
