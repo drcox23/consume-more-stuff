@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router, Switch, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './Dashboard.jsx';
@@ -18,6 +18,7 @@ import NewRequest from './components/forms/NewRequest.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import NotFound from './components/Error/404.jsx';
 import Dashboard from './Dashboard.jsx';
+import { Dashboard2s } from './components/UserProfile/DashboardLinks/DashboardLinks.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -67,6 +68,8 @@ export const makeMainRoutes = () => {
           <Route path="/user/profile" component={UserProfile} />
 
           <Route path="/new-request" component={NewRequest} />
+
+          <Route path="/dashboard2s" component={Dashboard2s} />
 
           {/* <Route component={NotFound}/> */}
 

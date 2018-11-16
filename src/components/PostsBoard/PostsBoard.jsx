@@ -6,6 +6,8 @@ import Posts from './posts/posts.jsx';
 import { getPostandCommentsById, getAllPosts } from '../../actions/actions.js';
 import NewRequest from '../forms/NewRequest.jsx';
 
+import { Dashboard2s } from '../UserProfile/DashboardLinks/DashboardLinks.jsx';
+
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
@@ -31,6 +33,7 @@ componentDidMount = () => {
 
   render() {
     const { items } = this.props
+    {console.log(this.props, 'why broke?')}
     // const { isAuthenticated } = this.props.auth;
 
     return (
@@ -43,9 +46,14 @@ componentDidMount = () => {
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
           </Link>
 
+          <Route path="/dashboard2s" component={Dashboard2s} />
+          
+
         </div>
 
         {/* <div className="auth-user-btns">
+        <LinkButton to="/dashboard2s" title={"dashboard2s"} />
+        <br /><br />
           {isAuthenticated() &&
             <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
           <br /><br />

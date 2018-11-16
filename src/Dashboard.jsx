@@ -6,6 +6,7 @@ import Posts from './components/PostsBoard/posts/posts.jsx';
 import { getPostandCommentsById, getAllPosts } from './actions/actions.js';
 import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
+// import { Dashboard2s } from './components/UserProfile/DashboardLinks/DashboardLinks.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -42,16 +43,23 @@ componentDidMount = () => {
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />
 
-          <Route path={`/dashboard`} component={PostsBoard} />
+          <Route path={`/`} component={PostsBoard} />
           {/* <div id="postings-section-title">All Postings</div>
 
           <Link to="/post/specificPost">
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
           </Link> */}
+          <Route path="/dashboard2s" component={Dashboard2s} />
 
         </div>
 
+
         <div className="auth-user-btns">
+
+        <Dashboard2s match={match}/>
+
+        <LinkButton to="/dashboard2s" title={"Dashboard2s"} />
+        <br /><br />
           {isAuthenticated() &&
             <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
           <br /><br />
@@ -67,10 +75,53 @@ componentDidMount = () => {
   }
 }
 
+
 const mapStateToProps = state => {
   return {
     items: state.items
   }
+}
+
+export const Dashboard2s = ({ match }) => {
+  return (
+    <div>
+      <h2>Dashboard2s</h2>
+      <ul>
+        <li>
+          <Link to={`${match.url}/rendering`}>Rendering with React</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/components`}>Components</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
+        </li>
+      </ul>
+
+      <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
+      <Route path={`${match.path}/poop`} component={poop} />
+      <Route
+        exact
+        path={match.path}
+        render={() => <h3>Please select a topic.</h3>}
+      />
+    </div>
+  );
+}
+
+export const Dashboard2 = ({ match }) => {
+  return (
+    <div>
+        {console.log(match, ' this is match though')}
+      <h3>{match.params.dashboardSelector}</h3>
+    </div>
+  );
+}
+
+export const poop = ({ match }) => {
+    return (
+        <div>POOP</div>
+    )
 }
 
 export default connect(mapStateToProps)(Dashboard);
