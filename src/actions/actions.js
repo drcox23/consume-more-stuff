@@ -10,6 +10,7 @@ export const GET_COMMENTS_BY_POST_ID = 'GET_COMMENT_BY_POST_ID';
 export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
+export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 
 export const getAllPosts = () => {
   return dispatch => {
@@ -44,7 +45,6 @@ export const getAll = (nickname) => {
       })
       .then(response => {
         id = response.data.id;
-        console.log("MY ID PLEASE", response);
         return axios.get(`/user-profile/${id}`)
       })
       .then(response => {
@@ -108,6 +108,19 @@ export const getPostandCommentsById = (id) => {
 //       .get()
 //   ]
 // }
+
+export const getTypeData = () => {
+  return dispatch => {
+    axios
+    .get(`/type`)
+    .then(response => {
+      dispatch({
+        type: GET_ALL_TYPES,
+        payload: response.data
+      })
+    })
+  }
+}
 
 export const addNewPost = (postfromNewRequest) => {
   console.log("\nCheck postFromNewRequest:", postfromNewRequest);

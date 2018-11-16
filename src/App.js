@@ -62,11 +62,6 @@ class App extends Component {
       const { nickname } = jwtDecode(localStorage.getItem('id_token'))
       this.props.dispatch(getAll(nickname))
     }
-    // console.log(jwtDecode(localStorage.getItem('id_token')), 'JWT storage')
-
-    // const { nickname } = jwtDecode(localStorage.getItem('id_token'))
-
-    // this.props.dispatch(getAll(nickname))
   }
 
   // getAllPosts() {
