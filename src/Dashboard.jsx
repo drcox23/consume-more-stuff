@@ -41,9 +41,17 @@ componentDidMount = () => {
         {console.log(match, 'wth is this?')}
         <div id="postings-section">
 
+      <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
+      <Route path={`${match.path}/poop`} component={poop} />
+      <Route
+        exact
+        path={match.path}
+        render={() => <h3>Please select a topic.</h3>}
+      />
+
           <Route path={`/dashboard/new-request`} component={NewRequest} />
 
-          <Route path={`/`} component={PostsBoard} />
+          {/* <Route path={`/`} component={PostsBoard} /> */}
           {/* <div id="postings-section-title">All Postings</div>
 
           <Link to="/post/specificPost">
@@ -56,9 +64,9 @@ componentDidMount = () => {
 
         <div className="auth-user-btns">
 
-        <Dashboard2s match={match}/>
+{isAuthenticated() &&
+  <Dashboard2s match={this.props.match}/>}
 
-        <LinkButton to="/dashboard2s" title={"Dashboard2s"} />
         <br /><br />
           {isAuthenticated() &&
             <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
@@ -86,25 +94,20 @@ export const Dashboard2s = ({ match }) => {
   return (
     <div>
       <h2>Dashboard2s</h2>
-      <ul>
+      <ul style={{ listStyleType: "none" }}>
         <li>
-          <Link to={`${match.url}/rendering`}>Rendering with React</Link>
+        <LinkButton to={`${match.url}/rendering`} title={"Rendering with React"} />
         </li>
         <li>
-          <Link to={`${match.url}/components`}>Components</Link>
+          <LinkButton id="myRequestsBtn" to={`${match.url}/components`} title={"Components"} />
         </li>
         <li>
-          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
+          <LinkButton to={`${match.url}/props-v-state`} title={"Props v. State"} />
+        </li>
+        <li>
+          <LinkButton to={`${match.url}/poop`} title={"Props v. State"} />
         </li>
       </ul>
-
-      <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
-      <Route path={`${match.path}/poop`} component={poop} />
-      <Route
-        exact
-        path={match.path}
-        render={() => <h3>Please select a topic.</h3>}
-      />
     </div>
   );
 }
@@ -112,6 +115,7 @@ export const Dashboard2s = ({ match }) => {
 export const Dashboard2 = ({ match }) => {
   return (
     <div>
+      {console.log(match, 'HOLY FUCK WHAT IS GOING ON??')}
         {console.log(match, ' this is match though')}
       <h3>{match.params.dashboardSelector}</h3>
     </div>

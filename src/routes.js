@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router, Switch, Link } from 'react-router-dom';
+import { Route, Router, Switch, Link, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './Dashboard.jsx';
@@ -48,11 +48,16 @@ export const makeMainRoutes = () => {
 
           <Header auth={auth} props={store} />
 
-          {/* <Switch> */}
+          <Switch>
 
-          <Route exact path="/" render={(props) => <Dashboard auth={auth} {...props} />} />
+          {/* <Route exact path="/" render={(props) => <PostsBoard auth={auth} {...props} />}>
+            {auth.isAuthenticated() && <Redirect from='/' to='/dashboard'/>}
+          </Route> */}
 
-          <Route path="/dashboard" render={(props) => <PostsBoard auth={auth} {...props} />} />
+          <Route exact path="/" render={(props) => ( !auth.isAuthenticated() ? 
+          (<PostsBoard auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
+
+          <Route path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
 
           <Route path="/signup" component={SignupForm} />
 
@@ -73,7 +78,7 @@ export const makeMainRoutes = () => {
 
           {/* <Route component={NotFound}/> */}
 
-          {/* </Switch> */}
+          </Switch>
 
           <Footer />
           

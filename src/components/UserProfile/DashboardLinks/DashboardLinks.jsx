@@ -5,6 +5,7 @@ export const Dashboard2s = ({ match }) => {
     return (
       <div>
         <h2>Dashboard2s</h2>
+        {console.log(match, 'what is being console logged here?')}
         <ul>
           <li>
             <Link to={`${match.url}/rendering`}>Rendering with React</Link>
