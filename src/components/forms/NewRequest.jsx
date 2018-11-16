@@ -2,33 +2,38 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './NewRequest.css';
 import { connect } from 'react-redux';
-import { addNewPost } from '../../actions/actions.js'
+
+//Actions
+import { getTypeData, addNewPost } from '../../actions/actions.js'
 
 class NewRequest extends Component {
   constructor(props) {
     super(props);
-    this.states = {
-      subject: null,
-      body: null,
-      price: null,
-      type_id: null,
-      user_id: null,
+    this.state = {
+      form: {
+        user_id: this.props.user.id
+      }
     }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(
+      getTypeData()
+    )
   }
 
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    })
+    this.state.form[name] = value;
+    console.log("On Change - handleChange this.state.form:", this.state.form)
   }
 
   handleSubmit = (event) => {
     console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
-    console.log('\n Submitted!!:', this.state);
-    this.props.dispatch(addNewPost(this.state));
+    console.log('\n Submitted!!:', this.state.form);
+    this.props.dispatch(addNewPost(this.state.form));
   }
 
   render() {
@@ -39,20 +44,6 @@ class NewRequest extends Component {
 
         {/* New Request form */}
         <form onSubmit={this.handleSubmit}>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>User:
-                <select onChange={this.handleChange} name="user_id">
-                  <option>Select Your Name...</option>
-                  <option value="1">Wymin</option>
-                  <option value="2">May</option>
-                  <option value="3">Doug</option>
-                  <option value="4">Chaz</option>
-                </select>
-              </label>
-            </div>
-          </div>
 
           <div class="row">
             <div class="rowHeader">
@@ -73,10 +64,7 @@ class NewRequest extends Component {
               <label>Media Type:
                 <select onChange={this.handleChange} name="type_id">
                   <option>Select Media Type...</option>
-                  <option value="1">Idea</option>
-                  <option value="2">Image</option>
-                  <option value="3">Video</option>
-                  <option value="4">Review</option>
+                  {this.props.type.map(line => <option key={line.id} value={line.id}>{line.type}</option>)}
                 </select>
               </label>
             </div>
@@ -100,4 +88,11 @@ class NewRequest extends Component {
   }
 }
 
-export default connect()(NewRequest);
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    type: state.type
+  }
+}
+
+export default connect(mapStateToProps)(NewRequest);

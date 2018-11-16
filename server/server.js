@@ -18,7 +18,7 @@ const Posts = require('./knex/models/Posts.js');
 const Comments = require('./knex/models/Comments.js');
 const Users = require('./knex/models/Users.js');
 // const Transactions = require('./knex/models/Transactions.js');
-// const Type = require('./knex/models/Type.js');
+const Type = require('./knex/models/Type.js');
 const draftPosts = require('./knex/models/draftPosts.js');
 const draftComments = require('./knex/models/draftComments.js');
 // const archivedPosts = require('./knex/models/archivedPosts.js');
@@ -196,6 +196,36 @@ app.get('/user-profile/:id', (req, res) => {
   Users
     .where({ id })
     .fetch()
+    .then(items => {
+      res.json(items)
+    })
+    .catch(err => {
+      console.log("user-profile get error", err)
+      res.json(err)
+    })
+})
+
+app.get('/user-profile/email/:email', (req, res) => {
+  const { email } = req.params;
+
+  Users
+    .query(function (qb) {
+      qb.whereRaw(`email LIKE ?`, [`%${email}%`])
+    })
+    .fetch()
+    .then(items => {
+      res.json(items)
+    })
+    .catch(err => {
+      console.log("user-profile get error", err)
+      res.json(err)
+    })
+})
+
+app.get('/type', (req, res) => {
+
+  Type
+    .fetchAll()
     .then(items => {
       res.json(items)
     })
