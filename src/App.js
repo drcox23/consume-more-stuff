@@ -5,8 +5,10 @@ import logo from './2cents.png';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 //Import JSX component files
+import Header from './components/Header/Header.jsx'
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
@@ -15,30 +17,30 @@ import LoginForm from './components/forms/LoginForm.jsx'
 
 //Setup for redux
 import { connect } from 'react-redux';
-import { getAllPosts } from './actions/actions.js'
 import SignupForm from './components/forms/SignupForm';
-// import Greeting from './components/Greeting/Greeting.jsx';
+import { getAllPosts, getAll } from './actions/actions.js'
+import Greeting from './components/Greeting/Greeting.jsx';
 
-const Header = (props) => {
-  console.log("props.children:", props.children);
-  return (
-    <div id="headerBar">
+// const Header = (props) => {
+//   console.log("props.children:", props.children);
+//   return (
+//     <div id="headerBar">
 
-      <div id="subheader-container">
-        {/* imgBox is for resizing the logo with a fixed scale */}
-        <div id="imgBox">
-          <img src={logo} alt="logo" />
-        </div>
+//        <div id="subheader-container">
+//          {/* imgBox is for resizing the logo with a fixed scale */}
+//          <div id="imgBox">
+//            <img src={logo} alt="logo" />
+//          </div>
 
-        {/* Search Bar */}
-        <input id="searchBar" type="text" placeholder="Search..." />
-      </div>
+//          {/* Search Bar */}
+//          <input id="searchBar" type="text" placeholder="Search..." />
+//        </div>
 
-      {/* Navigation Links */}
-      {props.children}
-    </div>
-  )
-}
+//        {/* Navigation Links */}
+//        {props.children}
+//      </div>
+//    )
+//  }
 
 const LinkButton = (props) => {
   return (
@@ -56,16 +58,20 @@ class App extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-    console.log('App.js mounted')
-    this.props.dispatch(getAllPosts())
+    if (!this.props.auth.isAuthenticated()) {
+      this.props.dispatch(getAllPosts())
+    } else {
+      const { nickname } = jwtDecode(localStorage.getItem('id_token'))
+      this.props.dispatch(getAll(nickname))
+    }
   }
 
-  getAllPosts() {
-    console.log("App.js - Setting state back to all");
-    this.props.dispatch(
-      getAllPosts()
-    )
-  }
+  // getAllPosts() {
+  //   console.log("App.js - Setting state back to all");
+  //   this.props.dispatch(
+  //     getAllPosts()
+  //   )
+  // }
 
   //~~~~~~~~App Component Methods~~~~~~~~~//
   goTo(route) {
@@ -95,33 +101,33 @@ class App extends Component {
         <div>{console.log(this.props, 'hello?')}</div>
         <div></div>
         {/* Fonts */}
-        <link href="https://fonts.googleapis.com/css?family=Kodchasan|Quicksand|Unica+One" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan|Lato|Quicksand|Raleway" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
         <Router>
           <div id="navbar">
-            <Header>
+            <Header children={this.props.children} logo={logo}>
               <div id="linkBtns">
                 {isAuthenticated() &&
                   <p id="user-greeting">Hello, </p>}
 
-                <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
+                <LinkButton to={"/"} title={"HOME"} onClick={this.goTo.bind(this, 'home')} />
 
                 {/* {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this,'login')}>Login</button>} */}
                 <LinkButton to={"/login"} title={"Login"} />
 
                 {isAuthenticated() &&
-                  <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
+                  <LinkButton to={`/user/profile/${this.props.user.id}`} title={"MY PROFILE"} onClick={this.goTo.bind(this, 'user/profile')} />}
 
                 {isAuthenticated() &&
-                  <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
+                  <button id="logoutBtn" onClick={this.logout.bind(this)}>LOGOUT</button>}
 
 
               </div>
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/:id" component={PostDetail} />
-            <Route path="/user/profile" component={UserProfile} />
+            <Route path='/user/profile/:id' component={() => <UserProfile {...this.props} />} />
             <Route path="/new-request" component={NewRequest} />
             <Route path="/login" component={LoginForm} />
             <Route path="/signup" component={SignupForm} />
@@ -141,7 +147,10 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    items: state.items
+    items: state.items,
+    user: state.user,
+    draftPosts: state.draftPosts,
+    draftComments: state.draftComments
   }
 }
 

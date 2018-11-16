@@ -20,7 +20,7 @@
     /* font-weight: bold; */
     border-bottom: 1px solid lightgray;
     padding: 10px 20px;
-    font-family: 'PT Serif', serif;
+    font-family: 'Lato', sans-serif;
     width: 93%;
     margin-bottom: 10px;
     display: inline-block;
@@ -91,7 +91,7 @@
 }
 
 .auth-navbar-btns{
-  font-family: 'PT Serif', serif;
+  font-family: 'Lato', sans-serif;
   flex: 1 1 auto;
   width: 140px;
   padding: 10px 0;

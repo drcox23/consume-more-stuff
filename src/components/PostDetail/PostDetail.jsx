@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+//Components
 import Post from './post/post.jsx';
 import Comments from './comments/comments.jsx';
+
+//Actions
 import { getPostandCommentsById } from '../../actions/actions.js';
 
 import './PostDetail.css';
