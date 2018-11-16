@@ -39,12 +39,13 @@ componentDidMount = () => {
     return (
       <div className="postsBoard">
         {console.log(match, 'wth is this?')}
+        <Route exact path={match.path} render={() => <PostsBoard />} />
+        <Route path={`${match.path}/posts`} component={PostsBoard} />
+        <div id="postings-section">
 
-      <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
-      <Route path={`${match.path}/poop`} component={poop} />
-      <Route path={`${match.path}/posts`} component={PostsBoard} />
-      <Route path={`${match.path}/post/:id`} component={PostDetail} />
-      <Route exact path={match.path} render={() => <PostsBoard />} />
+          <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
+          <Route path={`${match.path}/poop`} component={poop} />
+          <Route path={`${match.path}/post/:id`} component={PostDetail} />
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />
 
@@ -55,6 +56,8 @@ componentDidMount = () => {
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
           </Link> */}
           <Route path="/dashboard2s" component={Dashboard2s} />
+
+        </div>
 
 
         <div className="auth-user-btns">
