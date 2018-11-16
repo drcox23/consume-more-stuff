@@ -9,8 +9,10 @@ class NewRequest extends Component {
     super(props);
     this.states = {
       subject: null,
-      description: null,
+      body: null,
       price: null,
+      type_id: null,
+      user_id: null,
     }
   }
 
@@ -18,7 +20,7 @@ class NewRequest extends Component {
     event.preventDefault();
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     })
   }
 
@@ -40,6 +42,20 @@ class NewRequest extends Component {
 
           <div class="row">
             <div class="rowHeader">
+              <label>User:
+                <select onChange={this.handleChange} name="user_id">
+                  <option>Select Your Name...</option>
+                  <option value="1">Wymin</option>
+                  <option value="2">May</option>
+                  <option value="3">Doug</option>
+                  <option value="4">Chaz</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="rowHeader">
               <label>Subject:</label>
               <input onChange={this.handleChange} className="user-input" type="text" name="subject" placeholder="enter subject" />
             </div>
@@ -47,17 +63,24 @@ class NewRequest extends Component {
 
           <div class="row">
             <div class="rowHeader">
-              <label>Description:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="description" placeholder="enter description" />
+              <label>Body:</label>
+              <input onChange={this.handleChange} className="user-input" type="text" name="body" placeholder="enter description" />
             </div>
           </div>
 
-          {/* <div class="row">
+          <div class="row">
             <div class="rowHeader">
-              <label>Image Upload/URL:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="image" placeholder="upload an image" />
+              <label>Media Type:
+                <select onChange={this.handleChange} name="type_id">
+                  <option>Select Media Type...</option>
+                  <option value="1">Idea</option>
+                  <option value="2">Image</option>
+                  <option value="3">Video</option>
+                  <option value="4">Review</option>
+                </select>
+              </label>
             </div>
-          </div> */}
+          </div>
 
           <div class="row">
             <div class="rowHeader">
