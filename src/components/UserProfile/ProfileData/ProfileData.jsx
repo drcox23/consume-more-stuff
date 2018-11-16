@@ -7,7 +7,7 @@ const ProfileData = (props) => {
   return (
     // <div key={props.user.id} className="profileData">
     // </div>
-    <h1>Work or what</h1>
+    <div>Work or what</div>
   )
 }
 

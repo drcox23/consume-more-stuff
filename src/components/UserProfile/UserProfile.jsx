@@ -30,10 +30,10 @@ class UserProfile extends Component {
 
   componentDidMount() {
     console.log("Props", this.props)
-      // this.props.dispatch(
-      //     getAllUserProfileData()
-      // )
-    }
+    // this.props.dispatch(
+    //     getAllUserProfileData()
+    // )
+  }
 
   render() {
 
@@ -41,7 +41,7 @@ class UserProfile extends Component {
       <div id="userProfileContainer">
         <Router>
           <div className="userProfileNav">
-            <LinkButton to={"/user/profile/:id"} title={"My Profile"} />
+            <LinkButton to={"/user/profile/:id/data"} title={"My Profile"} />
 
             <LinkButton to={"/user/profile/:id/draftposts"} title={"Drafts Posts"} />
 
@@ -50,7 +50,7 @@ class UserProfile extends Component {
             <LinkButton to={"/user/profile/:id/accountcredit"} title={"Account Credit"} />
 
 
-            <Route path="/user/profile/:id" render={() => <ProfileData {...this.props} />} />
+            <Route path="/user/profile/:id/data" component={() => <ProfileData {...this.props} />} />
 
             <Route path="/user/profile/:id/draftposts" component={() => <DraftPosts {...this.props} />} />
 
