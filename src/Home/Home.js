@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../2cents.png';
 import './Home.css';
+// import { checkAuth } from '../../server/routes/authRoutes.js'
 
 class Home extends Component {
   goTo(route) {
@@ -12,7 +13,9 @@ class Home extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
+
       <div className="container">
+      {/* <div>{checkAuth()}</div> */}
         {isAuthenticated() &&
           (<h1 id="welcome-greeting">Welcome to 2¢!<br /><br />
 

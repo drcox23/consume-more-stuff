@@ -11,11 +11,13 @@ import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
 import NewRequest from './components/forms/NewRequest.jsx';
+import LoginForm from './components/forms/LoginForm.jsx'
 
 //Setup for redux
 import { connect } from 'react-redux';
 import { getAllPosts } from './actions/actions.js'
-import Greeting from './components/Greeting/Greeting.jsx';
+import SignupForm from './components/forms/SignupForm';
+// import Greeting from './components/Greeting/Greeting.jsx';
 
 const Header = (props) => {
   console.log("props.children:", props.children);
@@ -101,11 +103,12 @@ class App extends Component {
             <Header>
               <div id="linkBtns">
                 {isAuthenticated() &&
-                  <p id="user-greeting">Hello, <Greeting /></p>}
+                  <p id="user-greeting">Hello, </p>}
 
                 <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
 
-                {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
+                {/* {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this,'login')}>Login</button>} */}
+                <LinkButton to={"/login"} title={"Login"} />
 
                 {isAuthenticated() &&
                   <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
@@ -120,6 +123,8 @@ class App extends Component {
             <Route path="/post/:id" component={PostDetail} />
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/new-request" component={NewRequest} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/signup" component={SignupForm} />
           </div>
         </Router>
 

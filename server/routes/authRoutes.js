@@ -149,8 +149,10 @@ router.post('/register', (req, res, done) => {
 function checkAuth(req, res, done) {
   if (req.isAuthenticated()) {
     let isAuthed = true
+    console.log("are we authenticated", isAuthed)
   } else {
-    let notAuthed = true
+    let isAuthed = false
+    console.log("are we authenticated", isAuthed)
   }
 }
 
