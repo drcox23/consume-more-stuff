@@ -49,6 +49,9 @@ class PostsBoard extends Component {
             <LinkButton to={"/my-comments"} title={"My Comments"} />}
           <br /><br />
           {isAuthenticated() &&
+            <LinkButton to={"/my-drafts"} title={"My Drafts"} />}
+          <br /><br />
+          {isAuthenticated() &&
             <LinkButton to={"/new-request"} title={"New Request"} />}
         </div>
 
