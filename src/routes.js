@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './App.js';
@@ -16,6 +16,7 @@ import Header from './components/Header/Header.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
 import NewRequest from './components/forms/NewRequest.jsx';
 import Footer from './components/Footer/Footer.jsx';
+import NotFound from './components/Error/404.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -42,7 +43,10 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <Provider store={store}>
         <div>
+
           <Header auth={auth} props={store} />
+
+          <Switch>
 
           <Route exact path="/" render={(props) => <PostsBoard auth={auth} {...props} />} />
 
@@ -61,8 +65,12 @@ export const makeMainRoutes = () => {
 
           <Route path="/new-request" component={NewRequest} />
 
-          <Footer />
+          <Route component={NotFound}/>
 
+          </Switch>
+
+          <Footer />
+          
         </div>
       </Provider>
     </Router>
