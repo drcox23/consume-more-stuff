@@ -14,4 +14,4 @@ const draftPosts = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = draftPosts
+module.exports = draftPosts;

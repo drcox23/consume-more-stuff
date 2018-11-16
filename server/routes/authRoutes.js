@@ -86,7 +86,9 @@ router.post('/register', (req, res, done) => {
   console.log("trying to create a new user***** ", username)
   // let salt = bcrypt.genSalt(12)
   Users
-    .where({username})
+    .where({
+      username
+    })
     .fetch()
     .then(results => {
       console.log("RESULTS************: ", results)
@@ -110,15 +112,9 @@ router.post('/register', (req, res, done) => {
             .then(user => {
               user = user.toJSON
               res.redirect('/login')
-
-
             })
         })
-
-
       }
-
-
     })
 
     .catch(err => {
