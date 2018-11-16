@@ -3,9 +3,10 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const RedisStore = require('connect-redis')(session);
-// const passport = require('passport');
-// const session = require('express-session');
+const passport = require('passport');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+
 
 require('dotenv').config();
 
@@ -21,16 +22,17 @@ const draftComments = require('./knex/models/draftComments.js');
 // const archivedComments = require('./knex/models/archivedComments.js');
 const postDrafts = require('./routes/postDraftRoutes');
 const commentDrafts = require('./routes/commentDraftRoutes.js')
+const auth = require('./routes/authRoutes.js')
 
-//Setup for Redis
-// app.use(session({
-//   store: new RedisStore({url: 'redis://redis:6379', logErrors: true}),
-//   secret: 'p1',
-//   resave: false,
-//   saveUninitialized: true
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+// Setup for Redis
+app.use(session({
+  store: new RedisStore({url: 'redis://redis:6379', logErrors: true}),
+  secret: 'p1',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static("public"));
 app.use(cors());
@@ -40,6 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/', router)
 app.use('/post-draft', postDrafts)
 app.use('/comment-draft', commentDrafts)
+app.use('/auth', auth)
 
 
 // GET /home - all the posts when any user lands on home page
