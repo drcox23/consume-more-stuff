@@ -67,6 +67,8 @@ class UserProfile extends Component {
 
 const mapStateToProps = state => {
   return {
+    draftPosts: state.draftPosts,
+    draftComments: state.draftComments
   }
 }
 
