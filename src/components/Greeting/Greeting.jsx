@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Auth from '../../Auth/Auth.js';
+// import Auth from '../../Auth/Auth.js';
 
-const auth = new Auth();
+// const auth = new Auth();
 
 class Greeting extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: auth.getGreeting().given_name || "User",
+      // username: auth.getGreeting().given_name || "User",
     }
   }
 

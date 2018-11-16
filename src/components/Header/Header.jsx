@@ -49,8 +49,8 @@ class Header extends Component {
   
     //~~~~~~~~App Component - RENDER~~~~~~~~~//
     render() {
-    console.log(this.props.auth, '?')
-        const { isAuthenticated } = this.props.auth;
+    // console.log(this.props.auth, '?')
+    //     const { isAuthenticated } = this.props.auth;
 
       return (
         <div id="navbar">
@@ -69,18 +69,15 @@ class Header extends Component {
         {/* Navigation Links */}
         {this.props.children}
         <div id="linkBtns">
-                    {isAuthenticated() &&
-                      <p id="user-greeting">Hello, <Greeting /></p>}
+                    {<p id="user-greeting">Hello, <Greeting /></p>}
     
                     <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
     
-                    {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
+                    {<button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
     
-                    {isAuthenticated() &&
-                      <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
+                    {<LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
     
-                    {isAuthenticated() &&
-                      <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
+                    {<button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
     
     
                   </div>

@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const postDrafts = require('./routes/postDraftRoutes');
 const commentDrafts = require('./routes/commentDraftRoutes.js')
+const auth = require('./routes/authRoutes.js')
 
 require('dotenv').config();
 
@@ -25,19 +26,20 @@ const draftComments = require('./knex/models/draftComments.js');
 // const archivedComments = require('./knex/models/archivedComments.js');
 
 
-//Redis Stuff
-// const RedisStore = require('connect-redis')(session);
-// const passport = require('passport');
-// const session = require('express-session');
+// Redis Stuff
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const passport = require('passport');
 
-// app.use(session({
-//   store: new RedisStore({url: 'redis://redis:6379', logErrors: true}),
-//   secret: 'p1',
-//   resave: false,
-//   saveUninitialized: true
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+
+app.use(session({
+  store: new RedisStore({url: 'redis://redis:6379', logErrors: true}),
+  secret: 'p1',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static("public"));
 app.use(cors());
@@ -46,9 +48,12 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+
 // app.use('/', router)
 app.use('/post-draft', postDrafts)
 app.use('/comment-draft', commentDrafts)
+app.use('/auth', auth)
 
 
 // get all the posts when any user lands on home page
@@ -187,7 +192,7 @@ app.post('/add', (req, res) => {
       })
   });
 
-  
+
 // get the user profile data 
 app.get('/user-profile/:id', (req, res) => {
 const id = req.params.id

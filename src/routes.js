@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 
 import App from './App.js';
 import Home from './Home/Home.js';
-import Callback from './Callback/Callback.js';
-import Auth from './Auth/Auth.js';
+// import Callback from './Callback/Callback.js';
+// import Auth from './Auth/Auth.js';
 import history from './history.js';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
@@ -22,13 +22,13 @@ import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers/reducers.js';
 
-const auth = new Auth();
+// const auth = new Auth();
 
-const handleAuthentication = ({ location }) => {
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth.handleAuthentication();
-  }
-}
+// const handleAuthentication = ({ location }) => {
+//   if (/access_token|id_token|error/.test(location.hash)) {
+//     auth.handleAuthentication();
+//   }
+// }
 
 const store = createStore(
   reducers,
@@ -44,22 +44,22 @@ export const makeMainRoutes = () => {
       <Provider store={store}>
         <div>
 
-          <Header auth={auth} props={store} />
+          <Header props={store} />
 
           <Switch>
 
-          <Route exact path="/" render={(props) => <PostsBoard auth={auth} {...props} />} />
+          <Route exact path="/" render={(props) => <PostsBoard {...props} />} />
 
           <Route path="/signup" component={SignupForm} />
 
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+          <Route path="/home" render={(props) => <Home {...props} />} />
 
           <Route path='/post/:id' component={PostDetail} />
 
-          <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
-            return <Callback {...props} />
-          }} />
+          {/* <Route path="/callback" render={(props) => {
+            // handleAuthentication(props);
+            // return <Callback {...props} />
+          }} /> */}
 
           <Route path="/user/profile" component={UserProfile} />
 
