@@ -6,7 +6,8 @@ import {
   GET_DRAFTPOSTS_BY_USER_ID,
   GET_DRAFTCOMMENTS_BY_USER_ID,
   ADD_NEW_POST,
-  GET_ALL_TYPES
+  GET_ALL_TYPES,
+  REGISTER_USER
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -35,6 +36,8 @@ const postReducer = (state = {
     case ADD_NEW_POST:
       console.log("REDUCERS - ADD_NEW_POST", action.payload)
       return { ...state, form: action.payload }
+    case REGISTER_USER:
+      return { ...state, type: action.payload}
     default:
       return state
   }

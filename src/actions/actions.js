@@ -11,6 +11,7 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
+export const REGISTER_USER = 'REGISTER_USER'
 
 export const getAllPosts = () => {
   return dispatch => {
@@ -142,4 +143,26 @@ export const addNewPost = (postfromNewRequest) => {
         });
       });
   }
+}
+
+export const registerUser = (newUser) => {
+  console.log("check for newUser info", newUser);
+
+  return dispatch => {
+    axios
+      .post('/auth/register', newUser)
+      .then(response => {
+        console.log("register response.data", response.data)
+        dispatch({
+          type: REGISTER_USER,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION", err
+        })
+      })
+  }
+
 }
