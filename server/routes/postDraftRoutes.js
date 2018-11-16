@@ -1,9 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const knex = require('../knex/knex.js');
 const router = express.Router();
-
 
 //Models
 const Posts = require('../knex/models/Posts.js');
@@ -18,14 +16,12 @@ const draftPosts = require('../knex/models/draftPosts.js');
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', router)
 
-// get all drafted posts by user id
+// GET - all drafted posts by user id
 router.get('/:id', (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
 
   draftPosts
     .where({
@@ -37,7 +33,7 @@ router.get('/:id', (req, res) => {
       res.json(draftPosts)
     })
     .catch(err => {
-      console.log("get all drafts error", err)
+      console.log("ERROR - GET /:id :", err)
       res.json(err)
     })
 });
@@ -59,18 +55,18 @@ router.route('/:id/:draftId')
         res.json(draftPost)
       })
       .catch(err => {
-        console.log("drafts by id error", err)
+        console.log("ERROR - GET /:id/draftId :", err)
         res.json(err)
       })
   })
 
-  // update the drafted post and save.
+  // Update the drafted post and save.
   .put((req, res) => {
 
-    const draftId = req.params.draftId //post draft id
+    const draftId = req.params.draftId; //post draft id
 
-    const postDraft_data = req.body
-    console.log("post data we are adding to DB", req.body)
+    const postDraft_data = req.body;
+    console.log("PUT - data being added to DB", req.body)
 
     draftPosts
       .where({
@@ -80,7 +76,7 @@ router.route('/:id/:draftId')
       .then(update => {
         return update.save(postDraft_data)
       })
-      .then(data => {
+      .then(() => {
         return draftPosts.where({
           id: draftId
         }).fetch();
@@ -95,24 +91,22 @@ router.route('/:id/:draftId')
 
   })
 
-  // insert the drafted post into Posts table, destroy entry in draftPosts table
+  // Insert the drafted post into Posts table, destroy entry in draftPosts table
   .post((req, res) => {
     const post_data = req.body
     const draftId = req.params.draftId //post draft id
 
-    // console.log("post data we are adding to DB", req.body)
-
     Posts
       .forge(post_data)
       .save()
-      .then(results => {
+      .then(() => {
         return Posts.fetchAll()
       })
       .then(results => {
         res.json(results)
       })
-      .then( () => {
-        draftPosts.where({id: draftId}).destroy()
+      .then(() => {
+        draftPosts.where({ id: draftId }).destroy()
       })
       .catch(err => {
         console.log("server post error", err)
@@ -120,4 +114,4 @@ router.route('/:id/:draftId')
       })
   })
 
-  module.exports = router
+module.exports = router;
