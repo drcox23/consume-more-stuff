@@ -6,7 +6,7 @@ import App from './App.js';
 import Home from './Home/Home.js';
 // import Callback from './Callback/Callback.js';
 // import Auth from './Auth/Auth.js';
-import history from './history.js';
+// import history from './history.js';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
@@ -40,7 +40,7 @@ const store = createStore(
 
 export const makeMainRoutes = () => {
   return (
-    <Router history={history}>
+    <Router >
       <Provider store={store}>
         <div>
 
