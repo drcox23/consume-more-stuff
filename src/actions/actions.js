@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
-export const ADD_POST = 'ADD_POST';
+export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const GET_ALL_APPROVED_COMMENTS = 'GET_ALL_APPROVED_COMMENTS' //get all approved comments by id for a particular post
 export const GET_PENDING_COMMENTS = 'GET_PENDING_COMMENTS' // get all pending comments needing approval for a post.
@@ -102,9 +102,31 @@ export const getPostandCommentsById = (id) => {
   }
 }
 
-export const getAllUserProfileData = (id) => {
-  return dispatch => [
+// export const getAllUserProfileData = (id) => {
+//   return dispatch => [
+//     axios
+//       .get()
+//   ]
+// }
+
+export const addNewPost = (postfromNewRequest) => {
+  console.log("\nCheck postFromNewRequest:", postfromNewRequest);
+
+  return dispatch => {
     axios
-      .get()
-  ]
+      .post('/add', postfromNewRequest)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_NEW_POST,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
 }

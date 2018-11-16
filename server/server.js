@@ -129,71 +129,72 @@ app.get('/mycomments/:id', (req, res) => {
 
 // add a new post
 app.post('/add', (req, res) => {
-    const post_data = req.body
-    console.log("post data we are adding to DB", req.body)
+  console.log("POST - /add req.body:", req.body);
+  const post_data = req.body
+  console.log("post data we are adding to DB", req.body)
 
-    Posts
-      .forge(post_data)
-      .save()
-      .then(results => {
-        return Posts.fetchAll()
-      })
-      .then(results => {
-        res.json(results.serialize())
-      })
-      .catch(err => {
-        console.log("server post error", err)
-        res.json(err)
-      })
-  });
+  Posts
+    .forge(post_data)
+    .save()
+    .then(results => {
+      return Posts.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("server post error", err)
+      res.json(err)
+    })
+});
 
-  // initial post save
-  app.post('/save-post', (req, res) => {
-    const post_data = req.body
-    console.log("post data we are adding to DB", req.body)
+// initial post save
+app.post('/save-post', (req, res) => {
+  const post_data = req.body
+  console.log("post data we are adding to DB", req.body)
 
-    draftPosts
-      .forge(post_data)
-      .save()
-      .then(results => {
-        return draftPosts.fetchAll()
-      })
-      .then(results => {
-        res.json(results.serialize())
-      })
-      .catch(err => {
-        console.log("server post error", err)
-        res.json(err)
-      })
-  });
+  draftPosts
+    .forge(post_data)
+    .save()
+    .then(results => {
+      return draftPosts.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("server post error", err)
+      res.json(err)
+    })
+});
 
-  // initial comment save
-  app.post('/save-comment', (req, res) => {
-    const comment_data = req.body
-    console.log("post data we are adding to DB", req.body)
+// initial comment save
+app.post('/save-comment', (req, res) => {
+  const comment_data = req.body
+  console.log("post data we are adding to DB", req.body)
 
-    draftComments
-      .forge(comment_data)
-      .save()
-      .then(results => {
-        return draftComments.fetchAll()
-      })
-      .then(results => {
-        res.json(results.serialize())
-      })
-      .catch(err => {
-        console.log("server post error", err)
-        res.json(err)
-      })
-  });
+  draftComments
+    .forge(comment_data)
+    .save()
+    .then(results => {
+      return draftComments.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("server post error", err)
+      res.json(err)
+    })
+});
 
-  
+
 // get the user profile data 
 app.get('/user-profile/:id', (req, res) => {
-const id = req.params.id
+  const id = req.params.id
 
   Users
-    .where({id})
+    .where({ id })
     .fetch()
     .then(items => {
       res.json(items)

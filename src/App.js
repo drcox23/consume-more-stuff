@@ -104,7 +104,7 @@ class App extends Component {
         <div>{console.log(this.props, 'hello?')}</div>
         <div></div>
         {/* Fonts */}
-        <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Kodchasan|Quicksand" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan|Quicksand|Unica+One" rel="stylesheet" />
 
         {/* Routing Links & Routes */}
         <Router>

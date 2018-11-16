@@ -4,7 +4,8 @@ import {
   GET_COMMENTS_BY_POST_ID,
   GET_USER_BY_ID,
   GET_DRAFTPOSTS_BY_USER_ID,
-  GET_DRAFTCOMMENTS_BY_USER_ID
+  GET_DRAFTCOMMENTS_BY_USER_ID,
+  ADD_NEW_POST,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -28,6 +29,9 @@ const postReducer = (state = {
       return { ...state, draftPosts: action.payload }
     case GET_DRAFTCOMMENTS_BY_USER_ID:
       return{ ...state, draftComments: action.payload }
+    case ADD_NEW_POST:
+      console.log("REDUCERS - ADD_NEW_POST", action.payload)
+      return { ...state, items: action.payload }
     default:
       return state
   }
