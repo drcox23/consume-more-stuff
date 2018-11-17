@@ -13,7 +13,7 @@ class Picture extends Component {
   }
 
   render() {
-    let profilepicurl = auth.getGreeting().picture;
+    let profilepicurl = auth.getGreeting().picture || ' ';
     return (<img src={profilepicurl} />)
   }
 }
