@@ -36,31 +36,31 @@ export const getAll = (nickname) => {
   return dispatch => {
     let id = ''
     axios
-      .get('/home')
+      .get('http://54.201.41.199:9000/home')
       .then(response => {
         dispatch({
           type: GET_ALL_POSTS,
           payload: response.data
         })
-        return axios.get(`/user-profile/email/${nickname}`)
+        return axios.get(`http://54.201.41.199:9000/user-profile/email/${nickname}`)
       })
       .then(response => {
         id = response.data.id;
-        return axios.get(`/user-profile/${id}`)
+        return axios.get(`http://54.201.41.199:9000/user-profile/${id}`)
       })
       .then(response => {
         dispatch({
           type: GET_USER_BY_ID,
           payload: response.data
         })
-        return axios.get(`/post-draft/${id}`)
+        return axios.get(`http://54.201.41.199:9000/post-draft/${id}`)
       })
       .then(response => {
         dispatch({
           type: GET_DRAFTPOSTS_BY_USER_ID,
           payload: response.data
         })
-        return axios.get(`/comment-draft/${id}`)
+        return axios.get(`http://54.201.41.199:9000/comment-draft/${id}`)
       })
       .then(response => {
         dispatch({
@@ -113,7 +113,7 @@ export const getPostandCommentsById = (id) => {
 export const getTypeData = () => {
   return dispatch => {
     axios
-    .get(`/type`)
+    .get(`http://54.201.41.199:9000/type`)
     .then(response => {
       dispatch({
         type: GET_ALL_TYPES,
@@ -134,7 +134,7 @@ export const addNewPost = (postfromNewRequest) => {
 
   return dispatch => {
     axios
-      .post('/add-new-post', postfromNewRequest)
+      .post('http://54.201.41.199:9000/add-new-post', postfromNewRequest)
       .then(response => {
         console.log("response.data:", response.data)
         dispatch({
@@ -154,7 +154,7 @@ export const addNewPost = (postfromNewRequest) => {
 export const addMoreCredit = (id, credit) => {
   return dispatch => {
     axios
-      .put(`/add-more-credit/${id}`, credit)
+      .put(`http://54.201.41.199:9000/add-more-credit/${id}`, credit)
       .then(response => {
         dispatch({
           type: ADD_MORE_CREDIT,
