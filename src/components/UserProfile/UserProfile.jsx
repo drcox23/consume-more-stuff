@@ -57,8 +57,8 @@ class UserProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('\n Submitted!!:', this.state.form);
-    console.log('\n AddCreditForm:', this.state.form)
+    // console.log('\n Submitted!!:', this.state.form);
+    // console.log('\n AddCreditForm:', this.state.form)
     this.props.dispatch(
       addMoreCredit(this.props.user.id, this.state.form)
     );

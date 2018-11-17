@@ -157,7 +157,7 @@ export const addMoreCredit = (id, credit) => {
       .put(`/add-more-credit/${id}`, credit)
       .then(response => {
         dispatch({
-          tpye: ADD_MORE_CREDIT,
+          type: ADD_MORE_CREDIT,
           payload: response.data
         })
       })
