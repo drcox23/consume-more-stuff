@@ -17,4 +17,4 @@ const Transactions = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = Transactions
+module.exports = Transactions;

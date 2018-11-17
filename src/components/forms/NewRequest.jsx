@@ -1,9 +1,41 @@
 import React, { Component } from 'react';
-import logo from '../../2cents.png';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './NewRequest.css';
+import { connect } from 'react-redux';
+
+//Actions
+import { getTypeData, addNewPost } from '../../actions/actions.js'
 
 class NewRequest extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      form: {
+        user_id: this.props.user.id
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(
+      getTypeData()
+    )
+  }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.state.form[name] = value;
+    console.log("On Change - handleChange this.state.form:", this.state.form)
+  }
+
+  handleSubmit = (event) => {
+    console.log("New Request - handleSubmit this.props:", this.props);
+    event.preventDefault();
+    console.log('\n Submitted!!:', this.state.form);
+    this.props.dispatch(addNewPost(this.state.form));
+  }
+
   render() {
     return (
       <div id="container">
@@ -11,33 +43,37 @@ class NewRequest extends Component {
         <div id="new-request-title">New Feedback Request</div>
 
         {/* New Request form */}
-        <form action="/">
+        <form onSubmit={this.handleSubmit}>
 
           <div class="row">
             <div class="rowHeader">
               <label>Subject:</label>
-              <input className="user-input" type="text" name="user-subject-input" placeholder="enter subject" />
+              <input onChange={this.handleChange} className="user-input" type="text" name="subject" placeholder="enter subject" />
             </div>
           </div>
 
           <div class="row">
             <div class="rowHeader">
-              <label>Description:</label>
-              <input className="user-input" type="text" name="user-description-input" placeholder="enter description" />
+              <label>Body:</label>
+              <input onChange={this.handleChange} className="user-input" type="text" name="body" placeholder="enter description" />
             </div>
           </div>
 
           <div class="row">
             <div class="rowHeader">
-              <label>Image Upload/URL:</label>
-              <input className="user-input" type="text" name="" placeholder="enter description" />
+              <label>Media Type:
+                <select onChange={this.handleChange} name="type_id">
+                  <option>Select Media Type...</option>
+                  {this.props.type.map(line => <option key={line.id} value={line.id}>{line.type}</option>)}
+                </select>
+              </label>
             </div>
           </div>
 
           <div class="row">
             <div class="rowHeader">
               <label>Set a Price:</label>
-              <input className="user-input" type="text" name="" placeholder="enter description" />
+              <input onChange={this.handleChange} className="user-input" type="text" name="price" placeholder="enter price" />
             </div>
           </div>
 
@@ -52,4 +88,11 @@ class NewRequest extends Component {
   }
 }
 
-export default NewRequest;
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    type: state.type
+  }
+}
+
+export default connect(mapStateToProps)(NewRequest);

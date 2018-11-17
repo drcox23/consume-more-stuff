@@ -12,6 +12,11 @@ import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 
+import ProfileData from './components/UserProfile/UserProfile.jsx';
+import DraftPosts from './components/UserProfile/DraftPosts/DraftPost.jsx';
+import DraftComments from './components/UserProfile/DraftComments/DraftComments.jsx';
+import AddAccountCredit from './components/UserProfile/AddAccountCredit/AddAccountCredit.jsx';
+
 import Header from './components/Header/Header.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
 import NewRequest from './components/forms/NewRequest.jsx';
@@ -89,6 +94,14 @@ export const makeMainRoutes = () => {
           <Route path="/dashboard2s" component={Dashboard2s} />
 
           <Route component={NotFound}/>
+
+          <Route path={`/user/profile/:id/data`} render={(props) => <ProfileData {...props} />} />
+
+<Route path={`/user/profile/:id/draftposts`} render={(props) => <DraftPosts {...props} />} />
+
+<Route path={`/user/profile/:id/draftcomments`} render={(props) => <DraftComments {...props} />} />
+
+<Route path={`/user/profile/:id/accountcredit`} render={(props) => <AddAccountCredit {...props} />} />
 
           </Switch>
 

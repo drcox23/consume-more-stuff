@@ -1,8 +1,8 @@
 import React from 'react';
 
 const DraftPosts = (props) => {
-    return props.items.map(draftPost => 
-        <div key={draftPost.id} className="posting" onClick={() => props.getDraftPost(draftPost.id)}>
+    return props.draftPosts.map(draftPost => 
+        <div key={draftPost.id} className="posting">
             <p>{draftPost.subject}</p>
         </div>
     )

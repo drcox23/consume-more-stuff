@@ -65,7 +65,6 @@ export default class Auth {
 
   getGreeting() {
     if (localStorage.getItem('id_token')) {
-      console.log(jwtDecode(localStorage.getItem('id_token')), 'JWT storage')
       return jwtDecode(localStorage.getItem('id_token'));
     } else {
       return {};
