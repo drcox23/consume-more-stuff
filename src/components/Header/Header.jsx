@@ -59,7 +59,7 @@ class Header extends Component {
         <div id="subheader-container">
           {/* imgBox is for resizing the logo with a fixed scale */}
           <div id="imgBox">
-            <img src={logo} alt="logo" />
+            <Link to={'/'} ><img src={logo} alt="logo" /></Link>
           </div>
   
           {/* Search Bar */}
