@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 //Components
 import ProfileData from './ProfileData/ProfileData.jsx';
@@ -9,7 +10,7 @@ import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
 
 //Actions
-import { getAllUserProfileData } from '../../actions/actions.js';
+import { getAll } from '../../actions/actions.js';
 
 //CSS
 import './UserProfile.css';
@@ -30,9 +31,27 @@ class UserProfile extends Component {
 
   componentDidMount() {
     console.log("PROPS WHEN LOADING", this.props)
+    const { nickname } = jwtDecode(localStorage.getItem('id_token'))
+    this.props.dispatch(getAll(nickname))
+
     // this.props.dispatch(
     //     getAllUserProfileData()
     // )
+  }
+
+
+  handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.state.form[name] = value;
+    console.log("On Change - handleChange this.state.form:", this.state.form)
+  }
+
+  handleSubmit = (event) => {
+    console.log("New Request - handleSubmit this.props:", this.props);
+    event.preventDefault();
+    console.log('\n Submitted!!:', this.state.form);
+    // this.props.dispatch(addNewPost(this.state.form));
   }
 
   render() {
