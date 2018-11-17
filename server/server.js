@@ -3,6 +3,10 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 // const RedisStore = require('connect-redis')(session);
 // const passport = require('passport');
 // const session = require('express-session');
@@ -40,6 +44,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/', router)
 app.use('/post-draft', postDrafts)
 app.use('/comment-draft', commentDrafts)
+
+
+const AUTH_CONFIG = {
+  domain: 'twocentsforyou.auth0.com',
+  clientId: 'xcOHO3wbcR5HpAtMxwW419j5K7ijjOAE',
+  callbackUrl: 'http://localhost:3000/callback'
+}
+
+
+// Authentication middleware. When used, the Access Token must exist and be verified against the Auth0 JSON Web Key Set
+const checkJwt = jwt({
+  // Dynamically provide a signing key
+  // based on the kid in the header and 
+  // the signing keys provided by the JWKS endpoint.
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${AUTH_CONFIG.domain}/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: 'https://twocentsforyou.auth0.com/api/v2/',
+  issuer: `https://${AUTH_CONFIG.domain}/`,
+  algorithms: ['RS256']
+});
 
 
 // GET /home - all the posts when any user lands on home page
