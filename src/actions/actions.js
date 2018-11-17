@@ -11,7 +11,7 @@ export const GET_COMMENT_BY_POST_ID = 'GET_COMMENT_BY_POST_ID';
 export const getAllPosts = () => {
   return dispatch => {
     axios
-      .get('/home')
+      .get('http://54.201.41.199:9000/home')
       .then(response => {
         dispatch({
           type: GET_ALL_POSTS,
@@ -31,7 +31,7 @@ export const getPostandCommentsById = (id) => {
   return dispatch => {
     console.log("I hit from componentdidmount")
     axios
-      .get(`/post/${id}`)
+      .get(`http://54.201.41.199:9000/post/${id}`)
       .then(response => {
         dispatch({
           type: GET_POST_BY_ID,
