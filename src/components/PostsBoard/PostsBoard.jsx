@@ -22,9 +22,9 @@ class PostsBoard extends Component {
     super(props);
   }
 
-componentDidMount = () => {
-  this.props.dispatch(getAllPosts())
-}
+  componentDidMount = () => {
+    this.props.dispatch(getAllPosts())
+  }
 
   getPostandCommentsById = (props) => {
     this.props.dispatch(
@@ -37,7 +37,7 @@ componentDidMount = () => {
     // const { id } = this.props.user;
     const { items } = this.props;
     const match = this.props.match.path;
-    {console.log(this.props, 'PostBoard.jsx Props')}
+    { console.log(this.props, 'PostBoard.jsx Props') }
     // const { isAuthenticated } = this.props.auth;
 
     return (
@@ -47,10 +47,10 @@ componentDidMount = () => {
           <div id="postings-section-title">All Postings</div>
 
           {/* <Link to="/post/specificPost"> */}
-            <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+          <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
           {/* </Link> */}
           <Route path="/dashboard2s" component={Dashboard2s} />
-          
+
 
         </div>
 

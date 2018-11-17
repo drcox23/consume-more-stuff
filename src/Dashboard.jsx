@@ -54,7 +54,6 @@ componentDidMount = () => {
           {/* <Route path={`${match.path}/post/:id`} render={(props) => <PostDetail match={match} props={this.props} />} /> */}
           <Route path={`${match.path}/post/:id`} component={PostDetail} />
 
-          <Route path={`/dashboard/new-request`} component={NewRequest} />
           
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />

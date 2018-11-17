@@ -5,15 +5,15 @@ import './posts.css';
 const Posts = (props) => {
     console.log("Posts - props:", props);
     let match = props.match;
-    if (match === '/'){
+    if (match === '/') {
         match = '';
     } else {
         match = '/dashboard';
     }
     return props.items.map(post =>
-    <Link to={`${match}/post/${post.id}`}>  
-        <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
-            <p className="single-posting-container">
+        <Link to={`${match}/post/${post.id}`}>
+            <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
+                <p className="single-posting-container">
 
                     <div className="userIcon">
                         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
