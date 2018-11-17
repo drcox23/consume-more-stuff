@@ -61,13 +61,19 @@ export const makeMainRoutes = () => {
           <Route exact path="/" render={(props) => ( !auth.isAuthenticated() ? 
           (<PostsBoard auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
 
-          <Route path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
+          <Route path="/dashboard" render={(props) => ( auth.isAuthenticated() ? 
+          (<Dashboard auth={auth} {...props} /> ) : (<Redirect to="/" />))}/>
+          {/* {Redirect to login here} */}
+
+          {/* <Route path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} /> */}
 
           <Route path="/signup" component={SignupForm} />
 
           <PrivateRoute path="/home" render={(props) => <Home auth={auth} {...props} />}/>
 
-          <Route path='/post/:id' component={PostDetail} />
+          <Route path="/post/:id" render={(props) => ( !auth.isAuthenticated() ? 
+          (<PostDetail auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
+          {/* <Route path='/post/:id' component={PostDetail} /> */}
 
           <Route path='/dashboard/post/:id' component={PostDetail} />
 
@@ -82,7 +88,7 @@ export const makeMainRoutes = () => {
 
           <Route path="/dashboard2s" component={Dashboard2s} />
 
-          {/* <Route component={NotFound}/> */}
+          <Route component={NotFound}/>
 
           </Switch>
 
