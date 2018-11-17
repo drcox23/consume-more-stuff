@@ -27,6 +27,7 @@ class PostsBoard extends Component {
   render() {
     const { items } = this.props
     const { isAuthenticated } = this.props.auth;
+    const { id } = this.props.user;
 
     return (
       <div className="postsBoard">
@@ -45,13 +46,13 @@ class PostsBoard extends Component {
             <LinkButton to={"/my-posts"} title={"My Posts"} />}
           <br /><br />
           {isAuthenticated() &&
-            <LinkButton to={"/my-draft-posts"} title={"My Drafts Posts"} />}
+            <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Drafts Posts"} />}
           <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/my-comments"} title={"My Comments"} />}
           <br /><br />
           {isAuthenticated() &&
-            <LinkButton to={"/my-draft-comments"} title={"My Draft Comments"} />}
+            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />}
           <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/new-request"} title={"New Request"} />}
