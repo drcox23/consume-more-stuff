@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Router, Switch, Link, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -25,6 +25,14 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers/reducers.js';
 
 const auth = new Auth();
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    auth.isAuthenticated()
+      ? <Component {...props} />
+      : document.location.href="https://twocentsforyou.auth0.com/login?state=g6Fo2SAwQ2czaHZEVUs4ZnRfSV9jejFQWWJrcnlrTVJpNjJUaqN0aWTZMmdhRm8yU0JHTFhZME5IUTFWMWhHWnpGTWRGTlBNa2xpUkRsV05IZFhPRGRaYkVGWFNBo2NpZNkgeGNPSE8zd2JjUjVIcEF0TXh3VzQxOWo1SzdpampPQUU&client=xcOHO3wbcR5HpAtMxwW419j5K7ijjOAE&protocol=oauth2&response_type=token%20id_token&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=openid%20profile%20read%3Ausers&audience=https%3A%2F%2Ftwocentsforyou.auth0.com%2Fapi%2Fv2%2F&nonce=-IxoIAiXXrs6YjbdptizcbpXsq~_PVK8&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS44LjEifQ%3D%3D"
+  )} />
+)
 
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
@@ -53,7 +61,7 @@ export const makeMainRoutes = () => {
           <Route exact path="/" render={(props) => ( !auth.isAuthenticated() ? 
           (<PostsBoard auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
 
-          <Route path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
+          <PrivateRoute path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
 
           <Route path="/signup" component={SignupForm} />
 
