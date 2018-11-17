@@ -66,10 +66,10 @@ class UserProfile extends Component {
 
   render() {
     const { id } = this.props.user;
-    
+    console.log(this.props, ' SUP BOIEEE')
     return (
       <div id="userProfileContainer">
-        <Router>
+        {/* <Router> */}
           <div className="userProfileNav">
             <LinkButton to={`/user/profile/${id}/data`} title={"My Profile"} />
 
@@ -88,7 +88,7 @@ class UserProfile extends Component {
 
             <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
           </div>
-        </Router>
+        {/* </Router> */}
 
       </div>
     )
