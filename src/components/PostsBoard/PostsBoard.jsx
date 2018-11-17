@@ -45,6 +45,7 @@ class PostsBoard extends Component {
           {isAuthenticated() &&
             <LinkButton to={"/my-posts"} title={"My Posts"} />}
           <br /><br />
+
           {isAuthenticated() &&
             <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Drafts Posts"} />}
           <br /><br />
