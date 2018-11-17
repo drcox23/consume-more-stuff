@@ -1,0 +1,14 @@
+.draftComment{
+  border: 1px solid blue;
+  }
+  
+  .draftComment-subject{
+    padding: 10px;
+    border: 1px solid magenta;
+    margin: 0;
+  }
+  
+  .editDraftCommenBtn, .deleteDraftCommentBtn{
+    padding: 10px;
+    margin: 10px;
+  }

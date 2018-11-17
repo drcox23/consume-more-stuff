@@ -1,0 +1,97 @@
+#navbar{
+  display: flex;
+  flex-flow: column wrap;
+  /* border: 1px solid pink; */
+}
+
+#headerBar{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background-color: rgb(198, 219, 198);
+  padding: 10px 140px;
+  /* border: 1px solid black; */
+}
+
+#subheader-container{
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1 1 auto;
+}
+
+/* Logo Styling */
+#imgBox{
+  flex: 0 0 auto;
+  width: 70px;
+  /* border: 1px solid blue; */
+}
+
+  img{
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+
+#app-title{
+  font-family: 'Poiret One', cursive;
+  /* border: 1px solid black; */
+  padding: 0px 20px;
+  margin: 0;
+  font-size: 2.5em;
+  /* font-weight: bold; */
+}
+
+/* Navigation Button Styling */
+#linkBtns{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  padding: 0;
+  height: 29px;
+  width: 500px;
+  /* border: 1px solid blue; */
+  margin: auto 20px;
+}
+
+
+
+  #user-greeting{
+    font-family: 'Montserrat', sans-serif;
+    margin: auto 0;
+    font-size: 1.2em;
+  }
+
+  .navbar-btns{
+    flex: 1 1 auto;
+    /* width: 120px; */
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    /* border: 1px solid gray; */
+    cursor: pointer;
+    padding: 5px 0;
+    border-radius: 3px;
+    font-size: 1.3em;
+    color: white; 
+    margin: 0;
+    font-weight: bold;
+  }
+
+  #loginBtn, #logoutBtn{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 1em;
+    /* border: 1px solid gray; */
+    cursor: pointer;
+    /* width: 120px; */
+    height: 25px;
+    border-radius: 3px;
+    color: white;
+    padding: 5px 0 0 0;
+    font-weight: bold;
+  }
+
+  .navbar-btns:hover, #loginBtn:hover, #logoutBtn:hover{
+    color: black;
+  }
