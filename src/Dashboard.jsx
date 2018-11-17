@@ -36,7 +36,7 @@ componentDidMount = () => {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div class="pageWrapper">
+      <div className="pageWrapper">
         <Route exact path={match.path} render={(props) => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
         <Route path={`${match.path}/posts`} component={PostsBoard} />
 
