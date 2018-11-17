@@ -10,5 +10,5 @@
   export const AUTH_CONFIG = {
     domain: 'twocentsforyou.auth0.com',
     clientId: 'xcOHO3wbcR5HpAtMxwW419j5K7ijjOAE',
-    callbackUrl: 'http://mytwocents.s3-website-us-west-2.amazonaws.com/callback'
+    callbackUrl: 'http://twocentsforever.s3-website-us-west-2.amazonaws.com/callback'
   }
