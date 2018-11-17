@@ -3,9 +3,14 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const Posts = (props) => {
     console.log("Posts - props:", props);
-
+    let match = props.match;
+    if (match === '/'){
+        match = '';
+    } else {
+        match = '/dashboard';
+    }
     return props.items.map(post =>
-    <Link to={`/post/${post.id}`}>  
+    <Link to={`${match}/post/${post.id}`}>  
         <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
             <p className="single-posting-container">
 

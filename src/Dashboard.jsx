@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getPostandCommentsById, getAllPosts } from './actions/actions.js';
 import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
-import PostDetail from './components/PostDetail/PostDetail';
+import PostDetail from './components/PostDetail/PostDetail.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -37,12 +37,13 @@ componentDidMount = () => {
 
     return (
       <div class="pageWrapper">
-        <Route exact path={match.path} render={() => <PostsBoard />} />
+        <Route exact path={match.path} render={(props) => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
         <Route path={`${match.path}/posts`} component={PostsBoard} />
 
           <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
           <br /><br />
           <Route path={`${match.path}/newrequest`} component={NewRequest} />
+          {/* <Route path={`${match.path}/post/:id`} render={(props) => <PostDetail match={match} props={this.props} />} /> */}
           <Route path={`${match.path}/post/:id`} component={PostDetail} />
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />
@@ -107,10 +108,5 @@ export const poop = ({ match }) => {
     )
 }
 
-export const Posts = () => {
-  return (
-    <PostsBoard />
-  )
-}
 
 export default connect(mapStateToProps)(Dashboard);

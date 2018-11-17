@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
 import { getPostandCommentsById, getAllPosts } from '../../actions/actions.js';
 import NewRequest from '../forms/NewRequest.jsx';
+import PostDetail from '../PostDetail/PostDetail.jsx';
 
 import { Dashboard2s } from '../UserProfile/DashboardLinks/DashboardLinks.jsx';
 
@@ -32,8 +33,9 @@ componentDidMount = () => {
   }
 
   render() {
-    const { items } = this.props
-    {console.log(this.props, 'why broke?')}
+    const { items } = this.props;
+    const match = this.props.match.path;
+    {console.log(this.props, 'PostBoard.jsx Props')}
     // const { isAuthenticated } = this.props.auth;
 
     return (
@@ -43,9 +45,8 @@ componentDidMount = () => {
           <div id="postings-section-title">All Postings</div>
 
           {/* <Link to="/post/specificPost"> */}
-            <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
+            <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
           {/* </Link> */}
-
           <Route path="/dashboard2s" component={Dashboard2s} />
           
 

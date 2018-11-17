@@ -50,10 +50,6 @@ export const makeMainRoutes = () => {
 
           <Switch>
 
-          {/* <Route exact path="/" render={(props) => <PostsBoard auth={auth} {...props} />}>
-            {auth.isAuthenticated() && <Redirect from='/' to='/dashboard'/>}
-          </Route> */}
-
           <Route exact path="/" render={(props) => ( !auth.isAuthenticated() ? 
           (<PostsBoard auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
 
@@ -61,10 +57,9 @@ export const makeMainRoutes = () => {
 
           <Route path="/signup" component={SignupForm} />
 
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+          <Route path="/home" render={(props) => <Home auth={auth} {...props} />}/>
 
-          <Route exact path="/post/:id" render={(props) => ( !auth.isAuthenticated() ? 
-          (<PostDetail auth={auth} {...props} /> ) : (<Redirect to="/dashboard/post/:id" />))}/>
+          <Route path='/post/:id' component={PostDetail} />
 
           <Route path='/dashboard/post/:id' component={PostDetail} />
 
