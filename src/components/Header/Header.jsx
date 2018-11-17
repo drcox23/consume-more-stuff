@@ -11,6 +11,8 @@ import '../../App.css';
 import Greeting from '../Greeting/Greeting.jsx';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import Picture from '../Greeting/Picture.jsx';
+
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
@@ -92,6 +94,9 @@ class Header extends Component {
             {isAuthenticated() &&
               <p id="user-greeting">Hello, <Greeting /></p>}
 
+              {isAuthenticated() &&
+                <p id="profile-pic"><Picture /></p>}
+
             <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
 
             {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
@@ -101,7 +106,6 @@ class Header extends Component {
 
             {isAuthenticated() &&
               <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
-
 
           </div>
         </div>

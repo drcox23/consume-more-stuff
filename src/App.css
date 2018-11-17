@@ -134,3 +134,11 @@ a {
   a:visited{
     color: white;
   }
+
+#profile-pic {
+  position: relative;
+  padding: 10px;
+  /* left: 20px; */
+  bottom: 30px;
+  width: 60px;
+}
