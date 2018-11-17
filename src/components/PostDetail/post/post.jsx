@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './post.css'
 
 const Post = (props) => {
@@ -9,6 +9,12 @@ const Post = (props) => {
       <div className="body-container">{props.detailedItem.body}</div>
       <div className="price-container">Price: ${`${props.detailedItem.price}`}</div>
       <div className="createdAt-container">{`${props.detailedItem.created_at}`}</div>
+
+      {/* <Router>
+        <Link to="/edit-post">
+          <button className="editBtn">Edit</button>
+        </Link>
+      </Router> */}
     </div>
   )
 }

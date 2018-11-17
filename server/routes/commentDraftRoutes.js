@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const knex = require('../knex/knex.js');
 const router = express.Router();
 
-
-//Models
+//Import Models
 // const Posts = require('../knex/models/Posts.js');
 // const draftPosts = require('../knex/models/draftPosts.js');
 // const Users = require('../knex/models/Users.js');
@@ -18,14 +16,13 @@ const draftComments = require('../knex/models/draftComments.js');
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', router)
 
-// get all drafted comments by user id
+// GET /:id - all drafted comments by user id
 router.get('/:id', (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
+  console.log("CHECK - GET /:id - id:", id)
 
   draftComments
     .where({
@@ -37,16 +34,18 @@ router.get('/:id', (req, res) => {
       res.json(draftComment)
     })
     .catch(err => {
-      console.log("get all drafts error", err)
-      res.json(err)
+      console.log("\nERROR - GET /:id - all drafts by user id", err);
+      res.json(err);
     })
 });
 
 // CRUD for saved draft comment
 router.route('/:id/:draftId')
   .get((req, res) => {
-    const id = req.params.id //supposed to be for userid
-    const draftId = req.params.draftId //post draft id
+    const id = req.params.id            //For user_id
+    const draftId = req.params.draftId  //post draft id
+    console.log("CHECK - GET /:id/:draftId - id:", id);
+    console.log("CHECK - GET /:id/:draftId - draftId:", draftId);
 
     draftComments
       .where({
@@ -59,18 +58,16 @@ router.route('/:id/:draftId')
         res.json(draftComment)
       })
       .catch(err => {
-        console.log("drafts by id error", err)
+        console.log("\nERROR - GET /:id/:draftId", err)
         res.json(err)
       })
   })
 
-  // update the drafted post and save.
+  // Update the drafted post and save
   .put((req, res) => {
-
-    const draftId = req.params.draftId //post draft id
-
+    const draftId = req.params.draftId  //post draft id
     const commentDraft_data = req.body
-    console.log("post data we are adding to DB", req.body)
+    console.log("PUT - saved draft comment - req.body:", req.body)
 
     draftComments
       .where({
@@ -80,7 +77,7 @@ router.route('/:id/:draftId')
       .then(update => {
         return update.save(commentDraft_data)
       })
-      .then(data => {
+      .then(() => {
         return draftComments.where({
           id: draftId
         }).fetch();
@@ -89,36 +86,33 @@ router.route('/:id/:draftId')
         res.json(results)
       })
       .catch(err => {
-        console.log("draftComment error", err)
+        console.log("ERROR - PUT - saved draft comment:", err)
         res.json(err)
       })
 
   })
 
-  // insert the drafted post into Posts table, destroy entry in draftPosts table
+  // Insert the drafted post into Posts table, destroy entry in draftPosts table
   .post((req, res) => {
     const comment_data = req.body
     const draftId = req.params.draftId //comment draft id
 
-    // console.log("post data we are adding to DB", req.body)
-
     Comments
       .forge(comment_data)
       .save()
-      .then(results => {
+      .then(() => {
         return Comments.fetchAll()
       })
       .then(results => {
         res.json(results)
       })
-      .then( () => {
-        console.log('is this hitting??')
-        draftComments.where({id: draftId}).destroy()
+      .then(() => {
+        draftComments.where({ id: draftId }).destroy()
       })
       .catch(err => {
-        console.log("new comment from draft error", err)
+        console.log("ERROR - POST - inserting drafted post:", err)
         res.json(err)
       })
   })
 
-  module.exports = router
+module.exports = router

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './Dashboard.css';
 import { connect } from 'react-redux';
-import { getPostandCommentsById, getAllPosts } from './actions/actions.js';
+import { getPostandCommentsById, getAllPosts, getAll } from './actions/actions.js';
 import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
+import jwtDecode from 'jwt-decode';
 
 const LinkButton = (props) => {
   return (
@@ -21,7 +22,12 @@ class Dashboard extends Component {
   }
 
 componentDidMount = () => {
-  this.props.dispatch(getAllPosts())
+  if (!this.props.auth.isAuthenticated()) {
+    this.props.dispatch(getAllPosts())
+  } else {
+    const { nickname } = jwtDecode(localStorage.getItem('id_token'))
+    this.props.dispatch(getAll(nickname))
+  }
 }
 
   getPostandCommentsById = (props) => {
@@ -31,7 +37,9 @@ componentDidMount = () => {
   }
 
   render() {
+    console.log(this.props, 'Hello??')
     const match = this.props.match;
+    const { id } = this.props.user
     const { items } = this.props
     const { isAuthenticated } = this.props.auth;
 
@@ -42,9 +50,11 @@ componentDidMount = () => {
 
           <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
           <br /><br />
-          <Route path={`${match.path}/newrequest`} component={NewRequest} />
+          {/* <Route path={`${match.path}/new-request`} component={NewRequest} /> */}
           {/* <Route path={`${match.path}/post/:id`} render={(props) => <PostDetail match={match} props={this.props} />} /> */}
           <Route path={`${match.path}/post/:id`} component={PostDetail} />
+
+          
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />
 
@@ -59,7 +69,28 @@ componentDidMount = () => {
 
         <div className="auth-user-btns">
 
-          {isAuthenticated() && <DashboardLinks match={this.props.match}/>}
+          {isAuthenticated() && <div>
+      <ul style={{ listStyleType: "none" }}>
+        <li style={{ padding: "10px" }}>
+        <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
+        </li>
+      </ul>
+    </div>}
 
         </div>
 
@@ -71,30 +102,53 @@ componentDidMount = () => {
 
 const mapStateToProps = state => {
   return {
-    items: state.items
+    items: state.items,
+    user: state.user,
+    draftPosts: state.draftPosts,
+    draftComments: state.draftComments
   }
 }
 
-export const DashboardLinks = ({ match }) => {
-  return (
-    <div>
-      <ul style={{ listStyleType: "none" }}>
-        <li style={{ padding: "10px" }}>
-        <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
-        </li>
-        <li style={{ padding: "10px" }}>
-          <LinkButton id="myRequestsBtn" to={`${match.url}/components`} title={"My Requests"} />
-        </li>
-        <li style={{ padding: "10px" }}>
-          <LinkButton to={`${match.url}/props-v-state`} title={"My Comments"} />
-        </li>
-        <li style={{ padding: "10px" }}>
-          <LinkButton to={`${match.url}/newrequest`} title={"New Request"} />
-        </li>
-      </ul>
-    </div>
-  );
-}
+{/* <div className="auth-user-btns">
+<LinkButton to="/dashboard2s" title={"dashboard2s"} />
+
+  {isAuthenticated() &&
+    <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Drafts Posts"} />}
+  <br /><br />
+
+  {isAuthenticated() &&
+    <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />}
+  <br /><br />
+  {isAuthenticated() &&
+    <LinkButton to={"/new-request"} title={"New Request"} />}
+</div> */}
+
+// export const DashboardLinks = ({ match }) => {
+//   return (
+//     <div>
+//       <ul style={{ listStyleType: "none" }}>
+//         <li style={{ padding: "10px" }}>
+//         <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
+//         </li>
+//         <li style={{ padding: "10px" }}>
+//           <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
+//         </li>
+//         <li style={{ padding: "10px" }}>
+//           <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
+//         </li>
+//         <li style={{ padding: "10px" }}>
+//           <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
+//         </li>
+//         <li style={{ padding: "10px" }}>
+//           <LinkButton to={`${match.url}/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
+//         </li>
+//         <li style={{ padding: "10px" }}>
+//           <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
+//         </li>
+//       </ul>
+//     </div>
+//   );
+// }
 
 export const Dashboard2 = ({ match }) => {
   return (
