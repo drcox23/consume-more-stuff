@@ -5,7 +5,7 @@ const Posts = (props) => {
     console.log("Posts - props:", props);
 
     return props.items.map(post =>
-    <Link to={`/dashboard/post/${post.id}`}>  
+    <Link to={`/post/${post.id}`}>  
         <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
             <p className="single-posting-container">
 

@@ -42,9 +42,9 @@ componentDidMount = () => {
         <div id="postings-section">
           <div id="postings-section-title">All Postings</div>
 
-          <Link to="/post/specificPost">
+          {/* <Link to="/post/specificPost"> */}
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
-          </Link>
+          {/* </Link> */}
 
           <Route path="/dashboard2s" component={Dashboard2s} />
           
