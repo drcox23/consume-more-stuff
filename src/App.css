@@ -1,50 +1,50 @@
-body{
+/* body{
   width: 100%;
   margin: 0;
   padding: 0;
-}
+} */
 
-#navbar{
-  display: flex;
-  flex-flow: column wrap;
+/* #navbar{ */
+  /* display: flex;
+  flex-flow: column wrap; */
   /* border: 1px solid pink; */
-}
+/* } */
 
-#component-section{
+/* #component-section{
   height: 100%;
-}
+} */
 
-#headerBar{
-  display: flex;
+/* #headerBar{ */
+  /* display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   background-color: rgb(198, 219, 198);
-  padding: 10px 140px;
+  padding: 10px 140px; */
   /* border: 1px solid black; */
-}
+/* } */
 
-#subheader-container{
+/* #subheader-container{
   display: flex;
   flex-flow: row nowrap;
   flex: 1 1 auto;
-}
+} */
 
 /* Logo Styling */
-#imgBox{
-  flex: 0 0 auto;
-  width: 70px;
+/* #imgBox{ */
+  /* flex: 0 0 auto; */
+  /* width: 70px; */
   /* border: 1px solid blue; */
-}
+/* } */
 
-  img{
+  /* img{
     flex: 0 0 auto;
     width: 100%;
     height: auto;
     cursor: pointer;
-  }
+  } */
 
 /* Search Bar Styling */
-#searchBar{
+/* #searchBar{
   flex: 1 1 auto;
   width: 100%;
   height: 40px;
@@ -54,28 +54,28 @@ body{
   border-radius: 25px;
   font-size: 0.8em;
   cursor: text;
-}
+} */
 
 /* Navigation Button Styling */
-#linkBtns{
+/* #linkBtns{
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   padding: 0;
   height: 29px;
-  width: 500px;
+  width: 500px; */
   /* border: 1px solid blue; */
-  margin: 8px 20px 0 20px;
-}
-
+  /* margin: 8px 20px 0 20px; */
+/* } */
+/* 
   #user-greeting{
     font-family: 'Lato', sans-serif;
     margin: auto 0;
     font-size: 1.2em;
     padding: 5px;
-  }
+  } */
 
-  .navbar-btns{
+  /* .navbar-btns{
     font-family: 'Lato', sans-serif;
     flex: 1 1 auto;
     width: 120px;
@@ -97,7 +97,7 @@ body{
     font-size: 1.1em;
     cursor: pointer;
     color: black;
-  }
+  } */
 
   button:hover{
     /* background-color: rgb(218, 252, 218); */
