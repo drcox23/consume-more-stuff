@@ -65,7 +65,7 @@ app.get('/home', (req, res) => {
 });
 
 // get the post by id
-app.get('http://54.201.41.199:9000/post/:id', (req, res) => {
+app.get('/post/:id', (req, res) => {
   const id = req.params.id;
   console.log('whats the id', id);
 
@@ -88,7 +88,7 @@ app.get('http://54.201.41.199:9000/post/:id', (req, res) => {
 })
 
 // get the comments associated with a post
-app.get('http://54.201.41.199:9000/comments/:id', (req, res) => {
+app.get('/comments/:id', (req, res) => {
   const id = req.params.id;
 
   Comments
@@ -108,7 +108,7 @@ app.get('http://54.201.41.199:9000/comments/:id', (req, res) => {
 })
 
 // get the comments that a user has written, maybe not needed
-app.get('http://54.201.41.199:9000/mycomments/:id', (req, res) => {
+app.get('/mycomments/:id', (req, res) => {
   const id = req.params.id;
 
   Comments
@@ -128,7 +128,7 @@ app.get('http://54.201.41.199:9000/mycomments/:id', (req, res) => {
 })
 
 // add a new post
-app.post('http://54.201.41.199:9000/add', (req, res) => {
+app.post('/add', (req, res) => {
     const post_data = req.body
     console.log("post data we are adding to DB", req.body)
 
@@ -148,7 +148,7 @@ app.post('http://54.201.41.199:9000/add', (req, res) => {
   });
 
   // initial post save
-  app.post('http://54.201.41.199:9000/save-post', (req, res) => {
+  app.post('/save-post', (req, res) => {
     const post_data = req.body
     console.log("post data we are adding to DB", req.body)
 
@@ -168,7 +168,7 @@ app.post('http://54.201.41.199:9000/add', (req, res) => {
   });
 
   // initial comment save
-  app.post('http://54.201.41.199:9000/save-comment', (req, res) => {
+  app.post('/save-comment', (req, res) => {
     const comment_data = req.body
     console.log("post data we are adding to DB", req.body)
 
@@ -189,7 +189,7 @@ app.post('http://54.201.41.199:9000/add', (req, res) => {
 
   
 // get the user profile data 
-app.get('http://54.201.41.199:9000/user-profile/:id', (req, res) => {
+app.get('/user-profile/:id', (req, res) => {
 const id = req.params.id
 
   Users
