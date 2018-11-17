@@ -24,6 +24,7 @@ class PostsDetail extends Component {
   }
 
   render() {
+    console.log(this.props, ' WAT IS DIS EVEN GETTING RN')
     const { detailedItem, comments } = this.props;
 
     return (
