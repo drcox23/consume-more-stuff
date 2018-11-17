@@ -124,7 +124,8 @@ class App extends Component {
             </Header>
             <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} />
             <Route path="/post/:id" component={PostDetail} />
-            <Route path='/user/profile/:id' component={() => <UserProfile {...this.props} />} />
+            {/* <Route path='/user/profile/:id' component={() => <UserProfile {...this.props} />} /> */}
+            <Route path="/user/profile/:id" component={UserProfile} />
             <Route path="/new-request" component={NewRequest} />
             {/* <Route path="/my-comments" component={MyComments} /> */}
           </div>
