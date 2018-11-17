@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './components/PostsBoard/PostsBoard.css';
+import './Dashboard.css';
 import { connect } from 'react-redux';
-// import Posts from './components/PostsBoard/posts/posts.jsx';
 import { getPostandCommentsById, getAllPosts } from './actions/actions.js';
 import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
@@ -37,14 +36,13 @@ componentDidMount = () => {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div className="postsBoard">
-        {console.log(match, 'wth is this?')}
+      <div class="pageWrapper">
         <Route exact path={match.path} render={() => <PostsBoard />} />
         <Route path={`${match.path}/posts`} component={PostsBoard} />
-        <div id="postings-section">
 
           <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
-          <Route path={`${match.path}/poop`} component={poop} />
+          <br /><br />
+          <Route path={`${match.path}/newrequest`} component={NewRequest} />
           <Route path={`${match.path}/post/:id`} component={PostDetail} />
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />
@@ -55,25 +53,13 @@ componentDidMount = () => {
           <Link to="/post/specificPost">
             <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
           </Link> */}
-          <Route path="/dashboard2s" component={Dashboard2s} />
-
-        </div>
+          {/* <Route path="/dashboard2s" component={DashboardLinks} /> */}
 
 
         <div className="auth-user-btns">
 
-{isAuthenticated() &&
-  <Dashboard2s match={this.props.match}/>}
+          {isAuthenticated() && <DashboardLinks match={this.props.match}/>}
 
-        <br /><br />
-          {isAuthenticated() &&
-            <LinkButton id="myRequestsBtn" to={"/my-requests"} title={"My Requests"} />}
-          <br /><br />
-          {isAuthenticated() &&
-            <LinkButton to={"/my-comments"} title={"My Comments"} />}
-          <br /><br />
-          {isAuthenticated() &&
-            <LinkButton to={"/dashboard/new-request"} title={"New Request"} />}
         </div>
 
       </div>
@@ -88,22 +74,21 @@ const mapStateToProps = state => {
   }
 }
 
-export const Dashboard2s = ({ match }) => {
+export const DashboardLinks = ({ match }) => {
   return (
     <div>
-      <h2>Dashboard2s</h2>
       <ul style={{ listStyleType: "none" }}>
-        <li>
-        <LinkButton to={`${match.url}/posts`} title={"All Requests"} />
+        <li style={{ padding: "10px" }}>
+        <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
         </li>
-        <li>
-          <LinkButton id="myRequestsBtn" to={`${match.url}/components`} title={"Components"} />
+        <li style={{ padding: "10px" }}>
+          <LinkButton id="myRequestsBtn" to={`${match.url}/components`} title={"My Requests"} />
         </li>
-        <li>
-          <LinkButton to={`${match.url}/props-v-state`} title={"Props v. State"} />
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`${match.url}/props-v-state`} title={"My Comments"} />
         </li>
-        <li>
-          <LinkButton to={`${match.url}/poop`} title={"Props v. State"} />
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`${match.url}/newrequest`} title={"New Request"} />
         </li>
       </ul>
     </div>
