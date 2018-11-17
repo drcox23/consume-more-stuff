@@ -8,7 +8,7 @@ exports.up = function (knex, Promise) {
     table.string('email').notNullable();
     table.string('first_name').notNullable();
     table.string('last_name').notNullable();
-    table.integer('account_credit').notNullable().defaultTo(0);
+    table.decimal('account_credit').notNullable().defaultTo(0.00);
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

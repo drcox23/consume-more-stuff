@@ -3,15 +3,11 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
-
-// import { getPostandCommentsById } from '../../actions/actions.js';
-
 import { getPostandCommentsById, getAllPosts } from '../../actions/actions.js';
 import NewRequest from '../forms/NewRequest.jsx';
 import PostDetail from '../PostDetail/PostDetail.jsx';
 
 import { Dashboard2s } from '../UserProfile/DashboardLinks/DashboardLinks.jsx';
-
 
 const LinkButton = (props) => {
   return (
@@ -37,6 +33,8 @@ class PostsBoard extends Component {
   }
 
   render() {
+    // const { isAuthenticated } = this.props.auth;
+    // const { id } = this.props.user;
     const { items } = this.props;
     const match = this.props.match.path;
     { console.log(this.props, 'PostBoard.jsx Props') }
@@ -63,13 +61,13 @@ class PostsBoard extends Component {
             <LinkButton to={"/my-posts"} title={"My Posts"} />}
           <br /><br />
           {isAuthenticated() &&
-            <LinkButton to={"/my-draft-posts"} title={"My Drafts Posts"} />}
+            <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Drafts Posts"} />}
           <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/my-comments"} title={"My Comments"} />}
           <br /><br />
           {isAuthenticated() &&
-            <LinkButton to={"/my-draft-comments"} title={"My Draft Comments"} />}
+            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />}
           <br /><br />
           {isAuthenticated() &&
             <LinkButton to={"/new-request"} title={"New Request"} />}

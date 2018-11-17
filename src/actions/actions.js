@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_MORE_CREDIT = 'ADD_MORE_CREDIT';
 export const GET_ALL_APPROVED_COMMENTS = 'GET_ALL_APPROVED_COMMENTS' //get all approved comments by id for a particular post
 export const GET_PENDING_COMMENTS = 'GET_PENDING_COMMENTS' // get all pending comments needing approval for a post.
 export const GET_POST_BY_ID = 'GET_POST_BY_ID';
@@ -119,6 +120,12 @@ export const getTypeData = () => {
         payload: response.data
       })
     })
+    .catch(err => {
+      dispatch({
+        type: "DISPLAY_ERROR_NOTIFICATION",
+        err
+      });
+    });
   }
 }
 
@@ -127,11 +134,30 @@ export const addNewPost = (postfromNewRequest) => {
 
   return dispatch => {
     axios
-      .post('/add', postfromNewRequest)
+      .post('/add-new-post', postfromNewRequest)
       .then(response => {
         console.log("response.data:", response.data)
         dispatch({
           type: ADD_NEW_POST,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+export const addMoreCredit = (id, credit) => {
+  return dispatch => {
+    axios
+      .put(`/add-more-credit/${id}`, credit)
+      .then(response => {
+        dispatch({
+          type: ADD_MORE_CREDIT,
           payload: response.data
         })
       })

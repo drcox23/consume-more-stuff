@@ -151,7 +151,7 @@ app.get('/mycomments/:id', (req, res) => {
 })
 
 // POST /add - add a new post
-app.post('/add', (req, res) => {
+app.post('/add-new-post', (req, res) => {
   console.log("POST - /add req.body:", req.body);
   const post_data = req.body
 
@@ -210,9 +210,31 @@ app.post('/save-comment', (req, res) => {
     })
 });
 
+app.put('/add-more-credit/:id', (req, res) => {
+  const { id } = req.params;
+  const credit_data = req.body
+
+  Users
+  .where({ id })
+  .fetch()
+  .then(results => {
+    return results.save(credit_data)
+  })
+  .then(results => {
+    return Users.where({ id }).fetch()
+  })
+  .then(results => {
+    res.json(results)
+  })
+  .catch(err => {
+    console.log("ERROR - PUT /add-more-credit:", err)
+    res.json(err)
+  })
+})
+
 // GET /user-profile/:id - get the user profile data 
 app.get('/user-profile/:id', (req, res) => {
-  const id = req.params.id
+  const { id } = req.params;
 
   Users
     .where({ id })
@@ -238,7 +260,7 @@ app.get('/user-profile/email/:email', (req, res) => {
       res.json(items)
     })
     .catch(err => {
-      console.log("ERROR - GET /user-profile/:id :", err)
+      console.log("ERROR - GET /user-profile/email :", err)
       res.json(err)
     })
 })
