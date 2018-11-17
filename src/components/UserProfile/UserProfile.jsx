@@ -10,7 +10,7 @@ import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
 
 //Actions
-import { getAll } from '../../actions/actions.js';
+import { getAll, addMoreCredit } from '../../actions/actions.js';
 
 //CSS
 import './UserProfile.css';
@@ -26,7 +26,11 @@ const LinkButton = (props) => {
 class UserProfile extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      form: {
 
+      }
+    }
   }
 
   componentDidMount() {
@@ -43,15 +47,21 @@ class UserProfile extends Component {
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    this.state.form[name] = value;
+    if(!value) {
+      this.state.form[name] = parseFloat(this.props.user.account_credit) + 0;
+    } else {
+      this.state.form[name] = parseFloat(this.props.user.account_credit) + parseFloat(value);
+    }
     console.log("On Change - handleChange this.state.form:", this.state.form)
   }
 
   handleSubmit = (event) => {
-    console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
     console.log('\n Submitted!!:', this.state.form);
-    // this.props.dispatch(addNewPost(this.state.form));
+    console.log('\n AddCreditForm:', this.state.form)
+    this.props.dispatch(
+      addMoreCredit(this.props.user.id, this.state.form)
+    );
   }
 
   render() {
@@ -76,7 +86,7 @@ class UserProfile extends Component {
 
             <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
 
-            <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} />} />
+            <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
           </div>
         </Router>
 

@@ -57,10 +57,11 @@ class App extends Component {
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
     if (!this.props.auth.isAuthenticated()) {
-      this.props.dispatch(getAllPosts())
+      this.props.dispatch(getAllPosts());
     } else {
-      const { nickname } = jwtDecode(localStorage.getItem('id_token'))
-      this.props.dispatch(getAll(nickname))
+      const { nickname } = jwtDecode(localStorage.getItem('id_token'));
+      console.log("\n Token Data:", jwtDecode(localStorage.getItem('id_token')));
+      this.props.dispatch(getAll(nickname));
     }
   }
 

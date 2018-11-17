@@ -3,6 +3,7 @@ import React from 'react';
 import './AddAccountCredit.css'
 
 const AddAccountCredit = (props) => {
+  console.log("\n Props:", props)
   return (
     <div key={props.user.id} className="accountCredit">
       <h3 id="accountCredit">Account Credit: {`$${props.user.account_credit}`}</h3>
@@ -22,7 +23,7 @@ const AddAccountCredit = (props) => {
         </div>
 
         <br />
-        <input id="user-newReq-btn" type="submit" value="Add" />
+        <input id="user-addCredit-btn" type="submit" value="Add" />
         <br />
       </form>
       </div>
