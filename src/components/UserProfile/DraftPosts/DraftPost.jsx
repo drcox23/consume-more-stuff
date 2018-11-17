@@ -7,10 +7,10 @@ const DraftPosts = (props) => {
         <div key={draftPost.id} className="draftPost">
             <p className="draftPost-subject">{draftPost.subject}</p>
             <Link to="/editForm">
-                <button id="editBtn" type="button">Edit Draft</button>
+                <button id="editDraftPostBtn" type="button">Edit Draft</button>
             </Link>
             <Link to="/user/profile">
-                <button id="deleteBtn" type="button">Delete Draft</button>
+                <button id="deleteDraftPostBtn" type="button">Delete Draft</button>
             </Link>
         </div>
     )

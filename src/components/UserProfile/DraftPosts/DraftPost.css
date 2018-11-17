@@ -8,7 +8,7 @@ border: 1px solid blue;
   margin: 0;
 }
 
-.editBtn, .deleteBtn{
+.editDraftPostBtn, .deleteDraftPostBtn{
   padding: 10px;
   margin: 10px;
 }
