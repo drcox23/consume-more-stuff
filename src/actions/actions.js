@@ -37,7 +37,7 @@ export const getPostandCommentsById = (id) => {
           type: GET_POST_BY_ID,
           payload: response.data
         })
-        return axios.get(`http://54.201.41.199:9000/post/comments/${id}`)
+        return axios.get(`http://54.201.41.199:9000/comments/${id}`)
       })
       .then(response => {
           dispatch({
