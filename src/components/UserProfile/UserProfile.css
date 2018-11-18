@@ -3,7 +3,7 @@
   flex-flow: row nowrap;
   justify-content: center;
   padding: 10px 0;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 .userProfileNav{

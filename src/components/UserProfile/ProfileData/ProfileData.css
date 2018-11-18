@@ -6,15 +6,19 @@
 
 .rowHeader{
   /* font-weight: bold; */
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: left;
-  border-bottom: 3px solid gray;
+  border-bottom: 1.3px solid rgb(143, 143, 143);;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(143, 143, 143);
+  padding: 0 0 10px 0;
 }
 
 .rowData{
-  color: steelblue;
-  font-size: 1.5em;
+  color: black;
+  font-size: 1.3em;
   text-align: left;
   padding: 10px 0;
   margin: 20px 0;
+  font-family: 'Montserrat', sans-serif;
 }
