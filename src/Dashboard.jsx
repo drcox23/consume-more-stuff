@@ -12,7 +12,8 @@ import jwtDecode from 'jwt-decode';
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="auth-navbar-btns">{props.title}</button>
+      {/* <button className="auth-navbar-btns">{props.title}</button> */}
+      <p className="auth-navbar-btns">{props.title}</p>
     </Link>
   )
 }
@@ -26,8 +27,8 @@ class Dashboard extends Component {
     if (!this.props.auth.isAuthenticated()) {
       this.props.dispatch(getAllPosts())
     } else {
-      const  nickname  = jwtDecode(localStorage.getItem('id_token'))
-      this.props.dispatch(getAll({nickname}))
+      const nickname = jwtDecode(localStorage.getItem('id_token'))
+      this.props.dispatch(getAll({ nickname }))
       this.props.dispatch(addUserToDB(nickname))
     }
   }
@@ -51,35 +52,32 @@ class Dashboard extends Component {
         <Route path={`${match.path}/posts`} component={PostsBoard} />
 
         <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
+
         <br /><br />
 
         <Route path={`${match.path}/post/:id`} component={PostDetail} />
-
         <Route path={`/dashboard/new-request`} component={NewRequest} />
 
         <div className="auth-user-btns">
 
           {isAuthenticated() && <div>
-            <ul style={{ listStyleType: "none" }}>
-              <li>
-                <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
-              </li>
-              <li>
-                <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
-              </li>
-              <li>
-                <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
-              </li>
-              <li>
-                <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
-              </li>
-              <li>
-                <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
-              </li>
-              <li>
-                <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
-              </li>
-            </ul>
+            {/* <ul> */}
+            {/* <li> */}
+            <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
+            {/* </li> */}
+            {/* <li> */}
+            <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
+            {/* </li> */}
+            {/* <li> */}
+            <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
+            {/* </li> */}
+            {/* <li> */}
+            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
+            {/* </li> */}
+            {/* <li> */}
+            <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
+            {/* </li> */}
+            {/* </ul> */}
           </div>}
         </div>
       </div>
