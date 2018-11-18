@@ -70,4 +70,5 @@ export default class Auth {
       return {};
     }
   }
+  
 }
