@@ -12,11 +12,6 @@ import SignupForm from './components/forms/SignupForm.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import CallbackLogin from './Callback/CallbackLogin.jsx';
 
-import ProfileData from './components/UserProfile/UserProfile.jsx';
-import DraftPosts from './components/UserProfile/DraftPosts/DraftPost.jsx';
-import DraftComments from './components/UserProfile/DraftComments/DraftComments.jsx';
-import AddAccountCredit from './components/UserProfile/AddAccountCredit/AddAccountCredit.jsx';
-
 import Header from './components/Header/Header.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
 import NewRequest from './components/forms/NewRequest.jsx';
@@ -98,10 +93,6 @@ export const makeMainRoutes = () => {
       </Provider>
     </Router>
   );
-}
-
-const Hello = (props) => {
-  return console.log(props, 'HELLO!>!?!> FUCK WTF')
 }
 
 {/* <Route exact path="/" render={(props) => <PostsBoard {...this.props} />} /> */ }

@@ -79,8 +79,6 @@ class UserProfile extends Component {
             
             <Switch>
 
-              {/* <Redirect from={`${match}/myprofile`} to={`${match}/${id}/data`}/> */}
-
               <Route exact path={match} render={() => <ProfileData user={UserProfileProps.user} />} />
               <Route exact path={`${match}/myprofile`} component={() => <ProfileData user={UserProfileProps.user} />} />
               <Route path={`${match}/${id}/data`} component={() => <ProfileData user={UserProfileProps.user} />} />
