@@ -7,6 +7,7 @@ import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import jwtDecode from 'jwt-decode';
+import ProfileData from './components/UserProfile/ProfileData/ProfileData.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -54,7 +55,9 @@ componentDidMount = () => {
           {/* <Route path={`${match.path}/post/:id`} render={(props) => <PostDetail match={match} props={this.props} />} /> */}
           <Route path={`${match.path}/post/:id`} component={PostDetail} />
 
-          
+          <Route path={`/doodoopoop`} component={ProfileData} />
+
+          <Route path={`${match.path}/user/profile/${id}/data`} render={(props) => <ProfileData {...props} id={id} />} />
 
           <Route path={`/dashboard/new-request`} component={NewRequest} />
 
@@ -88,6 +91,12 @@ componentDidMount = () => {
         </li>
         <li style={{ padding: "10px" }}>
           <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`${match.path}/user/profile/${id}/data`} title={"Profile"} />
+        </li>
+        <li style={{ padding: "10px" }}>
+          <LinkButton to={`doodoopoop`} title={"Doodoopoop sanity bitch"} />
         </li>
       </ul>
     </div>}

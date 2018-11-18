@@ -93,15 +93,17 @@ export const makeMainRoutes = () => {
 
           <Route path="/dashboard2s" component={Dashboard2s} />
 
+          <Route path={`dashboard/user/profile/:id/data`} render={(props) => <ProfileData {...props} />} />
+
+          <Route path={`/user/profile/:id/draftposts`} render={(props) => <DraftPosts {...props} />} />
+
+          <Route path={`/user/profile/:id/draftcomments`} render={(props) => <DraftComments {...props} />} />
+
+          <Route path={`/user/profile/:id/accountcredit`} render={(props) => <AddAccountCredit {...props} />} />
+
+          <Route path="/doodoopoop" component={ProfileData} />
+
           <Route component={NotFound}/>
-
-          {/* <Route path={`/user/profile/:id/data`} render={(props) => <ProfileData {...props} />} />
-
-<Route path={`/user/profile/:id/draftposts`} render={(props) => <DraftPosts {...props} />} />
-
-<Route path={`/user/profile/:id/draftcomments`} render={(props) => <DraftComments {...props} />} />
-
-<Route path={`/user/profile/:id/accountcredit`} render={(props) => <AddAccountCredit {...props} />} /> */}
 
           </Switch>
 

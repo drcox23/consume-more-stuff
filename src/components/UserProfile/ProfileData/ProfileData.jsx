@@ -3,6 +3,7 @@ import React from 'react';
 import './ProfileData.css'
 
 const ProfileData = (props) => {
+  console.log(props, "WHAT'S UP MOTHE FUCKASDJASDHASJHD");
   return (
     <div key={props.user.id} className="profileData">
       <div>

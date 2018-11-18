@@ -80,9 +80,10 @@ class UserProfile extends Component {
             <LinkButton to={`/user/profile/${id}/accountcredit`} title={"Account Credit"} />
 
 
-            <Route path={`/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} />
+            {/* <Route path={`/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} /> */}
+            {/* <Route path={`${match}/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} /> */}
 
-            <Route path={`/user/profile/${id}/draftposts`}component={() => <DraftPosts {...this.props} />} />
+            <Route path={`/user/profile/${id}/draftposts`} component={() => <DraftPosts {...this.props} />} />
 
             <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
 
