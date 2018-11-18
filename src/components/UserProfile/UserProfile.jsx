@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 //Components
@@ -8,6 +8,7 @@ import ProfileData from './ProfileData/ProfileData.jsx';
 import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
+import NotFound from '../Error/404.jsx';
 
 //Actions
 import { getAll, addMoreCredit } from '../../actions/actions.js';
@@ -56,36 +57,47 @@ class UserProfile extends Component {
     this.props.dispatch(
       addMoreCredit(this.props.user.id, this.state.form)
     );
+    const editform = document.getElementById('addCredit-form');
+    editform.reset();
   }
 
   render() {
     const id = this.props.user.id;
-    const match = this.props.match;
-    const myprops = this.props;
-    console.log(this.props, 'Is user data coming through?')
+    const match = this.props.match.path;
+    const UserProfileProps = this.props;
     return (
       <div id="userProfileContainer">
-        {/* <Router> */}
           <div className="userProfileNav">
           
-            <LinkButton to={`${this.props.match.path}/${id}/data`} title={"My Profile"} />
+            <LinkButton to={`${match}/${id}/data`} title={"My Profile"} />
 
-            <LinkButton to={`${this.props.match.path}/${id}/draftposts`} title={"Drafts Posts"} />
+            <LinkButton to={`${match}/${id}/draftposts`} title={"Drafts Posts"} />
 
-            <LinkButton to={`${this.props.match.path}/${id}/draftcomments`} title={"Draft Comments"} />
+            <LinkButton to={`${match}/${id}/draftcomments`} title={"Draft Comments"} />
 
-            <LinkButton to={`${this.props.match.path}/${id}/accountcredit`} title={"Account Credit"} />
+            <LinkButton to={`${match}/${id}/accountcredit`} title={"Account Credit"} />
+            
+            <Switch>
 
-            <Redirect from={match} to={`${match.path}/${this.props.user.id}/data`}/>
-            <Route path={`${match.path}/${this.props.user.id}/data`} render={(props) => <ProfileData {...props} props={myprops} />} />
+              {/* <Redirect from={`${match}/myprofile`} to={`${match}/${id}/data`}/> */}
 
-            <Route path={`${this.props.match.path}/${this.props.user.id}/draftposts`} render={(props) => <DraftPosts {...props} props={myprops} />} />
+              <Route exact path={match} render={() => <ProfileData user={UserProfileProps.user} />} />
+              <Route exact path={`${match}/myprofile`} component={() => <ProfileData user={UserProfileProps.user} />} />
+              <Route path={`${match}/${id}/data`} component={() => <ProfileData user={UserProfileProps.user} />} />
 
-            <Route path={`${this.props.match.path}/${this.props.user.id}/draftcomments`} render={(props) => <DraftComments {...props} props={myprops} />} />
+              <Route exact path={`${match}/mydraftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} />} />
+              <Route path={`${match}/${id}/draftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} />} />
 
-            <Route path={`${this.props.match.path}/${this.props.user.id}/accountcredit`} render={(props) => <AddAccountCredit {...this.props} {...props} props={myprops} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+              <Route exact path={`${match}/mydraftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
+              <Route path={`${match}/${id}/draftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
+
+              <Route exact path={`${match}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+              <Route path={`${match}/${id}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+
+              <Route component={NotFound}/>
+
+            </Switch>     
           </div>
-        {/* </Router> */}
 
       </div>
     )

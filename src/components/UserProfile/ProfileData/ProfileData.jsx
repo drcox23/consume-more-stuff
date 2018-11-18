@@ -5,9 +5,9 @@ import './ProfileData.css'
 const ProfileData = (props) => {
   console.log(props, 'what is exactly is coming thru?')
 
-  if (props.user.last_name === "test") {
-    props.user.last_name = "";
-  }
+  // if (props.user.last_name === "test") {
+  //   props.user.last_name = "";
+  // }
   return (
     <div key={props.user.id} className="profileData">
       <p className="rowHeader">Username:</p>

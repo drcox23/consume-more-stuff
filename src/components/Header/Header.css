@@ -37,6 +37,8 @@
 
     #app-title{
       flex: 1 1 auto;
+      position: relative;
+      left: -8px;
       font-family: 'Poiret One', cursive;
       /* border: 1px solid black; */
       padding: 0px 20px;
@@ -103,4 +105,104 @@
 
   .navbar-btns:hover, #loginBtn:hover, #logoutBtn:hover{
     color: black;
+  }
+
+  /* Profile Drop Menu */
+
+.dropbtn {
+  background-color: #222222;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  height: 80px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    visibility: hidden;
+    position: absolute;
+    color: rgb(198, 219, 198);
+    background-color: rgba(198, 219, 198, 0.769);
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    -webkit-transition: opacity 0.6s, visibility 0.6s;
+    -moz-transition: opacity 0.6s, visibility 0.6s;
+    -ms-transition: opacity 0.6s, visibility 0.6s;
+    -o-transition: opacity 0.6s, visibility 0.6s;
+    transition: opacity 0.6s, visibility 0.6s;
+    opacity: 0;
+}
+
+.dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.dropdown-content a:hover {background-color: rgba(155, 191, 155, 0); color: rgb(76, 85, 76);}
+
+.dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgba(198, 219, 198, 0);
+}
+
+.profile-links{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em !important;
+    flex: 1 1 auto;
+    width: 160px;
+    padding: 5px;
+    border-radius: 3px;
+    /* border-bottom: 1px dotted rgb(184, 184, 184); */
+    font-size: 1.2em;
+    cursor: pointer;
+    /* color: black !important; */
+    /* margin: 5px 0; */
+    text-align: left;
+  }
+  .profile-links:hover{
+    background-image: linear-gradient(to left, white, rgb(99, 143, 119));
+      color:white !important;
+      font-weight: normal;
   }

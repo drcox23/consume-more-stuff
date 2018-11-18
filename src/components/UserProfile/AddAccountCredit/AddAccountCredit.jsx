@@ -13,7 +13,7 @@ const AddAccountCredit = (props) => {
         <p id="add-more-credit-title">Add More Credit</p>
 
         {/* Adding more credit */}
-        <form onSubmit={props.handleSubmit}>
+        <form id="addCredit-form" onSubmit={props.handleSubmit}>
           <label id="addCredit-label">Credit to Add:</label>
 
           <input onChange={props.handleChange} className="user-input" type="text" name="account_credit" placeholder="Enter number..." />
