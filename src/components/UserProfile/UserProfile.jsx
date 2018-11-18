@@ -18,7 +18,7 @@ import './UserProfile.css';
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="userProfile-btns">{props.title}</button>
+      <p className="userProfile-btns">{props.title}</p>
     </Link>
   )
 }
@@ -28,7 +28,6 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       form: {
-
       }
     }
   }
@@ -37,12 +36,7 @@ class UserProfile extends Component {
     console.log("PROPS WHEN LOADING", this.props)
     const { name } = jwtDecode(localStorage.getItem('id_token'))
     this.props.dispatch(getAll(name))
-
-    // this.props.dispatch(
-    //     getAllUserProfileData()
-    // )
   }
-
 
   handleChange = (event) => {
     event.preventDefault();
