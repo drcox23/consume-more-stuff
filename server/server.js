@@ -3,6 +3,12 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+// const request = require("request");
+
+
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 // const RedisStore = require('connect-redis')(session);
 // const passport = require('passport');
 // const session = require('express-session');
@@ -202,6 +208,32 @@ app.put('/add-more-credit/:id', (req, res) => {
   })
 })
 
+// post user data into Users DB
+app.post('/user-profile/email/:email', (req, res) => {
+  // console.log("what's the req???", req.body)
+  const userData = {
+    username: req.body.nickname,
+    email: req.body.name,
+    password: 'password',
+    first_name: req.body.nickname,
+    last_name: 'test'
+  } 
+
+  Users
+    .forge(userData)
+    .save()
+    .then(() => {
+      return Users.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("ERROR - POST newUser:", err)
+      res.json(err)
+  })
+})
+
 // GET /user-profile/:id - get the user profile data 
 app.get('/user-profile/:id', (req, res) => {
   const { id } = req.params;
@@ -223,7 +255,7 @@ app.get('/user-profile/email/:email', (req, res) => {
 
   Users
     .query(function (qb) {
-      qb.whereRaw(`email LIKE ?`, [`%${email}%`])
+      qb.whereRaw(`email LIKE ?`, [`${email}`])
     })
     .fetch()
     .then(items => {

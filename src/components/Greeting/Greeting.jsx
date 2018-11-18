@@ -13,6 +13,7 @@ class Greeting extends Component {
   }
 
   render() {
+    // console.log('check JWT', auth.getGreeting())
     return (this.state.username)
   }
 }

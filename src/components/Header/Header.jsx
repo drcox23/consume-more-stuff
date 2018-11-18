@@ -22,7 +22,7 @@ class Header extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-    console.log('Header Component')
+    // console.log('Header Component')
     //   this.props.dispatch(getAllPosts())
   }
 
@@ -45,8 +45,9 @@ class Header extends Component {
 
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
   render() {
-    console.log(this.props.auth, '?')
+    // console.log(this.props.auth, '?')
     const { isAuthenticated } = this.props.auth;
+    console.log("are we Authed???", isAuthenticated())
 
     return (
       <div id="navbar">
