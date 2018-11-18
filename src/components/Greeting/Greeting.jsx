@@ -8,11 +8,12 @@ class Greeting extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: auth.getGreeting().given_name || "User",
+      username: auth.getGreeting().given_name || auth.getGreeting().nickname || "User",
     }
   }
 
   render() {
+    // console.log('check JWT', auth.getGreeting())
     return (this.state.username)
   }
 }

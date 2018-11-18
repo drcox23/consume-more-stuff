@@ -1,0 +1,106 @@
+#navbar{
+  display: flex;
+  flex-flow: column wrap;
+  /* border: 1px solid pink; */
+}
+
+  #headerBar{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: rgb(198, 219, 198);
+    /* background-image: linear-gradient(rgb(198, 219, 198), rgb(112, 184, 202)); */
+    padding: 10px 140px;
+    /* border: 1px solid black; */
+    border-bottom: 4px solid rgb(112, 184, 202);
+  }
+
+  #subheader-container{
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 1 auto;
+  }
+
+    /* Logo Styling */
+    #imgBox{
+      flex: 0 0 auto;
+      width: 70px;
+      /* border: 1px solid blue; */
+    }
+
+      img{
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+      }
+
+    #app-title{
+      flex: 1 1 auto;
+      font-family: 'Poiret One', cursive;
+      /* border: 1px solid black; */
+      padding: 0px 20px;
+      margin: 0;
+      font-size: 2.5em;
+      /* font-weight: bold; */
+    }
+
+/* Navigation Button Styling */
+#linkBtns{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  padding: 0;
+  height: 50px;
+  width: 500px;
+  /* border: 1px solid blue; */
+  margin: auto 20px;
+}
+
+  #userImg{
+    /* border: 3px solid red; */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  img{
+    margin: auto 0;
+  }
+
+  #user-greeting{
+    font-family: 'Montserrat', sans-serif;
+    margin: auto 0;
+    font-size: 1.2em;
+  }
+
+  .navbar-btns{
+    flex: 1 1 auto;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    /* border: 1px solid gray; */
+    cursor: pointer;
+    padding: 15px 0;
+    border-radius: 3px;
+    font-size: 1.3em;
+    color: white; 
+    margin: auto 0;
+    font-weight: bold;
+  }
+
+  #loginBtn, #logoutBtn{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 1em;
+    /* border: 1px solid gray; */
+    cursor: pointer;
+    height: 25px;
+    border-radius: 3px;
+    color: white;
+    padding: 15px 0 0 0;
+    font-weight: bold;
+  }
+
+  .navbar-btns:hover, #loginBtn:hover, #logoutBtn:hover{
+    color: black;
+  }

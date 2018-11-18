@@ -1,0 +1,24 @@
+/* Footer Styling */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* height: 100px; */
+  background-color: rgb(58, 57, 57);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+  a:visited{
+    color: white;
+  }

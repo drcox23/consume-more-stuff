@@ -18,7 +18,7 @@ import './UserProfile.css';
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="userProfile-btns">{props.title}</button>
+      <p className="userProfile-btns">{props.title}</p>
     </Link>
   )
 }
@@ -28,26 +28,20 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       form: {
-
       }
     }
   }
 
   componentDidMount() {
     console.log("PROPS WHEN LOADING", this.props)
-    const { nickname } = jwtDecode(localStorage.getItem('id_token'))
-    this.props.dispatch(getAll(nickname))
-
-    // this.props.dispatch(
-    //     getAllUserProfileData()
-    // )
+    const { name } = jwtDecode(localStorage.getItem('id_token'))
+    this.props.dispatch(getAll(name))
   }
-
 
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    if(!value) {
+    if (!value) {
       this.state.form[name] = parseFloat(this.props.user.account_credit) + 0;
     } else {
       this.state.form[name] = parseFloat(this.props.user.account_credit) + parseFloat(value);
@@ -68,7 +62,7 @@ class UserProfile extends Component {
     const id = this.props.user.id;
     const match = this.props.match;
     const myprops = this.props;
-    console.log(this.props, ' SUP BOIEEE')
+    console.log(this.props, 'Is user data coming through?')
     return (
       <div id="userProfileContainer">
         {/* <Router> */}

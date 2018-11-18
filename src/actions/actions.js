@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import Auth from '../../Auth/Auth.js';
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
@@ -12,6 +13,9 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
+export const ADD_USER = 'ADD_USER'
+
+// const auth = new Auth();
 
 export const getAllPosts = () => {
   return dispatch => {
@@ -21,6 +25,9 @@ export const getAllPosts = () => {
         dispatch({
           type: GET_ALL_POSTS,
           payload: response.data
+        })
+        .then(response => {
+          // console.log('check JWT', auth.getGreeting())
         })
       })
       .catch(err => {
@@ -42,10 +49,12 @@ export const getAll = (nickname) => {
           type: GET_ALL_POSTS,
           payload: response.data
         })
+        console.log('HIIIIIIIIIIITTTT', nickname)
         return axios.get(`/user-profile/email/${nickname}`)
       })
       .then(response => {
         id = response.data.id;
+        console.log('does the id come through', id)
         return axios.get(`/user-profile/${id}`)
       })
       .then(response => {
@@ -151,6 +160,28 @@ export const addNewPost = (postfromNewRequest) => {
   }
 }
 
+export const addNewComment = (postfromNewComment) => {
+  console.log("\nCheck postFromNewRequest:", postfromNewComment);
+
+  return dispatch => {
+    axios
+      .post('/add-new-post', postfromNewComment)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_NEW_POST,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
 export const addMoreCredit = (id, credit) => {
   return dispatch => {
     axios
@@ -167,5 +198,35 @@ export const addMoreCredit = (id, credit) => {
           err
         });
       });
+  }
+}
+
+export const addUserToDB = (info) => {
+  return dispatch => {
+    let email = info.name;
+    
+    axios
+      .get(`/user-profile/email/${email}`)
+      .then(response => {
+        console.log("can i see the response", response)
+        if(response.data === null){
+          axios.post(`/user-profile/email/${email}`, info)
+          .then(response => {
+            console.log("response.data:", response.data)
+            dispatch({
+              type: ADD_USER,
+              payload: response.data
+            })
+          })
+        }else{
+          console.log("user already exists")
+        }
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        })
+      })
   }
 }
