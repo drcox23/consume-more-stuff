@@ -17,6 +17,8 @@ const LinkButton = (props) => {
   )
 }
 
+// const id = jwtDecode(localStorage.getItem('id_token'))
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +28,10 @@ class Dashboard extends Component {
     if (!this.props.auth.isAuthenticated()) {
       this.props.dispatch(getAllPosts())
     } else {
-      const  nickname  = jwtDecode(localStorage.getItem('id_token'))
-      this.props.dispatch(getAll({nickname}))
+      const  { name } = jwtDecode(localStorage.getItem('id_token'))
+      const  nickname = jwtDecode(localStorage.getItem('id_token'))
+      // console.log("can i see the user id???", id)
+      this.props.dispatch(getAll(name))
       this.props.dispatch(addUserToDB(nickname))
     }
   }
@@ -43,6 +47,7 @@ class Dashboard extends Component {
     const { id } = this.props.user
     const { items } = this.props
     const { isAuthenticated } = this.props.auth;
+    console.log('whats the props', this.props)
 
     return (
       <div class="pageWrapper">

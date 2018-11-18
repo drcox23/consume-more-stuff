@@ -49,10 +49,12 @@ export const getAll = (nickname) => {
           type: GET_ALL_POSTS,
           payload: response.data
         })
+        console.log('HIIIIIIIIIIITTTT', nickname)
         return axios.get(`/user-profile/email/${nickname}`)
       })
       .then(response => {
         id = response.data.id;
+        console.log('does the id come through', id)
         return axios.get(`/user-profile/${id}`)
       })
       .then(response => {
@@ -142,6 +144,28 @@ export const addNewPost = (postfromNewRequest) => {
   return dispatch => {
     axios
       .post('/add-new-post', postfromNewRequest)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_NEW_POST,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+export const addNewComment = (postfromNewComment) => {
+  console.log("\nCheck postFromNewRequest:", postfromNewComment);
+
+  return dispatch => {
+    axios
+      .post('/add-new-post', postfromNewComment)
       .then(response => {
         console.log("response.data:", response.data)
         dispatch({

@@ -146,6 +146,26 @@ app.post('/add-new-post', (req, res) => {
     })
 });
 
+// POST /add-new-comment --> adding a new comment
+app.post('/add-new-comment', (req, res) => {
+  console.log("POST - /add req.body:", req.body);
+  const post_data = req.body
+
+  Comments
+    .forge(post_data)
+    .save()
+    .then(() => {
+      return Comments.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("ERROR - POST /add:", err)
+      res.json(err)
+    })
+});
+
 // POST /save-post - initial save post
 app.post('/save-post', (req, res) => {
   const post_data = req.body
@@ -255,7 +275,7 @@ app.get('/user-profile/email/:email', (req, res) => {
 
   Users
     .query(function (qb) {
-      qb.whereRaw(`email LIKE ?`, [`${email}`])
+      qb.whereRaw(`email LIKE ?`, [`%${email}%`])
     })
     .fetch()
     .then(items => {
