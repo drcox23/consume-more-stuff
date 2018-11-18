@@ -1,0 +1,20 @@
+.profileData{
+  width: 25%;
+  margin: 50px auto;
+
+}
+
+.rowHeader{
+  /* font-weight: bold; */
+  font-size: 1.5em;
+  text-align: left;
+  border-bottom: 3px solid gray;
+}
+
+.rowData{
+  color: steelblue;
+  font-size: 1.5em;
+  text-align: left;
+  padding: 10px 0;
+  margin: 20px 0;
+}

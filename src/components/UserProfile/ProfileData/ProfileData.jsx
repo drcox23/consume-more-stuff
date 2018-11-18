@@ -8,12 +8,14 @@ const ProfileData = (props) => {
   }
   return (
     <div key={props.user.id} className="profileData">
-      <div>
-        <p id="username">Username: {props.user.username}</p>
-        <p id="email">Name: {props.user.email}</p>
-        <p id="name">Email: {`${props.user.first_name} ${props.user.last_name}`}</p>
-        <p id="credit">Account Credit: {`$${props.user.account_credit}`}</p>
-      </div>
+      <p className="rowHeader">Username:</p>
+      <p className="rowData">{props.user.username}</p>
+      <p className="rowHeader">Name:</p>
+      <p className="rowData">{props.user.email}</p>
+      <p className="rowHeader">Email:</p>
+      <p className="rowData">{`${props.user.first_name} ${props.user.last_name}`}</p>
+      <p className="rowHeader">Account Credit:</p>
+      <p className="rowData">{`$${props.user.account_credit}`}</p>
     </div>
   )
 }
