@@ -72,9 +72,6 @@ export const makeMainRoutes = () => {
           <Route path="/post/:id" render={(props) => ( !auth.isAuthenticated() ? 
           (<PostDetail auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
 
-          <Route path='/dashboard/post/:id' component={PostDetail} />
-          <Route path='/dashboard/new-request' component={NewRequest} />
-
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} />

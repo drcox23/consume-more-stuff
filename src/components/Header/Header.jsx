@@ -44,7 +44,6 @@ class Header extends Component {
 
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
   render() {
-    console.log(this.props, '?????????')
     const { isAuthenticated } = this.props.auth;
     console.log("are we Authed???", isAuthenticated())
 
@@ -74,7 +73,7 @@ class Header extends Component {
             <LinkButton to={"/"} title={"HOME"} onClick={this.goTo.bind(this, 'home')} />
 
             {isAuthenticated() && 
-            <div class="dropdown">
+            <div className="dropdown">
               <LinkButton className="dropbtn" to={"/user/profile"} title={"MY PROFILE"} onClick={this.goTo.bind(this, 'user/profile')} />
                 <div className="dropdown-content">
                   <a href={"/user/profile/myprofile"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>View My Profile</a>

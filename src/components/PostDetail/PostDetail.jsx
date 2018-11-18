@@ -24,13 +24,10 @@ class PostsDetail extends Component {
   }
 
   render() {
-    console.log(this.props, 'WHAT THE SKFSAJHF')
     const { detailedItem, comments } = this.props;
 
     return (
       <div className="detailedPage">
-
-        <button onClick={() => {this.props.history.goBack()}}>Back</button>
 
         <div className="postDetail">
           <Post props={this.props} detailedItem={detailedItem} />

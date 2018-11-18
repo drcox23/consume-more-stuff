@@ -53,7 +53,7 @@ class Dashboard extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div class="pageWrapper">
+      <div className="pageWrapper">
 
         <Switch>
           <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
