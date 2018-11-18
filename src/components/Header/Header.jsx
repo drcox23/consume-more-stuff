@@ -97,7 +97,7 @@ class Header extends Component {
             {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
 
             {isAuthenticated() &&
-              <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
+              <LinkButton to={"/dashboard/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'dashboard/user/profile')} />}
 
             {isAuthenticated() &&
               <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
