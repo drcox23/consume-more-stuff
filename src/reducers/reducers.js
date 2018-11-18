@@ -10,11 +10,12 @@ import {
   ADD_MORE_CREDIT,
   ADD_NEW_DRAFT_POST,
   GET_DRAFTPOST_BY_POST_ID,
-  EDIT_DRAFT_POST
+  EDIT_DRAFT_POST,
+  ADD_USER,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
-  // ADD_COMMENT,
+  ADD_COMMENT
 }
   from '../actions/actions.js'
 
@@ -43,8 +44,15 @@ const postReducer = (state = {
       return { ...state, form: action.payload }
     case ADD_MORE_CREDIT:
       return { ...state, user: action.payload}
+<<<<<<< HEAD
     case ADD_NEW_DRAFT_POST:
       return { ...state, draftPosts: action.payload }
+=======
+    case ADD_USER:
+      return { ...state, user: action.payload}
+    case ADD_COMMENT:
+      return { ...state, form: action.payload}
+>>>>>>> development
     default:
       return state
   }

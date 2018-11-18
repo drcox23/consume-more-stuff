@@ -3,6 +3,12 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+// const request = require("request");
+
+
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 // const RedisStore = require('connect-redis')(session);
 // const passport = require('passport');
 // const session = require('express-session');
@@ -140,6 +146,26 @@ app.post('/add-new-post', (req, res) => {
     })
 });
 
+// POST /add-new-comment --> adding a new comment
+app.post('/add-new-comment', (req, res) => {
+  console.log("POST - /add req.body:", req.body);
+  const post_data = req.body
+
+  Comments
+    .forge(post_data)
+    .save()
+    .then(() => {
+      return Comments.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("ERROR - POST /add:", err)
+      res.json(err)
+    })
+});
+
 // POST /save-post - initial save post
 app.post('/save-post', (req, res) => {
   const post_data = req.body
@@ -199,6 +225,32 @@ app.put('/add-more-credit/:id', (req, res) => {
   .catch(err => {
     console.log("ERROR - PUT /add-more-credit:", err)
     res.json(err)
+  })
+})
+
+// post user data into Users DB
+app.post('/user-profile/email/:email', (req, res) => {
+  // console.log("what's the req???", req.body)
+  const userData = {
+    username: req.body.nickname,
+    email: req.body.name,
+    password: 'password',
+    first_name: req.body.nickname,
+    last_name: 'test'
+  } 
+
+  Users
+    .forge(userData)
+    .save()
+    .then(() => {
+      return Users.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("ERROR - POST newUser:", err)
+      res.json(err)
   })
 })
 

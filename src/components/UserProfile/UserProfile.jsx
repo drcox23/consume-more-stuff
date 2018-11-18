@@ -19,7 +19,7 @@ import './UserProfile.css';
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="userProfile-btns">{props.title}</button>
+      <p className="userProfile-btns">{props.title}</p>
     </Link>
   )
 }
@@ -29,26 +29,20 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       form: {
-
       }
     }
   }
 
   componentDidMount() {
     console.log("PROPS WHEN LOADING", this.props)
-    const { nickname } = jwtDecode(localStorage.getItem('id_token'))
-    this.props.dispatch(getAll(nickname))
-
-    // this.props.dispatch(
-    //     getAllUserProfileData()
-    // )
+    const { name } = jwtDecode(localStorage.getItem('id_token'))
+    this.props.dispatch(getAll(name))
   }
-
 
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    if(!value) {
+    if (!value) {
       this.state.form[name] = parseFloat(this.props.user.account_credit) + 0;
     } else {
       this.state.form[name] = parseFloat(this.props.user.account_credit) + parseFloat(value);
@@ -67,7 +61,7 @@ class UserProfile extends Component {
 
   render() {
     const { id } = this.props.user;
-    
+
     return (
       <div id="userProfileContainer">
         <Router>
@@ -83,7 +77,7 @@ class UserProfile extends Component {
 
             <Route path={`/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} />
 
-            <Route path={`/user/profile/${id}/draftposts`}component={() => <DraftPosts {...this.props} />} />
+            <Route path={`/user/profile/${id}/draftposts`} component={() => <DraftPosts {...this.props} />} />
 
             <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
 
