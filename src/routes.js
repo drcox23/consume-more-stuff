@@ -48,8 +48,7 @@ const handleAuthentication = ({ location }) => {
 const store = createStore(
   reducers,
   compose(
-    applyMiddleware(ReduxThunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(ReduxThunk)
   )
 );
 
