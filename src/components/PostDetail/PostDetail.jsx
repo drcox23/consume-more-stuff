@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './PostDetail.css';
 
 //Components
 import Post from './post/post.jsx';
@@ -8,7 +9,6 @@ import Comments from './comments/comments.jsx';
 //Actions
 import { getPostandCommentsById } from '../../actions/actions.js';
 
-import './PostDetail.css';
 
 class PostsDetail extends Component {
   constructor(props) {
@@ -24,7 +24,6 @@ class PostsDetail extends Component {
   }
 
   render() {
-    console.log(this.props, ' WAT IS DIS EVEN GETTING RN')
     const { detailedItem, comments } = this.props;
 
     return (
