@@ -21,21 +21,44 @@ class PostsBoard extends Component {
     )
   }
 
+  checkForParentComponent = () => {
+    if (this.props.auth) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   render() {
+    console.log(this.props, 'HELKALFKLSFKLS')
     const { items } = this.props;
     const match = this.props.match.path;
 
     return (
       <div className="postsBoard">
 
-        <div id="postings-section">
-          <div id="postings-section-title">All Postings</div>
 
-          <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
-
-          <Route path="/dashboard2s" component={Dashboard2s} />
-
-        </div>
+      {this.checkForParentComponent() && <div id="postings-section-auth">
+      <div id="postings-section-title">All Postings</div>
+      
+      <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+      
+      <Route path="/dashboard2s" component={Dashboard2s} />
+      
+      </div>
+      }
+ 
+      
+      {!this.checkForParentComponent() && <div id="postings-section">
+      <div id="postings-section-title">All Postings</div>
+      
+      <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+      
+      <Route path="/dashboard2s" component={Dashboard2s} />
+      
+      </div>
+      }
+        
       </div>
     )
   }
