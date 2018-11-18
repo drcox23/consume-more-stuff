@@ -37,7 +37,7 @@ class PostsBoard extends Component {
     // const { id } = this.props.user;
     const { items } = this.props;
     const match = this.props.match.path;
-    { console.log(this.props, 'PostBoard.jsx Props') }
+    // { console.log(this.props, 'PostBoard.jsx Props') }
     // const { isAuthenticated } = this.props.auth;
 
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './Dashboard.css';
 import { connect } from 'react-redux';
-import { getPostandCommentsById, getAllPosts, getAll } from './actions/actions.js';
+import { getPostandCommentsById, getAllPosts, getAll, addUserToDB } from './actions/actions.js';
 import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
@@ -25,8 +25,10 @@ componentDidMount = () => {
   if (!this.props.auth.isAuthenticated()) {
     this.props.dispatch(getAllPosts())
   } else {
-    const { nickname } = jwtDecode(localStorage.getItem('id_token'))
-    this.props.dispatch(getAll(nickname))
+    const nickname = jwtDecode(localStorage.getItem('id_token'))
+    console.log('whats the nickname', nickname)
+    this.props.dispatch(getAll({nickname}))
+    this.props.dispatch(addUserToDB(nickname));
   }
 }
 
@@ -37,7 +39,7 @@ componentDidMount = () => {
   }
 
   render() {
-    console.log(this.props, 'Hello??')
+    // console.log(this.props, 'Hello??')
     const match = this.props.match;
     const { id } = this.props.user
     const { items } = this.props

@@ -3,6 +3,8 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+// const request = require("request");
+
 
 const jwt = require('express-jwt');
 const jwtAuthz = require('express-jwt-authz');
@@ -44,32 +46,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/', router)
 app.use('/post-draft', postDrafts)
 app.use('/comment-draft', commentDrafts)
-
-
-const AUTH_CONFIG = {
-  domain: 'twocentsforyou.auth0.com',
-  clientId: 'xcOHO3wbcR5HpAtMxwW419j5K7ijjOAE',
-  callbackUrl: 'http://localhost:3000/callback'
-}
-
-
-// Authentication middleware. When used, the Access Token must exist and be verified against the Auth0 JSON Web Key Set
-const checkJwt = jwt({
-  // Dynamically provide a signing key
-  // based on the kid in the header and 
-  // the signing keys provided by the JWKS endpoint.
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${AUTH_CONFIG.domain}/.well-known/jwks.json`
-  }),
-
-  // Validate the audience and the issuer.
-  audience: 'https://twocentsforyou.auth0.com/api/v2/',
-  issuer: `https://${AUTH_CONFIG.domain}/`,
-  algorithms: ['RS256']
-});
 
 
 // GET /home - all the posts when any user lands on home page
@@ -232,6 +208,32 @@ app.put('/add-more-credit/:id', (req, res) => {
   })
 })
 
+// post user data into Users DB
+app.post('/user-profile/email/:email', (req, res) => {
+  // console.log("what's the req???", req.body)
+  const userData = {
+    username: req.body.nickname,
+    email: req.body.name,
+    password: 'password',
+    first_name: req.body.nickname,
+    last_name: 'test'
+  } 
+
+  Users
+    .forge(userData)
+    .save()
+    .then(() => {
+      return Users.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("ERROR - POST newUser:", err)
+      res.json(err)
+  })
+})
+
 // GET /user-profile/:id - get the user profile data 
 app.get('/user-profile/:id', (req, res) => {
   const { id } = req.params;
@@ -253,7 +255,7 @@ app.get('/user-profile/email/:email', (req, res) => {
 
   Users
     .query(function (qb) {
-      qb.whereRaw(`email LIKE ?`, [`%${email}%`])
+      qb.whereRaw(`email LIKE ?`, [`${email}`])
     })
     .fetch()
     .then(items => {
