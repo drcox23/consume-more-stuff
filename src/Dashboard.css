@@ -21,7 +21,7 @@ body{
     #postings-section{
       flex: 1 1 auto;
       /* border: 1px outset rgb(0, 0, 0); */
-      margin: 20px 0 20px 120px;
+      margin: 20px 120px 20px 120px;
       border-radius: 15px;
       /* background-color: rgb(198, 219, 198); */
       background-image: linear-gradient(rgb(198, 219, 198), rgb(193, 222, 247));
