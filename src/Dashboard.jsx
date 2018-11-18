@@ -40,7 +40,7 @@ componentDidMount = () => {
   render() {
     console.log(this.props, 'Hello??')
     const match = this.props.match;
-    const { id } = this.props.user
+    const id = this.props
     const { items } = this.props
     const { isAuthenticated } = this.props.auth;
 
