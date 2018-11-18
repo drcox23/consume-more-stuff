@@ -22,14 +22,14 @@ class Dashboard extends Component {
     super(props);
   }
 
-componentDidMount = () => {
-  if (!this.props.auth.isAuthenticated()) {
-    this.props.dispatch(getAllPosts())
-  } else {
-    const nickname = jwtDecode(localStorage.getItem('id_token'))
-    console.log('whats the nickname', nickname)
-    this.props.dispatch(getAll({nickname}))
-    this.props.dispatch(addUserToDB(nickname));
+  componentDidMount = () => {
+    if (!this.props.auth.isAuthenticated()) {
+      this.props.dispatch(getAllPosts())
+    } else {
+      const  nickname  = jwtDecode(localStorage.getItem('id_token'))
+      this.props.dispatch(getAll({nickname}))
+      this.props.dispatch(addUserToDB(nickname))
+    }
   }
 
   getPostandCommentsById = (props) => {
