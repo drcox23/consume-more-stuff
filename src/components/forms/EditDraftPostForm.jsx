@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './EditDraftPostForm.css';
 import { connect } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 
 //Actions
 import { getTypeAndDraftPostData, addNewPost, addNewPostFromDraft, editDraftPost } from '../../actions/actions.js'
@@ -10,34 +11,31 @@ class EditDraftPostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: {
         user_id: "",
         subject: "",
         body: "",
         type_id: "",
         price: ""
-      }
     }
   }
 
   componentDidMount() {
+    const  { name } = jwtDecode(localStorage.getItem('id_token'))
     const { id } = this.props.match.params
-  
+
     this.props.dispatch(
-      getTypeAndDraftPostData(id)
+      getTypeAndDraftPostData(id, name)
     )
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps.detailedDraftPost !== prevState.detailedDraftPost){
       return {         
-        form: {
           user_id: nextProps.user.id,
           subject: nextProps.detailedDraftPost.subject,
           body: nextProps.detailedDraftPost.body,
           type_id: nextProps.detailedDraftPost.type_id,
           price: nextProps.detailedDraftPost.price
-        }
       };
    }
    else return null;
@@ -45,27 +43,42 @@ class EditDraftPostForm extends Component {
 
   handleChange = (event) => {
     event.preventDefault();
+
+    console.log("EventTargetValue", event.target.name)
+    console.log("EventTargetValue", event.target.value)
+
     const { name, value } = event.target;
     this.setState({
-      form: {...this.state.form, [name]: value}
+     [name]: value
     })
+    
     // this.state.form[name] = value;
-    console.log("On Change - handleChange this.state.form:", this.state.form)
+    console.log("On Change - handleChange this.state.form:", this.state)
   }
 
   handleSubmit = (event) => {
     console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
-    console.log('\n Submitted!!:', this.state.form);
-    this.props.dispatch(addNewPost(this.state.form));
+    let form = {
+      user_id: this.state.user_id,
+      subject: this.state.subject,
+      body: this.state.body,
+      type_id: this.state.type_id,
+      price: this.state.price
+    }
+    console.log('\n Submitted!!:', form);
+    this.props.dispatch(addNewPost(
+      form
+      )
+    );
   }
 
   addToPosts = () => {
-    this.props.dispatch(addNewPostFromDraft(this.props.detailedDraftPost.id, this.state.form));
+    this.props.dispatch(addNewPostFromDraft(this.props.detailedDraftPost.id, this.state));
   }
 
   editToDraftPosts = () => {
-    this.props.dispatch(editDraftPost(this.props.detailedDraftPost.id, this.state.form));
+    this.props.dispatch(editDraftPost(this.props.detailedDraftPost.id, this.state));
   }
 
   DefaultType = () => {

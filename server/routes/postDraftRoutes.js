@@ -118,12 +118,6 @@ router.route('/:id/:draftId')
       .forge(post_data)
       .save()
       .then(() => {
-        return Posts.fetchAll()
-      })
-      .then(results => {
-        res.json(results)
-      })
-      .then(() => {
         draftPosts.where({ id: draftId }).destroy()
       })
       .catch(err => {

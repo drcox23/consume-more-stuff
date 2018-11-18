@@ -44,15 +44,12 @@ const postReducer = (state = {
       return { ...state, form: action.payload }
     case ADD_MORE_CREDIT:
       return { ...state, user: action.payload}
-<<<<<<< HEAD
     case ADD_NEW_DRAFT_POST:
       return { ...state, draftPosts: action.payload }
-=======
     case ADD_USER:
       return { ...state, user: action.payload}
     case ADD_COMMENT:
       return { ...state, form: action.payload}
->>>>>>> development
     default:
       return state
   }

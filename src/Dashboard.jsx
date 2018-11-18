@@ -31,7 +31,6 @@ class Dashboard extends Component {
     } else {
       const  { name } = jwtDecode(localStorage.getItem('id_token'))
       const  nickname = jwtDecode(localStorage.getItem('id_token'))
-      // console.log("can i see the user id???", id)
       this.props.dispatch(getAll(name))
       this.props.dispatch(addUserToDB(nickname))
     }
