@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Auth from '../../Auth/Auth.js';
 
+
 const auth = new Auth();
 
 class Picture extends Component {
@@ -13,7 +14,7 @@ class Picture extends Component {
 
   render() {
     let profilepicurl = auth.getGreeting().picture || ' ';
-    return (<img src={profilepicurl} />)
+    return (<img id="userImg" src={profilepicurl} />)
   }
 }
 

@@ -63,23 +63,13 @@ class Header extends Component {
             </div>
             <h1 id="app-title">two cents</h1>
 
-            {/* Search Bar */}
-            {/* <input id="searchBar" type="text" placeholder="Search..." /> */}
           </div>
-
-          {/* Navigation Links */}
-
-          {/* {props.children}
-      </div>
-    )
-  } */}
-
-          {/* export default Header */}
 
           {this.props.children}
           <div id="linkBtns">
+            {isAuthenticated() && <Picture />}
+
             {isAuthenticated() && <p id="user-greeting">Hello, <Greeting /></p>}
-            {isAuthenticated() && <p id="profile-pic"><Picture /></p>}
 
             <LinkButton to={"/"} title={"HOME"} onClick={this.goTo.bind(this, 'home')} />
 
