@@ -51,48 +51,36 @@ class Dashboard extends Component {
 
         <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
         <br /><br />
-        {/* <Route path={`${match.path}/new-request`} component={NewRequest} /> */}
-        {/* <Route path={`${match.path}/post/:id`} render={(props) => <PostDetail match={match} props={this.props} />} /> */}
+
         <Route path={`${match.path}/post/:id`} component={PostDetail} />
 
         <Route path={`/dashboard/new-request`} component={NewRequest} />
-
-        {/* <Route path={`/`} component={PostsBoard} /> */}
-        {/* <div id="postings-section-title">All Postings</div>
-
-          <Link to="/post/specificPost">
-            <Posts items={items} getPostandCommentsById={this.getPostandCommentsById} />
-          </Link> */}
-        {/* <Route path="/dashboard2s" component={DashboardLinks} /> */}
-
 
         <div className="auth-user-btns">
 
           {isAuthenticated() && <div>
             <ul style={{ listStyleType: "none" }}>
-              <li style={{ padding: "10px" }}>
+              <li>
                 <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
               </li>
-              <li style={{ padding: "10px" }}>
+              <li>
                 <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
               </li>
-              <li style={{ padding: "10px" }}>
+              <li>
                 <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
               </li>
-              <li style={{ padding: "10px" }}>
+              <li>
                 <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
               </li>
-              <li style={{ padding: "10px" }}>
+              <li>
                 <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
               </li>
-              <li style={{ padding: "10px" }}>
+              <li>
                 <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
               </li>
             </ul>
           </div>}
-
         </div>
-
       </div>
     )
   }
@@ -107,47 +95,6 @@ const mapStateToProps = state => {
   }
 }
 
-{/* <div className="auth-user-btns">
-<LinkButton to="/dashboard2s" title={"dashboard2s"} />
-
-  {isAuthenticated() &&
-    <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Drafts Posts"} />}
-  <br /><br />
-
-  {isAuthenticated() &&
-    <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />}
-  <br /><br />
-  {isAuthenticated() &&
-    <LinkButton to={"/new-request"} title={"New Request"} />}
-</div> */}
-
-// export const DashboardLinks = ({ match }) => {
-//   return (
-//     <div>
-//       <ul style={{ listStyleType: "none" }}>
-//         <li style={{ padding: "10px" }}>
-//         <LinkButton to={`${match.url}/posts`} title={"All Posts"} />
-//         </li>
-//         <li style={{ padding: "10px" }}>
-//           <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
-//         </li>
-//         <li style={{ padding: "10px" }}>
-//           <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
-//         </li>
-//         <li style={{ padding: "10px" }}>
-//           <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
-//         </li>
-//         <li style={{ padding: "10px" }}>
-//           <LinkButton to={`${match.url}/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
-//         </li>
-//         <li style={{ padding: "10px" }}>
-//           <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// }
-
 export const Dashboard2 = ({ match }) => {
   return (
     <p>{console.log('Component Toggled')}</p>
@@ -159,6 +106,5 @@ export const poop = ({ match }) => {
     <div>POOP</div>
   )
 }
-
 
 export default connect(mapStateToProps)(Dashboard);
