@@ -105,7 +105,8 @@ const mapStateToProps = state => {
     items: state.items,
     user: state.user,
     draftPosts: state.draftPosts,
-    draftComments: state.draftComments
+    draftComments: state.draftComments,
+    type: state.type
   }
 }
 

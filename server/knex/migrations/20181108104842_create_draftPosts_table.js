@@ -2,10 +2,10 @@
 exports.up = function (knex, Promise) {
   return knex.schema.createTable('draft_posts', function (table) {
     table.increments();
-    table.string('subject').notNullable();
-    table.string('body', 10000).notNullable();
-    table.decimal('price').notNullable().defaultTo(0.00);
-    table.integer("type_id").unsigned().notNullable();
+    table.string('subject');
+    table.string('body', 10000);
+    table.decimal('price').defaultTo(0.00);
+    table.integer("type_id").unsigned();
     table.foreign('type_id').references('id').inTable('type');
     table.integer('user_id').unsigned().notNullable();
     table.foreign('user_id').references('id').inTable('users');

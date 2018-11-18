@@ -8,6 +8,7 @@ import ProfileData from './ProfileData/ProfileData.jsx';
 import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
+import EditDraftPostForm from '../forms/EditDraftPostForm.jsx';
 
 //Actions
 import { getAll, addMoreCredit } from '../../actions/actions.js';
@@ -87,6 +88,8 @@ class UserProfile extends Component {
             <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
 
             <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+
+            <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
           </div>
         </Router>
 
