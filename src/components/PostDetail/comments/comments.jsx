@@ -4,7 +4,6 @@ import './comments.css'
 import { userInfo } from 'os';
 
 const Comments = (props) => {
-    console.log(props, 'OMFG WTF')
     return props.comments.map(comment =>
         <div key={comment.id} className="comment-container">
             <p className="comment-user-id">User: {comment.user_id}</p>
