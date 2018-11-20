@@ -36,7 +36,7 @@
       }
 
     #app-title{
-      flex: 1 1 auto;
+      flex: 1 0 auto;
       position: relative;
       left: -8px;
       font-family: 'Poiret One', cursive;
@@ -54,24 +54,26 @@
   justify-content: space-evenly;
   padding: 0;
   height: 50px;
-  width: 500px;
+  width: 400px;
   /* border: 1px solid blue; */
   margin: auto 20px;
 }
 
   #userImg{
     /* border: 3px solid red; */
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
     border-radius: 50%;
   }
+
   img{
     margin: auto 0;
   }
 
   #user-greeting{
     font-family: 'Montserrat', sans-serif;
-    margin: auto 0;
+    margin: 12px 0;
     font-size: 1.2em;
   }
 
@@ -127,9 +129,9 @@
 .dropdown-content {
     visibility: hidden;
     position: absolute;
-    color: rgb(198, 219, 198);
-    background-color: rgba(198, 219, 198, 0.769);
-    min-width: 160px;
+    color: rgb(255, 255, 255);
+    background-color:rgb(169, 202, 169);
+    /* min-width: 160px; */
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     -webkit-transition: opacity 0.6s, visibility 0.6s;
     -moz-transition: opacity 0.6s, visibility 0.6s;
@@ -144,10 +146,13 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.dropdown-content a:hover {background-color: rgba(155, 191, 155, 0); color: rgb(76, 85, 76);}
+/* .dropdown-content a:hover {
+  background-color: rgb(121, 121, 121); 
+  color: rgb(255, 255, 255);
+} */
 
 .dropdown:hover .dropdown-content {
     visibility: visible;
@@ -183,9 +188,9 @@
     to   { opacity: 1; }
 }
 
-.dropdown:hover .dropbtn {
-    background-color: rgba(198, 219, 198, 0);
-}
+/* .dropdown:hover .dropbtn {
+    background-color:rgb(169, 202, 169);
+} */
 
 .profile-links{
   font-family: 'Montserrat', sans-serif;
@@ -195,14 +200,14 @@
     padding: 5px;
     border-radius: 3px;
     /* border-bottom: 1px dotted rgb(184, 184, 184); */
-    font-size: 1.2em;
+    font-size: 1em;
     cursor: pointer;
     /* color: black !important; */
     /* margin: 5px 0; */
     text-align: left;
+    font-weight: 500;
   }
   .profile-links:hover{
-    background-image: linear-gradient(to left, white, rgb(99, 143, 119));
-      color:white !important;
-      font-weight: normal;
+    background-color: rgb(211, 211, 211);
+    color:black;
   }

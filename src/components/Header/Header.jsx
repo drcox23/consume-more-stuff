@@ -60,7 +60,7 @@ class Header extends Component {
             <div id="imgBox">
               <Link to={'/'} ><img src={logo} alt="logo" /></Link>
             </div>
-            <h1 id="app-title"><Link style={{color:"black"}} to={'/'} >two<span style={{fontSize:"18px"}}> </span>cents</Link></h1>
+            <h1 id="app-title"><Link style={{ color: "black" }} to={'/'} >two<span style={{ fontSize: "18px" }}> </span>cents</Link></h1>
 
           </div>
 
@@ -68,21 +68,44 @@ class Header extends Component {
           <div id="linkBtns">
             {isAuthenticated() && <Link to={"/user/profile"} ><Picture /></Link>}
 
-            {isAuthenticated() && <p id="user-greeting">Hello, <Greeting /></p>}
+            {isAuthenticated() &&
+
+              <div className="dropdown">
+                <p id="user-greeting">Hello, <Greeting /></p>
+                {/* <LinkButton className="dropbtn" to={"/user/profile"} title={<i class="fas fa-user-circle"></i>} onClick={this.goTo.bind(this, 'user/profile')} /> */}
+
+                <div className="dropdown-content">
+                  <a href={"/user/profile/myprofile"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>View My Profile</a>
+
+                  <a href={"/user/profile/mydraftposts"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Posts</a>
+
+                  <a href={"/user/profile/mydraftcomments"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Comments</a>
+
+                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Add Credit</a>
+
+                </div>
+              </div>
+            }
+
+            {/* {isAuthenticated() &&
+              <div className="dropdown">
+                <LinkButton className="dropbtn" to={"/user/profile"} title={<i class="fas fa-user-circle"></i>} onClick={this.goTo.bind(this, 'user/profile')} />
+
+                <div className="dropdown-content">
+                  <a href={"/user/profile/myprofile"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>View My Profile</a>
+
+                  <a href={"/user/profile/mydraftposts"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Posts</a>
+
+                  <a href={"/user/profile/mydraftcomments"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Comments</a>
+
+                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Add Credit</a>
+
+                </div>
+              </div>
+            } */}
 
             <LinkButton to={"/"} title={"HOME"} onClick={this.goTo.bind(this, 'home')} />
 
-            {isAuthenticated() && 
-            <div className="dropdown">
-              <LinkButton className="dropbtn" to={"/user/profile"} title={"MY PROFILE"} onClick={this.goTo.bind(this, 'user/profile')} />
-                <div className="dropdown-content">
-                  <a href={"/user/profile/myprofile"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>View My Profile</a>
-                  <a href={"/user/profile/mydraftposts"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Posts</a>
-                  <a href={"/user/profile/mydraftcomments"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Comments</a>
-                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Add Credit</a>
-                  </div>
-                </div>
-            }
 
             {!isAuthenticated() && <p id="loginBtn" onClick={this.login.bind(this)}>LOGIN</p>}
 
