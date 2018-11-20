@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 //Components
@@ -9,6 +9,7 @@ import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
 import EditDraftPostForm from '../forms/EditDraftPostForm.jsx';
+import NotFound from '../Error/404.jsx';
 
 //Actions
 import { getAll, addMoreCredit } from '../../actions/actions.js';
@@ -57,35 +58,47 @@ class UserProfile extends Component {
     this.props.dispatch(
       addMoreCredit(this.props.user.id, this.state.form)
     );
+    const editform = document.getElementById('addCredit-form');
+    editform.reset();
   }
 
   render() {
-    const { id } = this.props.user;
-
+    const id = this.props.user.id;
+    const match = this.props.match.path;
+    const UserProfileProps = this.props;
     return (
       <div id="userProfileContainer">
-        <Router>
           <div className="userProfileNav">
-            <LinkButton to={`/user/profile/${id}/data`} title={"My Profile"} />
+          
+            <LinkButton to={`${match}/${id}/data`} title={"My Profile"} />
 
-            <LinkButton to={`/user/profile/${id}/draftposts`} title={"Drafts Posts"} />
+            <LinkButton to={`${match}/${id}/draftposts`} title={"Drafts Posts"} />
 
-            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"Draft Comments"} />
+            <LinkButton to={`${match}/${id}/draftcomments`} title={"Draft Comments"} />
 
-            <LinkButton to={`/user/profile/${id}/accountcredit`} title={"Account Credit"} />
+            <LinkButton to={`${match}/${id}/accountcredit`} title={"Account Credit"} />
+            
+            <Switch>
 
+              <Route exact path={match} render={() => <ProfileData user={UserProfileProps.user} />} />
+              <Route exact path={`${match}/myprofile`} component={() => <ProfileData user={UserProfileProps.user} />} />
+              <Route path={`${match}/${id}/data`} component={() => <ProfileData user={UserProfileProps.user} />} />
 
-            <Route path={`/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} />
+              <Route exact path={`${match}/mydraftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} />} />
+              <Route path={`${match}/${id}/draftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} />} />
 
-            <Route path={`/user/profile/${id}/draftposts`} component={() => <DraftPosts {...this.props} />} />
+              <Route exact path={`${match}/mydraftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
+              <Route path={`${match}/${id}/draftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
 
-            <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
+              <Route exact path={`${match}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+              <Route path={`${match}/${id}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
 
-            <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+               <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
 
-            <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
+              <Route component={NotFound}/>
+
+            </Switch>     
           </div>
-        </Router>
 
       </div>
     )
