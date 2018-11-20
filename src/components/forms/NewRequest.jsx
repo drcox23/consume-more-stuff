@@ -79,7 +79,6 @@ class NewRequest extends Component {
 
           <br />
           <input id="user-newReq-btn" type="submit" value="Submit new post" onClick={this.addToPosts} />
-          <br /><br />
           <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.addToDraftPosts} />
           <br />
         </form>
