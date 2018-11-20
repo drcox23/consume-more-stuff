@@ -15,7 +15,10 @@ import Play from './components/Play/Play.jsx';
 
 import Header from './components/Header/Header.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
+
 import NewRequest from './components/forms/NewRequest.jsx';
+import EditDraftPostForm from './components/forms/EditDraftPostForm.jsx';
+
 import Footer from './components/Footer/Footer.jsx';
 import NotFound from './components/Error/404.jsx';
 import Dashboard from './Dashboard.jsx';
@@ -83,7 +86,18 @@ export const makeMainRoutes = () => {
           <Route path="/user/profile" render={(props) => ( auth.isAuthenticated() ? 
           (<UserProfile auth={auth} {...props} /> ) : (<Redirect to="/callbacklogin" />))}/>
 
+          <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
+
           <Route component={NotFound}/>
+
+          {/* just in case anything breaks for the routes below */}
+          {/* <Route path={`/user/profile/:id/data`} render={(props) => <ProfileData {...props} />} />
+
+          <Route path={`/user/profile/:id/draftposts`} render={(props) => <DraftPosts {...props} />} />
+
+          <Route path={`/user/profile/:id/draftcomments`} render={(props) => <DraftComments {...props} />} />
+
+          <Route path={`/user/profile/:id/accountcredit`} render={(props) => <AddAccountCredit {...props} />} /> */}
 
           </Switch>
 

@@ -8,7 +8,7 @@
   font-size: 1.2em;
 }
 
-form{
+#add-credit-form{
   display: flex;
   flex-flow: row nowrap;
   width: 35%;
@@ -41,4 +41,5 @@ form{
     padding: 0;
     height: 52px;
     font-family: 'Montserrat', sans-serif;
+    width: 200px;
   }

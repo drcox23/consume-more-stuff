@@ -270,7 +270,7 @@ app.get('/user-profile/:id', (req, res) => {
     })
 })
 
-app.get('/user-profile/email/:email', (req, res) => {
+app.get('/user-profile/get/:email', (req, res) => {
   const { email } = req.params;
 
   Users

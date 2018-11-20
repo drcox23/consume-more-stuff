@@ -4,7 +4,7 @@ import './NewRequest.css';
 import { connect } from 'react-redux';
 
 //Actions
-import { getTypeData, addNewPost } from '../../actions/actions.js'
+import { getTypeData, addNewPost, addNewDraftPost } from '../../actions/actions.js'
 
 class NewRequest extends Component {
   constructor(props) {
@@ -25,62 +25,61 @@ class NewRequest extends Component {
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    this.state.form[name] = value;
+    // this.state.form[name] = value;
+    this.setState({
+      [name]: value
+    })
     console.log("On Change - handleChange this.state.form:", this.state.form)
   }
 
   handleSubmit = (event) => {
     console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
-    console.log('\n Submitted!!:', this.state.form);
+    console.log('\n Submitted!!:', event.target);
+  }
+
+  addToPosts = () => {
     this.props.dispatch(addNewPost(this.state.form));
+  }
+
+  addToDraftPosts = () => {
+    this.props.dispatch(addNewDraftPost(this.state.form));
   }
 
   render() {
     return (
-      <div id="container">
+      <div id="new-post-container">
 
-        <div id="new-request-title">New Feedback Request</div>
+        <div id="new-post-title">New Post Request</div>
 
         {/* New Request form */}
         <form onSubmit={this.handleSubmit}>
 
-          <div class="row">
-            <div class="rowHeader">
-              <label>Subject:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="subject" placeholder="enter subject" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Body:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="body" placeholder="enter description" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Media Type:
-                <select onChange={this.handleChange} name="type_id">
-                  <option>Select Media Type...</option>
-                  {this.props.type.map(line => <option key={line.id} value={line.id}>{line.type}</option>)}
-                </select>
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Set a Price:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="price" placeholder="enter price" />
-            </div>
-          </div>
+          <label className="new-req-form-label">Subject:</label>
+          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="subject" placeholder="enter subject" />
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new request" />
-          <br /><br />
-          <input id="user-save-draft-btn" type="submit" value="Save draft for letter" />
+
+          <label className="new-req-form-label">Body:</label>
+          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="body" placeholder="enter description" />
+
+          <br />
+
+          <label className="new-req-form-label">Media Type:</label>
+          <select onChange={this.handleChange} name="type_id">
+            <option>Select Media Type...</option>
+            {this.props.type.map(line => <option key={line.id} value={line.id}>{line.type}</option>)}
+          </select>
+
+
+          <br />
+
+          <label className="new-req-form-label">Set a Price:</label>
+          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="price" placeholder="enter price" />
+
+          <br />
+          <input id="user-newReq-btn" type="submit" value="Submit new post" onClick={this.addToPosts} />
+          <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.addToDraftPosts} />
           <br />
         </form>
       </div>
