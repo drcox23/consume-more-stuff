@@ -34,7 +34,6 @@ class Dashboard extends Component {
     } else {
       const  { name } = jwtDecode(localStorage.getItem('id_token'))
       const  nickname = jwtDecode(localStorage.getItem('id_token'))
-      // console.log("can i see the user id???", id)
       this.props.dispatch(getAll(name))
       this.props.dispatch(addUserToDB(nickname))
     }
@@ -92,7 +91,8 @@ const mapStateToProps = state => {
     items: state.items,
     user: state.user,
     draftPosts: state.draftPosts,
-    draftComments: state.draftComments
+    draftComments: state.draftComments,
+    type: state.type
   }
 }
 

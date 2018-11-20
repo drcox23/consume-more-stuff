@@ -7,7 +7,7 @@ const DraftPosts = (props) => {
     return props.draftPosts.map(draftPost =>
         <div key={draftPost.id} className="draftPost">
             <p className="draftPost-subject">{draftPost.subject}</p>
-            <Link to="/editForm">
+            <Link to={`/edit/draftpost/${draftPost.id}`}>
                 <button id="editDraftPostBtn" type="button">Edit Draft</button>
             </Link>
             <Link to="/user/profile">

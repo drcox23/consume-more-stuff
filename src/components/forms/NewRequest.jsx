@@ -4,7 +4,7 @@ import './NewRequest.css';
 import { connect } from 'react-redux';
 
 //Actions
-import { getTypeData, addNewPost } from '../../actions/actions.js'
+import { getTypeData, addNewPost, addNewDraftPost } from '../../actions/actions.js'
 
 class NewRequest extends Component {
   constructor(props) {
@@ -25,15 +25,25 @@ class NewRequest extends Component {
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    this.state.form[name] = value;
+    // this.state.form[name] = value;
+    this.setState({
+      [name]: value
+    })
     console.log("On Change - handleChange this.state.form:", this.state.form)
   }
 
   handleSubmit = (event) => {
     console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
-    console.log('\n Submitted!!:', this.state.form);
+    console.log('\n Submitted!!:', event.target);
+  }
+
+  addToPosts = () => {
     this.props.dispatch(addNewPost(this.state.form));
+  }
+
+  addToDraftPosts = () => {
+    this.props.dispatch(addNewDraftPost(this.state.form));
   }
 
   render() {
@@ -68,8 +78,9 @@ class NewRequest extends Component {
           <input onChange={this.handleChange} className="user-new-req-input" type="text" name="price" placeholder="enter price" />
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new post" />
-          <input id="user-save-draft-btn" type="submit" value="Save draft for later" />
+          <input id="user-newReq-btn" type="submit" value="Submit new post" onClick={this.addToPosts} />
+          <br /><br />
+          <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.addToDraftPosts} />
           <br />
         </form>
       </div>

@@ -8,6 +8,7 @@ import ProfileData from './ProfileData/ProfileData.jsx';
 import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
+import EditDraftPostForm from '../forms/EditDraftPostForm.jsx';
 import NotFound from '../Error/404.jsx';
 
 //Actions
@@ -91,6 +92,8 @@ class UserProfile extends Component {
 
               <Route exact path={`${match}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
               <Route path={`${match}/${id}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+
+               <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
 
               <Route component={NotFound}/>
 
