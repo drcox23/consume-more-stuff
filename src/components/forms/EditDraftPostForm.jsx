@@ -68,7 +68,6 @@ class EditDraftPostForm extends Component {
         form[key] = this.state[key]
       }
     }
-
     //Because form was created from an iteration of this.state, form now also includes original. Delete original to dispatch a clean form to axios
     delete form.original;
 
