@@ -11,6 +11,7 @@ import LoginForm from './components/forms/LoginForm.jsx';
 import SignupForm from './components/forms/SignupForm.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import CallbackLogin from './Callback/CallbackLogin.jsx';
+import Play from './components/Play/Play.jsx';
 
 import Header from './components/Header/Header.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
@@ -52,6 +53,8 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <Provider store={store}>
         <div>
+
+          <Play />
 
           <Header auth={auth} props={store} />
 
