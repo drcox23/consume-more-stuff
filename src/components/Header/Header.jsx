@@ -81,7 +81,7 @@ class Header extends Component {
 
                   <a href={"/user/profile/mydraftcomments"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Comments</a>
 
-                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Add Credit</a>
+                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Account Credit</a>
 
                 </div>
               </div>
