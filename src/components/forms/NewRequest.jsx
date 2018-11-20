@@ -25,7 +25,10 @@ class NewRequest extends Component {
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    this.state.form[name] = value;
+    // this.state.form[name] = value;
+    this.setState({
+      [name]: value
+    })
     console.log("On Change - handleChange this.state.form:", this.state.form)
   }
 

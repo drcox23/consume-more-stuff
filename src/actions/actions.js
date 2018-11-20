@@ -15,7 +15,6 @@ export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
-export const EDIT_DRAFT_POST = 'EDIT_DRAFT_POST';
 export const ADD_USER = 'ADD_USER'
 
 // const auth = new Auth();
@@ -246,7 +245,6 @@ export const addMoreCredit = (id, credit) => {
 }
 
 export const addNewPostFromDraft = (id, body) => {
-  console.log("LETS GO ADDING TO POST");
   return dispatch => {
     axios
       .post(`/post-draft/add-new-post/${id}`, body)
@@ -266,13 +264,12 @@ export const addNewPostFromDraft = (id, body) => {
 }
 
 export const editDraftPost = (id, body) => {
-  console.log("LETS GO EDITING DRAFT POST")
   return dispatch => {
     axios
       .put(`/post-draft/edit-post/${id}`, body)
       .then(response => {
         dispatch({
-          type: EDIT_DRAFT_POST,
+          type: GET_DRAFTPOST_BY_POST_ID,
           payload: response.data
         })
       })
