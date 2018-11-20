@@ -54,7 +54,6 @@ class EditDraftPostForm extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
   }
 
@@ -89,7 +88,6 @@ class EditDraftPostForm extends Component {
   }
 
   DefaultType = () => {
-
     if(!this.props.detailedDraftPost.type_id) {
       return <option>Select Media Type...</option>
     } else {
