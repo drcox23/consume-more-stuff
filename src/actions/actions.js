@@ -127,13 +127,27 @@ export const getPostandCommentsById = (id) => {
 //   ]
 // }
 
-export const getTypeData = () => {
+export const getTypeData = (email) => {
+  let id = "";
+
   return dispatch => {
     axios
     .get(`/type`)
     .then(response => {
       dispatch({
         type: GET_ALL_TYPES,
+        payload: response.data
+      })
+      return axios.get(`/user-profile/get/${email}`)
+    })
+    .then(response => {
+      id = response.data.id;
+      console.log("Id:", id)
+      return axios.get(`/user-profile/${id}`)
+    })
+    .then(response => {
+      dispatch({
+        type: GET_USER_BY_ID,
         payload: response.data
       })
     })
@@ -310,7 +324,7 @@ export const addUserToDB = (info) => {
     let email = info.name;
     
     axios
-      .get(`/user-profile/email/${email}`)
+      .get(`/user-profile/get/${email}`)
       .then(response => {
         console.log("can i see the response", response)
         if(response.data === null){
