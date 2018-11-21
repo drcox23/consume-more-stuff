@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './Dashboard.css';
 import '../src/components/Header/Header.css';
 import { connect } from 'react-redux';
@@ -8,6 +8,9 @@ import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
 import jwtDecode from 'jwt-decode';
+import NotFound from './components/Error/404.jsx';
+import ProfileData from './components/UserProfile/ProfileData/ProfileData.jsx';
+import UserProfile from './components/UserProfile/UserProfile.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -43,51 +46,45 @@ class Dashboard extends Component {
   }
 
   render() {
-    const match = this.props.match;
-    const { id } = this.props.user
-    const { items } = this.props
+    const match = this.props.match.path;
+    const id = this.props.user.id;
+    const { items } = this.props;
     const { isAuthenticated } = this.props.auth;
-    console.log('whats the props', this.props)
 
     return (
-      <div class="pageWrapper">
-        <Route exact path={match.path} render={(props) => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
+      <div className="pageWrapper">
 
-        <Route path={`${match.path}/posts`} component={PostsBoard} />
+        <Switch>
+          <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
 
-        <Route path={`${match.path}/:dashboardSelector`} component={Dashboard2} />
+          <Route exact path={`${match}/posts`} component={PostsBoard} />
+        
+          <Route exact path={`${match}/new-request`} component={NewRequest} />
 
-        <br /><br />
+          <Route exact path={`${match}/post/:id`} component={PostDetail} />
+          
+          <Route component={NotFound}/>
 
-        <Route path={`${match.path}/post/:id`} component={PostDetail} />
-        <Route path={`/dashboard/new-request`} component={NewRequest} />
+        </Switch>
 
         <div className="auth-user-btns">
 
-          {isAuthenticated() && <div>
-            {/* <ul> */}
-            {/* <li> */}
-            <LinkButton id="my-posts" to={`${match.url}/my-posts`} title={"My Posts"} />
-            {/* </li> */}
-            {/* <li> */}
-            <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
-            {/* </li> */}
-            {/* <li> */}
-            <LinkButton to={`${match.url}/my-commnents`} title={"My Comments"} />
-            {/* </li> */}
-            {/* <li> */}
-            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
-            {/* </li> */}
-            {/* <li> */}
-            <LinkButton to={`${match.url}/new-request`} title={"New Request"} />
-            {/* </li> */}
-            {/* </ul> */}
-          </div>}
+          {isAuthenticated() && 
+            <div>
+              <LinkButton id="my-posts" to={`${match}/my-posts`} title={"My Posts"} />
+              <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
+              <LinkButton to={`${match}/my-commnents`} title={"My Comments"} />
+              <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
+              <LinkButton to={`${match}/new-request`} title={"New Request"} />
+            </div>}
+
         </div>
+
       </div>
     )
   }
 }
+
 
 const mapStateToProps = state => {
   return {
@@ -97,18 +94,6 @@ const mapStateToProps = state => {
     draftComments: state.draftComments,
     type: state.type
   }
-}
-
-export const Dashboard2 = ({ match }) => {
-  return (
-    <p>{console.log('Component Toggled')}</p>
-  );
-}
-
-export const poop = ({ match }) => {
-  return (
-    <div>POOP</div>
-  )
 }
 
 export default connect(mapStateToProps)(Dashboard);

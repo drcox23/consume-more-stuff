@@ -28,6 +28,7 @@ class PostsDetail extends Component {
 
     return (
       <div className="detailedPage">
+
         <div className="postDetail">
           <Post props={this.props} detailedItem={detailedItem} />
         </div>

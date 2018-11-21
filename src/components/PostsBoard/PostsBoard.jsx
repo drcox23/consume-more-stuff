@@ -4,7 +4,6 @@ import './PostsBoard.css';
 import { connect } from 'react-redux';
 import Posts from './posts/posts.jsx';
 import { getPostandCommentsById, getAllPosts } from '../../actions/actions.js';
-import { Dashboard2s } from '../UserProfile/DashboardLinks/DashboardLinks.jsx';
 
 class PostsBoard extends Component {
   constructor(props) {
@@ -21,21 +20,39 @@ class PostsBoard extends Component {
     )
   }
 
+  checkForParentComponent = () => {
+    if (this.props.auth) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   render() {
+    const auth = this.props.auth;
     const { items } = this.props;
     const match = this.props.match.path;
 
     return (
       <div className="postsBoard">
 
-        <div id="postings-section">
-          <div id="postings-section-title">All Postings</div>
-
-          <Posts props={this.props} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
-
-          <Route path="/dashboard2s" component={Dashboard2s} />
-
-        </div>
+      {this.checkForParentComponent() && <div id="postings-section-auth">
+      <div id="postings-section-title">All Postings</div>
+      
+      <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+      
+      </div>
+      }
+ 
+      
+      {!this.checkForParentComponent() && <div id="postings-section">
+      <div id="postings-section-title">All Postings</div>
+      
+      <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+      
+      </div>
+      }
+        
       </div>
     )
   }

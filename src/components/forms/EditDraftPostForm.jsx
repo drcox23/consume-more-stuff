@@ -19,6 +19,22 @@ class EditDraftPostForm extends Component {
     }
   }
 
+  //This will set state from props everytime props changes
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.detailedDraftPost !== prevState.detailedDraftPost){
+      return {         
+        original: {
+          user_id: nextProps.user.id,
+          subject: nextProps.detailedDraftPost.subject,
+          body: nextProps.detailedDraftPost.body,
+          type_id: nextProps.detailedDraftPost.type_id,
+          price: nextProps.detailedDraftPost.price
+        }
+      };
+   }
+   else return null;
+  }
+
   componentDidMount() {
     const  { name } = jwtDecode(localStorage.getItem('id_token'))
     const { id } = this.props.match.params
@@ -28,65 +44,53 @@ class EditDraftPostForm extends Component {
     )
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.detailedDraftPost !== prevState.detailedDraftPost){
-      return {         
-          user_id: nextProps.user.id,
-          subject: nextProps.detailedDraftPost.subject,
-          body: nextProps.detailedDraftPost.body,
-          type_id: nextProps.detailedDraftPost.type_id,
-          price: nextProps.detailedDraftPost.price
-      };
-   }
-   else return null;
- }
-
   handleChange = (event) => {
     event.preventDefault();
-
-    console.log("EventTargetValue", event.target.name)
-    console.log("EventTargetValue", event.target.value)
-
     const { name, value } = event.target;
     this.setState({
-     [name]: value
+      [name]: value
     })
-    
-    // this.state.form[name] = value;
     console.log("On Change - handleChange this.state.form:", this.state)
   }
 
   handleSubmit = (event) => {
-    console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
-    let form = {
-      user_id: this.state.user_id,
-      subject: this.state.subject,
-      body: this.state.body,
-      type_id: this.state.type_id,
-      price: this.state.price
+  }
+
+  //Submit an object called form and iterate over this.state with for...in to check for which data to use (org data vs newly changed data)
+  submittingForm = () => {
+    let form = {};
+
+    for(const key in this.state) {
+      if (this.state[key] === "") {
+        form[key] = this.state.original[key]
+      } else {
+        form[key] = this.state[key]
+      }
     }
-    console.log('\n Submitted!!:', form);
-    this.props.dispatch(addNewPost(
-      form
-      )
-    );
+    //Because form was created from an iteration of this.state, form now also includes original. Delete original to dispatch a clean form to axios
+    delete form.original;
+
+    return form;
   }
 
   addToPosts = () => {
-    this.props.dispatch(addNewPostFromDraft(this.props.detailedDraftPost.id, this.state));
+    this.props.dispatch(
+      addNewPostFromDraft(this.props.detailedDraftPost.id, this.submittingForm())
+    );
   }
 
+
   editToDraftPosts = () => {
-    this.props.dispatch(editDraftPost(this.props.detailedDraftPost.id, this.state));
+    this.props.dispatch(
+      editDraftPost(this.props.detailedDraftPost.id, this.submittingForm())
+    );
   }
 
   DefaultType = () => {
-
     if(!this.props.detailedDraftPost.type_id) {
       return <option>Select Media Type...</option>
     } else {
-      console.log("DAFUQ IS THIS", this.props.type.filter(type => type.id === this.props.detailedDraftPost.id));
       return (<option key={this.props.detailedDraftPost.type_id} value={this.props.detailedDraftPost.type_id}>
         {this.props.type.filter(type => type.id === this.props.detailedDraftPost.type_id)[0].type}
         </option>)
