@@ -21,7 +21,6 @@ import EditDraftPostForm from './components/forms/EditDraftPostForm.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import NotFound from './components/Error/404.jsx';
 import Dashboard from './Dashboard.jsx';
-import { ScrollToTop } from './components/Helper/ScrollToTop.ts';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -56,8 +55,6 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <Provider store={store}>
         <div>
-
-          <ScrollToTop />
 
           <Header auth={auth} props={store} />
 
