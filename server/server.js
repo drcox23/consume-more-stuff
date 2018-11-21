@@ -62,6 +62,29 @@ app.get('/home', (req, res) => {
     })
 });
 
+
+// GET /mypost - my posts
+app.get('/my-post/:id', (req, res) => {
+  console.log("\nGET /my-post/:id...")
+  const id = req.params.id;
+  console.log('\nCHECK id:', id);
+
+  Posts
+    .where({user_id: id})
+    .fetchAll()
+    .then(results => {
+      const posts = results.toJSON()
+      console.log('\nCHECK posts:', posts);
+      // const postById = posts[0];
+      res.json(posts)
+    })
+    .catch(err => {
+      console.log("\nERROR - GET /post/:id:", err)
+      res.json(err)
+    })
+
+})
+
 // GET /post/:id - post by id
 app.get('/post/:id', (req, res) => {
   console.log("\nGET /post/:id...")
@@ -155,7 +178,7 @@ app.post('/add-new-comment', (req, res) => {
     .forge(post_data)
     .save()
     .then(() => {
-      return Comments.fetchAll()
+      res.send('success')
     })
     .then(results => {
       res.json(results.serialize())

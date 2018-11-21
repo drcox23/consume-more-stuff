@@ -71,7 +71,7 @@ class Dashboard extends Component {
 
           {isAuthenticated() && 
             <div>
-              <LinkButton id="my-posts" to={`${match}/my-posts`} title={"My Posts"} />
+              <LinkButton id="my-posts" to={`${match}/my-posts/${id}`} title={"My Posts"} />
               <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
               <LinkButton to={`${match}/my-commnents`} title={"My Comments"} />
               <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
