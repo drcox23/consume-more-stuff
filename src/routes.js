@@ -21,6 +21,7 @@ import EditDraftPostForm from './components/forms/EditDraftPostForm.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import NotFound from './components/Error/404.jsx';
 import Dashboard from './Dashboard.jsx';
+import { ScrollToTop } from './components/Helper/ScrollToTop.jsx';
 
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -56,39 +57,41 @@ export const makeMainRoutes = () => {
       <Provider store={store}>
         <div>
 
+          <ScrollToTop />
+
           <Header auth={auth} props={store} />
 
           <Switch>
 
-          <Route exact path="/" render={(props) => ( !auth.isAuthenticated() ? 
-          (<PostsBoard auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
+            <Route exact path="/" render={(props) => (!auth.isAuthenticated() ?
+              (<PostsBoard auth={auth} {...props} />) : (<Redirect to="/dashboard" />))} />
 
-          <Route path="/dashboard" render={(props) => ( auth.isAuthenticated() ? 
-          (<Dashboard auth={auth} {...props} /> ) : (<Redirect to="/callbacklogin" />))}/>
+            <Route path="/dashboard" render={(props) => (auth.isAuthenticated() ?
+              (<Dashboard auth={auth} {...props} />) : (<Redirect to="/callbacklogin" />))} />
 
-          <Route path="/signup" component={SignupForm} />
+            <Route path="/signup" component={SignupForm} />
 
-          <PrivateRoute path="/home" render={(props) => <Home auth={auth} {...props} />}/>
+            <PrivateRoute path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
-          <Route path="/callbacklogin" render={(props) => <CallbackLogin auth={auth} {...props} />}/>
+            <Route path="/callbacklogin" render={(props) => <CallbackLogin auth={auth} {...props} />} />
 
-          <Route path="/post/:id" render={(props) => ( !auth.isAuthenticated() ? 
-          (<PostDetail auth={auth} {...props} /> ) : (<Redirect to="/dashboard" />))}/>
+            <Route path="/post/:id" render={(props) => (!auth.isAuthenticated() ?
+              (<PostDetail auth={auth} {...props} />) : (<Redirect to="/dashboard" />))} />
 
-          <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
-            return <Callback {...props} />
-          }} />
+            <Route path="/callback" render={(props) => {
+              handleAuthentication(props);
+              return <Callback {...props} />
+            }} />
 
-          <Route path="/user/profile" render={(props) => ( auth.isAuthenticated() ? 
-          (<UserProfile auth={auth} {...props} /> ) : (<Redirect to="/callbacklogin" />))}/>
+            <Route path="/user/profile" render={(props) => (auth.isAuthenticated() ?
+              (<UserProfile auth={auth} {...props} />) : (<Redirect to="/callbacklogin" />))} />
 
-          <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
+            <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
 
-          <Route component={NotFound}/>
+            <Route component={NotFound} />
 
-          {/* just in case anything breaks for the routes below */}
-          {/* <Route path={`/user/profile/:id/data`} render={(props) => <ProfileData {...props} />} />
+            {/* just in case anything breaks for the routes below */}
+            {/* <Route path={`/user/profile/:id/data`} render={(props) => <ProfileData {...props} />} />
 
           <Route path={`/user/profile/:id/draftposts`} render={(props) => <DraftPosts {...props} />} />
 
@@ -99,7 +102,7 @@ export const makeMainRoutes = () => {
           </Switch>
 
           <Footer />
-          
+
         </div>
       </Provider>
     </Router>
