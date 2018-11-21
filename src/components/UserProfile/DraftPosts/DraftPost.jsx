@@ -10,9 +10,9 @@ const DraftPosts = (props) => {
             <Link to={`/edit/draftpost/${draftPost.id}`}>
                 <button id="editDraftPostBtn" type="button">Edit Draft</button>
             </Link>
-            <Link to="/user/profile">
-                <button id="deleteDraftPostBtn" type="button">Delete Draft</button>
-            </Link>
+            {/* <Link to="/user/profile"> */}
+                <button id="deleteDraftPostBtn" type="button" onClick={() => {props.deleteFromDraft(draftPost.id, props.user.id)}}>Delete Draft</button>
+            {/* </Link> */}
         </div>
     )
 }

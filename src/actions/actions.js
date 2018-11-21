@@ -348,3 +348,16 @@ export const addUserToDB = (info) => {
       })
   }
 }
+
+export const deleteFromDraft = (id, user_id) => {
+  return dispatch => {
+    axios
+      .delete(`/post-draft/delete/${id}/${user_id}`)
+      .then(response => {
+        dispatch({
+          type: GET_DRAFTPOSTS_BY_USER_ID,
+          payload: response.data
+        })
+      })
+  }
+}

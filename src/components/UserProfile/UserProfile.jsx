@@ -12,7 +12,7 @@ import EditDraftPostForm from '../forms/EditDraftPostForm.jsx';
 import NotFound from '../Error/404.jsx';
 
 //Actions
-import { getAll, addMoreCredit } from '../../actions/actions.js';
+import { getAll, addMoreCredit, deleteFromDraft } from '../../actions/actions.js';
 
 //CSS
 import './UserProfile.css';
@@ -53,13 +53,17 @@ class UserProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log('\n Submitted!!:', this.state.form);
-    // console.log('\n AddCreditForm:', this.state.form)
     this.props.dispatch(
       addMoreCredit(this.props.user.id, this.state.form)
     );
     const editform = document.getElementById('addCredit-form');
     editform.reset();
+  }
+
+  deleteFromDraft = (id, user_id) => {
+    this.props.dispatch(
+      deleteFromDraft(id, user_id)
+    )
   }
 
   render() {
@@ -84,8 +88,8 @@ class UserProfile extends Component {
               <Route exact path={`${match}/myprofile`} component={() => <ProfileData user={UserProfileProps.user} />} />
               <Route path={`${match}/${id}/data`} component={() => <ProfileData user={UserProfileProps.user} />} />
 
-              <Route exact path={`${match}/mydraftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} />} />
-              <Route path={`${match}/${id}/draftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} />} />
+              <Route exact path={`${match}/mydraftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} deleteFromDraft={this.deleteFromDraft} user={UserProfileProps.user} />} />
+              <Route path={`${match}/${id}/draftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} deleteFromDraft={this.deleteFromDraft} user={UserProfileProps.user} />} />
 
               <Route exact path={`${match}/mydraftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
               <Route path={`${match}/${id}/draftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
