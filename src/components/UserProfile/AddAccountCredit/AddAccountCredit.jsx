@@ -18,7 +18,6 @@ const AddAccountCredit = (props) => {
 
           <input onChange={props.handleChange} className="user-input" type="text" name="account_credit" placeholder="Enter number..." />
 
-          <br />
           <input id="user-addCredit-btn" type="submit" value="Add" />
           <br />
         </form>

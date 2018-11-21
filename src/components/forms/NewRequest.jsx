@@ -50,49 +50,38 @@ class NewRequest extends Component {
 
   render() {
     return (
-      <div id="container">
+      <div id="new-post-container">
 
-        <div id="new-request-title">New Feedback Request</div>
+        <div id="new-post-title">New Post Request</div>
 
         {/* New Request form */}
         <form onSubmit={this.handleSubmit}>
 
-          <div class="row">
-            <div class="rowHeader">
-              <label>Subject:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="subject" placeholder="enter subject" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Body:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="body" placeholder="enter description" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Media Type:
-                <select onChange={this.handleChange} name="type_id">
-                  <option>Select Media Type...</option>
-                  {this.props.type.map(line => <option key={line.id} value={line.id}>{line.type}</option>)}
-                </select>
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Set a Price:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="price" placeholder="enter price" />
-            </div>
-          </div>
+          <label className="new-req-form-label">Subject:</label>
+          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="subject" placeholder="enter subject" />
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new request" onClick={this.addToPosts}/>
-          <br /><br />
-          <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.addToDraftPosts}/>
+
+          <label className="new-req-form-label">Body:</label>
+          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="body" placeholder="enter description" />
+
+          <br />
+
+          <label className="new-req-form-label">Media Type:</label>
+          <select onChange={this.handleChange} name="type_id">
+            <option>Select Media Type...</option>
+            {this.props.type.map(line => <option key={line.id} value={line.id}>{line.type}</option>)}
+          </select>
+
+
+          <br />
+
+          <label className="new-req-form-label">Set a Price:</label>
+          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="price" placeholder="enter price" />
+
+          <br />
+          <input id="user-newReq-btn" type="submit" value="Submit new post" onClick={this.addToPosts} />
+          <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.addToDraftPosts} />
           <br />
         </form>
       </div>

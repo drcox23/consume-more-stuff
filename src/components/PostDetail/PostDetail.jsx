@@ -33,9 +33,12 @@ class PostsDetail extends Component {
           <Post props={this.props} detailedItem={detailedItem} />
         </div>
 
+        <div>ADD BUTTON</div>
+
         <div className="comments">
           <Comments comments={comments} />
         </div>
+        
       </div>
     )
   }

@@ -183,6 +183,29 @@ export const getTypeAndDraftPostData = (id, name) => {
   }
 }
 
+// add new comment action
+export const addNewComment = (newComment) => {
+  console.log("\nCheck newComment:", newComment);
+
+  return dispatch => {
+    axios
+      .post('/add-new-comment', newComment)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_COMMENT,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
 export const addNewPost = (postfromNewRequest) => {
   console.log("\nCheck postFromNewRequest:", postfromNewRequest);
 
