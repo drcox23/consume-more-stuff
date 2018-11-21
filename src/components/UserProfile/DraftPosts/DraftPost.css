@@ -1,18 +1,26 @@
 .draftPost{
-border: 2px solid gray;
-border-radius: 0  0 0;
-width: 50%;
-margin: 50px auto;
+  border: 1px solid rgb(214, 214, 214);
+  margin: 50px auto;
+  width: 50%;
+  height: max-content;
+  padding: 15px;
+  box-shadow: 10px 10px 5px grey;
 }
 
 .draftPost-subject{
   padding: 10px;
-
-  border: 1px solid red;
-
+  background-color: rgb(216, 238, 216);
+  /* display: inline-block; */
+  font-style: italic;
+  text-align: left;
+  border-radius: 3px;
 }
 
 .editDraftPostBtn, .deleteDraftPostBtn{
   padding: 10px;
-  margin: 10px;
+  width: 100px;
+  /* position: relative; */
+  margin: 0 15px;
+  border-radius: 10px;
+  border: 2px solid rgb(198, 219, 198);
 }
