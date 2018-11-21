@@ -10,9 +10,11 @@ class NewRequest extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: {
-        user_id: this.props.user.id
-      }
+      user_id: "",
+      subject: "",
+      body: "",
+      type_id: "",
+      price: ""
     }
   }
 
