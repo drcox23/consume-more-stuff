@@ -1,48 +1,27 @@
 .draftComment{
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  width: 50%;
   }
   
-  .draftComment-subject{
-    padding: 10px;
-    border: 1px solid magenta;
+  .draftComment-body{
+    padding: 20px;
+    /* border: 1px solid magenta; */
     margin: 0;
+    font-style: italic;
   }
   
-  .editDraftCommenBtn, .deleteDraftCommentBtn{
+  .editDraftCommentBtn, .deleteDraftCommentBtn{
     padding: 10px;
-    margin: 10px;
+    width: 150px;
+    margin: 0 15px;
+    border-radius: 10px;
+    border: 2px solid rgb(198, 219, 198);
   }
-
-/* .draftPost{
-border: 2px solid gray;
-border-radius: 0  0 0;
-width: 80%;
-margin: 50px auto;
-} */
-
-/* .pencil-icon{
-  border: 1px solid green;
-  display: block;
-  /* position: relative; */
-  /* height: max-content; */
-/* } */
-
-.draftComment-subject{
-  padding: 10px;
-  border: 1px solid red;
-  /* display: inline-block; */
-  font-style: italic;
-}
-
-.editDraftCommentBtn, .deleteDraftCommentBtn{
-  padding: 10px;
-  margin: 10px;
-}
 
 /* Comment bubble */
 
 .comment-bubble {
-  background: rgb(202, 210, 218);
+  background: rgb(216, 238, 216);
   -webkit-border-radius: 15px;
           border-radius: 15px;
   font-size: 1em;
@@ -63,7 +42,7 @@ margin: 50px auto;
 
 .comment-bubble::after {
   border-left: 20px solid transparent;
-  border-top: 20px solid rgb(202, 210, 218);
+  border-top: 20px solid rgb(216, 238, 216);
   bottom: -20px;
   content: "";
   position: absolute;
@@ -98,6 +77,7 @@ margin: 50px auto;
   bottom: -25px;
   position: absolute;
   right: 15px;
+  
 }
 .comment-bubble-ds-arrow::before {
   border-left: 23px solid transparent;
@@ -114,4 +94,5 @@ margin: 50px auto;
   content: "";
   position: absolute;
   right: 6px;
+  
 }
