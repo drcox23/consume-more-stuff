@@ -126,4 +126,27 @@ router.route('/:id/:draftId')
       })
   })
 
+  router.delete("/delete/:id/:user_id", (req, res) => {
+    const { id, user_id } = req.params;
+
+    draftPosts
+      .where({id})
+      .destroy()
+      .then(() => {
+        draftPosts
+        .where({
+          user_id
+        })
+        .fetchAll()
+        .then(results => {
+          const draftPosts = results.toJSON()
+          res.json(draftPosts)
+        })
+      })
+      .catch(err => {
+        console.log("server delete error", err)
+        res.json(err)
+      })
+  })
+
 module.exports = router;
