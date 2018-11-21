@@ -1,11 +1,14 @@
 .draftPost{
 border: 1px solid blue;
+width: 50%;
+margin: 50px auto;
 }
 
 .draftPost-subject{
   padding: 10px;
+
   border: 1px solid red;
-  margin: 0;
+
 }
 
 .editDraftPostBtn, .deleteDraftPostBtn{
