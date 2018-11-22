@@ -11,6 +11,7 @@ import {
   ADD_NEW_DRAFT_POST,
   GET_DRAFTPOST_BY_POST_ID,
   ADD_USER,
+  ADD_DRAFT_COMMENT,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -49,6 +50,8 @@ const postReducer = (state = {
       return { ...state, user: action.payload}
     case ADD_COMMENT:
       return { ...state, form: action.payload}
+    case ADD_DRAFT_COMMENT:
+      return { ...state, form: action.payload} 
     default:
       return state
   }
