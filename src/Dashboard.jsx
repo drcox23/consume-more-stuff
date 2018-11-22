@@ -7,6 +7,7 @@ import { getPostandCommentsById, getAllPosts, getAll, addUserToDB } from './acti
 import NewRequest from './components/forms/NewRequest.jsx';
 import PostsBoard from './components/PostsBoard/PostsBoard.jsx';
 import PostDetail from './components/PostDetail/PostDetail.jsx';
+import MyPosts from './components/UserProfile/MyPosts/MyPosts.jsx';
 import jwtDecode from 'jwt-decode';
 import NotFound from './components/Error/404.jsx';
 import ProfileData from './components/UserProfile/ProfileData/ProfileData.jsx';
@@ -57,6 +58,8 @@ class Dashboard extends Component {
         <Switch>
           <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
 
+          <Route exact path={`${match}/myposts`} component={() => <MyPosts props={this.props} />} />
+
           <Route exact path={`${match}/posts`} component={PostsBoard} />
 
           <Route exact path={`${match}/new-request`} component={NewRequest} />
@@ -71,7 +74,7 @@ class Dashboard extends Component {
 
           {isAuthenticated() &&
             <div>
-              <LinkButton id="my-posts" to={`${match}/my-posts/${id}`} title={"My Posts"} />
+              <LinkButton to={`${match}/myposts`} title={"My Posts"} />
               <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
               <LinkButton to={`${match}/my-comments`} title={"My Comments"} />
               <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
