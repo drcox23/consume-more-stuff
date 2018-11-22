@@ -32,8 +32,8 @@ class Dashboard extends Component {
     if (!this.props.auth.isAuthenticated()) {
       this.props.dispatch(getAllPosts())
     } else {
-      const  { name } = jwtDecode(localStorage.getItem('id_token'))
-      const  nickname = jwtDecode(localStorage.getItem('id_token'))
+      const { name } = jwtDecode(localStorage.getItem('id_token'))
+      const nickname = jwtDecode(localStorage.getItem('id_token'))
       this.props.dispatch(getAll(name))
       this.props.dispatch(addUserToDB(nickname))
     }
@@ -58,22 +58,22 @@ class Dashboard extends Component {
           <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
 
           <Route exact path={`${match}/posts`} component={PostsBoard} />
-        
+
           <Route exact path={`${match}/new-request`} component={NewRequest} />
 
           <Route exact path={`${match}/post/:id`} component={PostDetail} />
-          
-          <Route component={NotFound}/>
+
+          <Route component={NotFound} />
 
         </Switch>
 
         <div className="auth-user-btns">
 
-          {isAuthenticated() && 
+          {isAuthenticated() &&
             <div>
               <LinkButton id="my-posts" to={`${match}/my-posts/${id}`} title={"My Posts"} />
               <LinkButton to={`/user/profile/${id}/draftposts`} title={"My Draft Posts"} />
-              <LinkButton to={`${match}/my-commnents`} title={"My Comments"} />
+              <LinkButton to={`${match}/my-comments`} title={"My Comments"} />
               <LinkButton to={`/user/profile/${id}/draftcomments`} title={"My Draft Comments"} />
               <LinkButton to={`${match}/new-request`} title={"New Request"} />
             </div>}
