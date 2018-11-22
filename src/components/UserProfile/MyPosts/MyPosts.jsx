@@ -33,7 +33,7 @@ class MyPosts extends Component {
     console.log("")
 
     return (
-      <div>
+      <div className="myPosts-container">
         <Posts props={this.props} auth={auth} items={items} getPostandCommentsById={this.getPostandCommentsById} />
       </div>
     )

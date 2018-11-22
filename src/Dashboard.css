@@ -56,11 +56,11 @@ body{
       flex: 1 1 auto;
       margin: 5px 15px;
       padding: 10px;
-      /* border: 1px solid blue; */
+      border: 1px solid rgb(209, 209, 209);
       /* border: 1px outset rgb(226, 224, 224); */
       /* border-left: 10px solid rgb(164, 204, 164); */
       border-radius: 25px;
-      width: 96%;
+      width: 93%;
       background-color: white;
       display: inline-block;
     }
