@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './NewRequest.css';
 import { connect } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 
 //Actions
 import { getTypeData, addNewPost, addNewDraftPost } from '../../actions/actions.js'
@@ -10,15 +11,29 @@ class NewRequest extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: {
-        user_id: this.props.user.id
-      }
+      user_id: "",
+      subject: "",
+      body: "",
+      type_id: "",
+      price: ""
     }
   }
 
+  //This will set state from props everytime props changes
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.user.id !== prevState.user_id){
+      return {         
+          user_id: nextProps.user.id
+      };
+    }
+    else return null;
+  }
+
   componentDidMount() {
+    const  { name } = jwtDecode(localStorage.getItem('id_token'))
+
     this.props.dispatch(
-      getTypeData()
+      getTypeData(name)
     )
   }
 
@@ -29,21 +44,21 @@ class NewRequest extends Component {
     this.setState({
       [name]: value
     })
-    console.log("On Change - handleChange this.state.form:", this.state.form)
+    console.log("On Change - handleChange this.state.form:", this.state)
   }
 
   handleSubmit = (event) => {
     console.log("New Request - handleSubmit this.props:", this.props);
     event.preventDefault();
-    console.log('\n Submitted!!:', event.target);
+    console.log('\n Submitted!!:', this.state);
   }
 
   addToPosts = () => {
-    this.props.dispatch(addNewPost(this.state.form));
+    this.props.dispatch(addNewPost(this.state));
   }
 
   addToDraftPosts = () => {
-    this.props.dispatch(addNewDraftPost(this.state.form));
+    this.props.dispatch(addNewDraftPost(this.state));
   }
 
   render() {

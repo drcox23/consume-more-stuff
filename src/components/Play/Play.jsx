@@ -18,7 +18,7 @@ class Play extends Component {
 		window.addEventListener( 'scroll', function() {
 			  // normalize scroll position as percentage
 		  var scrolled = window.scrollY / ( docHeight - window.innerHeight ),
-			  transformValue = `scale(${(scrolled*25)+1})`;
+			  transformValue = `scale(${(scrolled*30)+1})`;
 			  this.console.log(scrolled, ' Waht the f is going on?')
 	  
 		  box.style.WebkitTransform = transformValue;

@@ -1,14 +1,24 @@
 .draftPost{
-border: 1px solid blue;
+  border: 1px solid rgb(214, 214, 214);
+  margin: 50px auto;
+  width: 50%;
+  height: max-content;
+  padding: 15px;
+  box-shadow: 5px 5px 30px grey;
 }
 
 .draftPost-subject{
   padding: 10px;
-  border: 1px solid red;
-  margin: 0;
+  background-color: rgb(216, 238, 216);
+  font-style: italic;
+  text-align: left;
+  border-radius: 3px;
 }
 
 .editDraftPostBtn, .deleteDraftPostBtn{
   padding: 10px;
-  margin: 10px;
+  width: 100px;
+  margin: 0 15px;
+  border-radius: 10px;
+  border: 2px solid rgb(198, 219, 198);
 }

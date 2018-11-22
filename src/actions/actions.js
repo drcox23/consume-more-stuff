@@ -127,13 +127,27 @@ export const getPostandCommentsById = (id) => {
 //   ]
 // }
 
-export const getTypeData = () => {
+export const getTypeData = (email) => {
+  let id = "";
+
   return dispatch => {
     axios
     .get(`/type`)
     .then(response => {
       dispatch({
         type: GET_ALL_TYPES,
+        payload: response.data
+      })
+      return axios.get(`/user-profile/get/${email}`)
+    })
+    .then(response => {
+      id = response.data.id;
+      console.log("Id:", id)
+      return axios.get(`/user-profile/${id}`)
+    })
+    .then(response => {
+      dispatch({
+        type: GET_USER_BY_ID,
         payload: response.data
       })
     })
@@ -171,6 +185,29 @@ export const getTypeAndDraftPostData = (id, name) => {
       .then(response => {
         dispatch({
           type: GET_USER_BY_ID,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+// add new comment action
+export const addNewComment = (newComment) => {
+  console.log("\nCheck newComment:", newComment);
+
+  return dispatch => {
+    axios
+      .post('/add-new-comment', newComment)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_COMMENT,
           payload: response.data
         })
       })
@@ -287,7 +324,7 @@ export const addUserToDB = (info) => {
     let email = info.name;
     
     axios
-      .get(`/user-profile/email/${email}`)
+      .get(`/user-profile/get/${email}`)
       .then(response => {
         console.log("can i see the response", response)
         if(response.data === null){
@@ -307,6 +344,19 @@ export const addUserToDB = (info) => {
         dispatch({
           type: "DISPLAY_ERROR_NOTIFICATION",
           err
+        })
+      })
+  }
+}
+
+export const deleteFromDraft = (id, user_id) => {
+  return dispatch => {
+    axios
+      .delete(`/post-draft/delete/${id}/${user_id}`)
+      .then(response => {
+        dispatch({
+          type: GET_DRAFTPOSTS_BY_USER_ID,
+          payload: response.data
         })
       })
   }
