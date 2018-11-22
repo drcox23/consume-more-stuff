@@ -15,7 +15,8 @@ export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
-export const ADD_USER = 'ADD_USER'
+export const ADD_USER = 'ADD_USER';
+export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT'
 
 // const auth = new Auth();
 
@@ -98,6 +99,33 @@ export const getPostandCommentsById = (id) => {
   return dispatch => {
     axios
       .get(`/post/${id}`)
+      .then(response => {
+        dispatch({
+          type: GET_POST_BY_ID,
+          payload: response.data
+        })
+        return axios.get(`/comments/${id}`)
+      })
+      .then(response => {
+          dispatch({
+            type: GET_COMMENTS_BY_POST_ID,
+            payload: response.data
+          })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+// get comment draft by ID
+export const getDraftCommentAndPostById = (id, draftId) => {
+  return dispatch => {
+    axios
+      .get(`/comment-draft/${id}/${draftId}`)
       .then(response => {
         dispatch({
           type: GET_POST_BY_ID,
@@ -208,6 +236,29 @@ export const addNewComment = (newComment) => {
         console.log("response.data:", response.data)
         dispatch({
           type: ADD_COMMENT,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+// add new draft comment action
+export const addNewCommentDraft = (draftComment) => {
+  console.log("\nCheck newComment:", draftComment);
+
+  return dispatch => {
+    axios
+      .post('/save-comment', draftComment)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_DRAFT_COMMENT,
           payload: response.data
         })
       })

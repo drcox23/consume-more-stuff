@@ -12,6 +12,7 @@ import jwtDecode from 'jwt-decode';
 import NotFound from './components/Error/404.jsx';
 import ProfileData from './components/UserProfile/ProfileData/ProfileData.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
+import AddNewComment from './components/forms/AddNewComment';
 
 const LinkButton = (props) => {
   return (
@@ -65,6 +66,8 @@ class Dashboard extends Component {
           <Route exact path={`${match}/new-request`} component={NewRequest} />
 
           <Route exact path={`${match}/post/:id`} component={PostDetail} />
+
+          <Route exact path={`${match}/post/:id/add-comment`} component={AddNewComment} />
 
           <Route component={NotFound} />
 
