@@ -56,11 +56,11 @@ body{
       flex: 1 1 auto;
       margin: 5px 15px;
       padding: 10px;
-      /* border: 1px solid blue; */
+      border: 1px solid rgb(209, 209, 209);
       /* border: 1px outset rgb(226, 224, 224); */
       /* border-left: 10px solid rgb(164, 204, 164); */
       border-radius: 25px;
-      width: 96%;
+      width: 93%;
       background-color: white;
       display: inline-block;
     }
@@ -69,11 +69,11 @@ body{
         background-color: rgb(167, 167, 167);
       }
       
-      .posting:active {
+      /* .posting:active {
         background-color: rgb(164, 204, 164);
         box-shadow: 0 2px #666;
         transform: translateY(4px);
-      }
+      } */
   
       .single-posting-container{
         margin: 0;

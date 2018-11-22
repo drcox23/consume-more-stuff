@@ -27,7 +27,9 @@ const Posts = (props) => {
 
                     <div className="viewPosting">view posting</div>
 
+
                 </div>
+                <button className="archiveBtn">Archive</button>
             </div>
         </Link>
     )
