@@ -31,24 +31,24 @@ class PostsDetail extends Component {
     const match = this.props.match.url
 
     return (
-      
+
       <div className="detailedPage">
-      
+
         <div className="postDetail">
           <Post props={this.props} detailedItem={detailedItem} />
         </div>
+        {/* <div className="addCommentBtn">
+          <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
+        </div> */}
 
-        <div className="addCommentButton">
-        <Link to={`${match}/add-comment`}>Add Comment</Link>
-        </div>
 
         <div className="comments">
           <Comments comments={comments} />
         </div>
-        
+
 
       </div>
-      
+
     )
   }
 }
