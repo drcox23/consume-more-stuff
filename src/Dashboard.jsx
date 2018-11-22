@@ -11,6 +11,7 @@ import jwtDecode from 'jwt-decode';
 import NotFound from './components/Error/404.jsx';
 import ProfileData from './components/UserProfile/ProfileData/ProfileData.jsx';
 import UserProfile from './components/UserProfile/UserProfile.jsx';
+import MyComments from './components/PostDetail/comments/MyComments.jsx';
 
 const LinkButton = (props) => {
   return (
@@ -63,6 +64,8 @@ class Dashboard extends Component {
 
           <Route exact path={`${match}/post/:id`} component={PostDetail} />
 
+          <Route exact path={`${match}/my-comments`} render={() => <MyComments items={items} userComments={this.props.userComments}/>} />
+
           <Route component={NotFound} />
 
         </Switch>
@@ -92,7 +95,10 @@ const mapStateToProps = state => {
     user: state.user,
     draftPosts: state.draftPosts,
     draftComments: state.draftComments,
-    type: state.type
+    type: state.type,
+    detailedItem: state.detailedItem,
+    comments: state.comments,
+    userComments: state.userComments
   }
 }
 

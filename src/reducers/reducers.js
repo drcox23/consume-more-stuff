@@ -11,6 +11,7 @@ import {
   ADD_NEW_DRAFT_POST,
   GET_DRAFTPOST_BY_POST_ID,
   ADD_USER,
+  GET_COMMENTS_BY_USER_ID,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -19,7 +20,7 @@ import {
   from '../actions/actions.js'
 
 const postReducer = (state = {
-  items: [], detailedItem: {}, comments: [], user: {}, draftPosts: [], draftComments: [], form: {}, type: [], detailedDraftPost: {}, detailedDraftComment: {}
+  items: [], detailedItem: {}, comments: [], user: {}, draftPosts: [], draftComments: [], form: {}, type: [], detailedDraftPost: {}, detailedDraftComment: {}, userComments: []
 }, action) => {
   switch (action.type) {
     case GET_ALL_POSTS:
@@ -28,6 +29,8 @@ const postReducer = (state = {
       return { ...state, detailedItem: action.payload }
     case GET_COMMENTS_BY_POST_ID:
       return { ...state, comments: action.payload }
+    case GET_COMMENTS_BY_USER_ID:
+      return { ...state, userComments: action.payload }
     case GET_USER_BY_ID:
       return { ...state, user: action.payload}
     case GET_DRAFTPOSTS_BY_USER_ID:

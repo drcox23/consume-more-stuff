@@ -10,6 +10,7 @@ export const GET_ALL_APPROVED_COMMENTS = 'GET_ALL_APPROVED_COMMENTS' //get all a
 export const GET_PENDING_COMMENTS = 'GET_PENDING_COMMENTS' // get all pending comments needing approval for a post.
 export const GET_POST_BY_ID = 'GET_POST_BY_ID';
 export const GET_COMMENTS_BY_POST_ID = 'GET_COMMENT_BY_POST_ID';
+export const GET_COMMENTS_BY_USER_ID = 'GET_COMMENT_BY_USER_ID';
 export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
@@ -55,7 +56,6 @@ export const getAll = (name) => {
       })
       .then(response => {
         id = response.data.id;
-        console.log('does the id come through', id)
         return axios.get(`/user-profile/${id}`)
       })
       .then(response => {
@@ -82,6 +82,13 @@ export const getAll = (name) => {
       .then(response => {
         dispatch({
           type: GET_ALL_TYPES,
+          payload: response.data
+        })
+        return axios.get(`/mycomments/${id}`)
+      })
+      .then(response => {
+        dispatch({
+          type: GET_COMMENTS_BY_USER_ID,
           payload: response.data
         })
       })
