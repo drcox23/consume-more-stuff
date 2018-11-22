@@ -69,11 +69,11 @@ body{
         background-color: rgb(167, 167, 167);
       }
       
-      .posting:active {
+      /* .posting:active {
         background-color: rgb(164, 204, 164);
         box-shadow: 0 2px #666;
         transform: translateY(4px);
-      }
+      } */
   
       .single-posting-container{
         margin: 0;
