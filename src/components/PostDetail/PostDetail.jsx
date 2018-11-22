@@ -39,7 +39,7 @@ class PostsDetail extends Component {
         </div>
 
         <div className="addCommentButton">
-        <Link to={`${match}/add-comment`}><h2>Add Comment</h2></Link>
+        <Link to={`${match}/add-comment`}>Add Comment</Link>
         </div>
 
         <div className="comments">

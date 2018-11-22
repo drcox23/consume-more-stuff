@@ -121,6 +121,33 @@ export const getPostandCommentsById = (id) => {
   }
 }
 
+// get comment draft by ID
+export const getDraftCommentAndPostById = (id, draftId) => {
+  return dispatch => {
+    axios
+      .get(`/comment-draft/${id}/${draftId}`)
+      .then(response => {
+        dispatch({
+          type: GET_POST_BY_ID,
+          payload: response.data
+        })
+        return axios.get(`/comments/${id}`)
+      })
+      .then(response => {
+          dispatch({
+            type: GET_COMMENTS_BY_POST_ID,
+            payload: response.data
+          })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
 // export const getAllUserProfileData = (id) => {
 //   return dispatch => [
 //     axios
