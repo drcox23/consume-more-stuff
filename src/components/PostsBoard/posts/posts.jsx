@@ -19,16 +19,15 @@ const Posts = (props) => {
                     <i className="far fa-user-circle fa-2x"></i>
                 </div>
 
-
                 <div className="postSubject-container">
                     <p className="postSubject">{post.subject}</p>
                 </div>
 
-                <Link key={post.id} to={`${match}/post/${post.id}`}>
+                <Link className="viewPosting-Link" key={post.id} to={`${match}/post/${post.id}`}>
                     <div className="viewPosting">view posting</div>
                 </Link>
+                <div className="archiveBtn" onClick={() => console.log("test " + post.id)}>archive</div>
             </div>
-            <button className="archiveBtn" onClick={() => console.log("test " + post.id)}>Archive</button>
         </div>
     )
 }
