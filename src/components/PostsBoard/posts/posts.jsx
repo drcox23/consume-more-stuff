@@ -9,6 +9,7 @@ const Posts = (props) => {
     } else {
         match = '/dashboard';
     }
+    console.log(props, "WUTS GOING ON");
 
     return props.items.map(post =>
         <Link key={post.id} to={`${match}/post/${post.id}`}>
