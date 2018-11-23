@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 import { Spring, Transition, Trail } from 'react-spring'
 import './Play.css';
+import { render } from "react-dom";
+import Plx from "react-plx";
+
+const styles = {
+  width: 100,
+  height: 100,
+  lineHeight: "100px",
+  textAlign: "center",
+  borderRadius: 20,
+  backgroundColor: "#34ba9c",
+  color: "#fff",
+  left: "50%",
+  marginLeft: -50,
+  top: 100,
+  position: "fixed",
+  fontFamily: "Helvetica, Arial, sans-serif"
+};
 
 class Play extends Component {
   constructor(props) {
@@ -8,6 +25,62 @@ class Play extends Component {
   }
 
 // items = [{key:1, text:1},{key:2, text:2},{key:3, text:3},{key:4, text:4}];
+
+textData = [
+  {
+    start: '.StickyText-trigger',
+    duration: 7000,
+    properties: [
+      {
+        startValue: 0,
+        endValue: 0,
+        unit: 'vh',
+        property: 'translateY',
+      },
+      {
+        startValue: 1,
+        endValue: 1,
+        property: 'opacity',
+      },
+    ],
+	},
+	{
+		start: '.StickyText-trigger',
+		startOffset: 1200,
+    duration: 600,
+    properties: [
+      {
+        startValue: 0,
+        endValue: -100,
+        unit: 'vh',
+        property: 'translateY',
+      },
+      {
+        startValue: 1,
+        endValue: 1,
+        property: 'opacity',
+      },
+    ],
+	},
+	{
+    start: '.StickyText-trigger',
+		duration: 7000,
+		startOffset: 1800,
+    properties: [
+      {
+        startValue: -100,
+        endValue: -100,
+        unit: 'vh',
+        property: 'translateY',
+      },
+      {
+        startValue: 1,
+        endValue: 1,
+        property: 'opacity',
+      },
+    ],
+	},
+];
 
   render() {
 	const items = [{key:1, text:1234},{key:2, text:2},{key:3, text:3},{key:4, text:4}];
@@ -19,7 +92,15 @@ class Play extends Component {
 			  // normalize scroll position as percentage
 		  var scrolled = window.scrollY / ( docHeight - window.innerHeight ),
 			  transformValue = `scale(${(scrolled*30)+1})`;
-			  this.console.log(scrolled, ' Waht the f is going on?')
+				this.console.log(transformValue, ' Waht the f is going on?');
+				if(transformValue>10.3){
+					this.textData[0].duration = 100;
+					if (this.textData[0].duration === 100 ){
+						this.console.log('THIS FUCKING WORKED')
+					}
+				} else if (transformValue<=10.3){
+					this.textData[0].duration = 7000;
+				}
 	  
 		  box.style.WebkitTransform = transformValue;
 		  box.style.MozTransform = transformValue;
@@ -28,9 +109,21 @@ class Play extends Component {
 		  
 		}, false);
 		
-	  }, false);
+		}, false);
     return (
 		<div>
+			{/* <div style={{height: '600px', backgroundColor: 'black'}} />
+			<div style={{height: '600px', backgroundColor: 'blue'}} />
+			<div style={{height: '600px', backgroundColor: 'greenyellow'}} className='StickyText-trigger' />
+       
+			<Plx 
+        className='Pic'
+        parallaxData={ textData }
+      >
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" className="hide-laptop">
+			<path d="M 420 630 L 0 630 L 0 420 L 210 630 L 210 420 L 420 420 L 210 210 L 0 210 L 0 0 L 420 0 L 420 200 Z" fill="rgba(255, 255, 255, 1.00)"></path>
+		</svg>
+      </Plx> */}
 {/* <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
   {props => <div style={props}>hello</div>}
 </Spring>
@@ -42,17 +135,51 @@ class Play extends Component {
     <span style={props}>{item.text}</span>
   }
 </Trail> */}
-<div id="container">
+
+        {/* Other elements can be in between `StickyContainer` and `Sticky`,
+				but certain styles can break the positioning logic used. */}
+				<div id="container" style={{backgroundColor: 'lightgreen'}}>
+				<Plx
+        className='Pic'
+        parallaxData={ this.textData }
+      >
+			<video id="video" autoPlay="true" width="70%" height="70%" loop="loop" muted="muted">
+        <source src="https://static.framer.com/x/frontpage/hero.mp4" type="video/mp4" />
+      </video>
+</Plx>
 	<div id="box">
 		<div className="takeSpace"></div>
-		<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" class="hide-laptop">
+		<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" className="hide-laptop">
 			<path d="M 420 630 L 0 630 L 0 420 L 210 630 L 210 420 L 420 420 L 210 210 L 0 210 L 0 0 L 420 0 L 420 200 Z" fill="rgba(255, 255, 255, 1.00)"></path>
 		</svg>
 		<div className="takeSpace"></div></div>
-	</div>	
+		<div style={{height: '0px', backgroundColor: 'white'}} className="StickyText-trigger" />
+	</div> 
+
 </div>
     )
   }
 }
 
 export default Play;
+
+
+
+{/* <div id="container">
+				<Plx
+        className='StickyText'
+        parallaxData={ textData }
+      >
+<video id="video" autoPlay="true" width="70%" height="70%" loop="loop" muted="muted">
+        <source src="https://static.framer.com/x/frontpage/hero.mp4" type="video/mp4" />
+      </video></Plx>
+	<div id="box">
+		<div className="takeSpace"></div>
+		<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" className="hide-laptop">
+			<path d="M 420 630 L 0 630 L 0 420 L 210 630 L 210 420 L 420 420 L 210 210 L 0 210 L 0 0 L 420 0 L 420 200 Z" fill="rgba(255, 255, 255, 1.00)"></path>
+		</svg>
+		<div className="takeSpace"></div></div>
+		<div style={{height: '600px', backgroundColor: 'greenyellow'}} className='StickyText-trigger' />
+	</div>  */}
+
+{/* <p> text texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext text </p> */}
