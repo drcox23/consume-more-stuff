@@ -171,7 +171,7 @@ app.post('/add-new-post', (req, res) => {
 
 // POST /add-new-comment --> adding a new comment
 app.post('/add-new-comment', (req, res) => {
-  console.log("POST - /add req.body:", req.body);
+  console.log("POST - /add-new-comment req.body:", req.body);
   const post_data = req.body
 
   Comments
@@ -179,9 +179,6 @@ app.post('/add-new-comment', (req, res) => {
     .save()
     .then(() => {
       res.send('success')
-    })
-    .then(results => {
-      res.json(results.serialize())
     })
     .catch(err => {
       console.log("ERROR - POST /add:", err)
