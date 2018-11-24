@@ -55,7 +55,7 @@ const postReducer = (state = {
     case ADD_COMMENT:
       return { ...state, form: action.payload}
     case GET_ALL_POSTS_AFTER_ARCHIVE:
-      return { ...state, items: items.filter(element.id !== action.payload) }
+      return { ...state, items: state.items.filter(element => element.id !== action.payload) }
     case ADD_DRAFT_COMMENT:
       return { ...state, form: action.payload} 
     default:
