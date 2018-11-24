@@ -3,6 +3,9 @@ import { Spring, Transition, Trail } from 'react-spring'
 import './Play.css';
 import { render } from "react-dom";
 import Plx from "react-plx";
+import PostsBoard from '../PostsBoard/PostsBoard.jsx';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import logo from '../../2.png';
 
 const styles = {
   width: 100,
@@ -21,7 +24,8 @@ const styles = {
 
 class Play extends Component {
   constructor(props) {
-    super(props);
+		super(props);
+		this.state = { state: 0}
   }
 
 // items = [{key:1, text:1},{key:2, text:2},{key:3, text:3},{key:4, text:4}];
@@ -82,34 +86,48 @@ textData = [
 	},
 ];
 
-  render() {
+scrollFunc = () => {
+	var box = document.getElementById('box'),
+		docHeight = document.documentElement.offsetHeight;
+	
+	window.addEventListener( 'scroll', function() {
+			// normalize scroll position as percentage
+		var scrolled = window.scrollY / ( docHeight - window.innerHeight ),
+			transformValue = `scale(${(scrolled*30)+1})`;
+			// this.console.log(transformValue, ' Waht the f is going on?');
+			// if(transformValue>10.3){
+			// 	this.textData[0].duration = 100;
+			// 	if (this.textData[0].duration === 100 ){
+			// 		this.console.log('THIS FUCKING WORKED')
+			// 	}
+			// } else if (transformValue<=10.3){
+			// 	this.textData[0].duration = 7000;
+			// }
+	
+		box.style.WebkitTransform = transformValue;
+		box.style.MozTransform = transformValue;
+		box.style.OTransform = transformValue;
+		box.style.transform = transformValue;
+		
+	}, false);
+	
+	};
+
+componentDidMount () {
 	const items = [{key:1, text:1234},{key:2, text:2},{key:3, text:3},{key:4, text:4}];
-	window.addEventListener( 'load', function() {
-		var box = document.getElementById('box'),
-			docHeight = document.documentElement.offsetHeight;
-		
-		window.addEventListener( 'scroll', function() {
-			  // normalize scroll position as percentage
-		  var scrolled = window.scrollY / ( docHeight - window.innerHeight ),
-			  transformValue = `scale(${(scrolled*30)+1})`;
-				this.console.log(transformValue, ' Waht the f is going on?');
-				if(transformValue>10.3){
-					this.textData[0].duration = 100;
-					if (this.textData[0].duration === 100 ){
-						this.console.log('THIS FUCKING WORKED')
-					}
-				} else if (transformValue<=10.3){
-					this.textData[0].duration = 7000;
-				}
-	  
-		  box.style.WebkitTransform = transformValue;
-		  box.style.MozTransform = transformValue;
-		  box.style.OTransform = transformValue;
-		  box.style.transform = transformValue;
-		  
-		}, false);
-		
-		}, false);
+	window.addEventListener( 'load', this.scrollFunc(), false);
+}
+
+componentWillUnmount() {
+  document.removeEventListener("load", this.scrollFunc());
+}
+
+login() {
+	this.props.auth.login();
+}
+
+  render() {
+		console.log(this.props, 'this going to da kine?')
     return (
 		<div>
 			{/* <div style={{height: '600px', backgroundColor: 'black'}} />
@@ -143,19 +161,22 @@ textData = [
         className='Pic'
         parallaxData={ this.textData }
       >
-			<video id="video" autoPlay="true" width="70%" height="70%" loop="loop" muted="muted">
+			<video id="video" autoPlay="true" width="70%" height="70%" loop="loop" muted="muted" vector-effect="non-scaling-stroke" >
         <source src="https://static.framer.com/x/frontpage/hero.mp4" type="video/mp4" />
       </video>
 </Plx>
 	<div id="box">
-		<div className="takeSpace"></div>
+		<div className="takeSpace1"><div id="imgBox2">
+              <Link to={'/'} ><img src={logo} alt="logo" /></Link>
+            </div><div id="homeHeader"><h1 id="app-title"><Link style={{ color: "black" }} to={'/'} >two<span style={{ fontSize: "18px" }}> </span>cents</Link></h1></div>
+		</div>
 		<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" className="hide-laptop">
 			<path d="M 420 630 L 0 630 L 0 420 L 210 630 L 210 420 L 420 420 L 210 210 L 0 210 L 0 0 L 420 0 L 420 200 Z" fill="rgba(255, 255, 255, 1.00)"></path>
 		</svg>
-		<div className="takeSpace"></div></div>
+		<div className="takeSpace2"><p className="homeLogin" id="loginBtn" onClick={this.login.bind(this)}>LOGIN  &nbsp; ||  &nbsp; ABOUT</p></div></div>
 		<div style={{height: '0px', backgroundColor: 'white'}} className="StickyText-trigger" />
 	</div> 
-
+	<div style={{height: '2000px', backgroundColor: 'white'}} />
 </div>
     )
   }

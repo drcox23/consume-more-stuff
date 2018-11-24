@@ -58,7 +58,6 @@ export const makeMainRoutes = () => {
       <Provider store={store}>
         <div>
 
-          <Play />
           <ScrollToTop />
 
           <Header auth={auth} props={store} />
@@ -66,7 +65,7 @@ export const makeMainRoutes = () => {
           <Switch>
 
             <Route exact path="/" render={(props) => (!auth.isAuthenticated() ?
-              (<PostsBoard auth={auth} {...props} />) : (<Redirect to="/dashboard" />))} />
+              (<Play auth={auth} store={store} {...props} />) : (<Redirect to="/dashboard" />))} />
 
             <Route path="/dashboard" render={(props) => (auth.isAuthenticated() ?
               (<Dashboard auth={auth} {...props} />) : (<Redirect to="/callbacklogin" />))} />
