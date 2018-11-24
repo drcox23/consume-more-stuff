@@ -9,6 +9,7 @@ import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
 import EditDraftPostForm from '../forms/EditDraftPostForm.jsx';
+import EditDraftCommentForm from '../forms/EditDraftCommentForm.jsx'
 import NotFound from '../Error/404.jsx';
 
 //Actions
@@ -93,9 +94,12 @@ class UserProfile extends Component {
 
             <Route exact path={`${match}/mydraftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
             <Route path={`${match}/${id}/draftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
-
+            
+               <Route path={`${match}/${id}/edit-comment/:id`} component={EditDraftCommentForm} />
             <Route exact path={`${match}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
             <Route path={`${match}/${id}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+
+              <Route component={NotFound}/>
 
             <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
 

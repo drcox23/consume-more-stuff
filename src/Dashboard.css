@@ -66,7 +66,8 @@ body{
     }
     
       .posting:hover{
-        background-color: rgb(167, 167, 167);
+        background-color: rgb(194, 194, 194);
+        cursor: default;
       }
       
       /* .posting:active {
@@ -95,7 +96,7 @@ body{
         .postSubject{
           margin: 10px;
           height: 100%;
-          font-size: 1.2em;
+          font-size: 1em;
           font-family: 'Montserrat', sans-serif;
         }
   
@@ -108,11 +109,40 @@ body{
           color: black;
           font-size: 1.2em;
           background-color: rgb(226, 255, 238);
-          padding: 5px;
+          padding: 10px 0;
           cursor: pointer;
+          border-radius: 25px;
+          width: 150px;
+          text-align: center;
+        }
+        
+        .archiveBtn{
+          position: right;
+          float: right;
+          margin: auto 20px;
+          opacity: 0;
+          transition: .5s ease;
+          color: black;
+          font-size: 1em;
+          background-color: rgb(226, 255, 238);
+          padding: 10px 0;
+          cursor: pointer;
+          border-radius: 25px;
+          width: 150px;
+          text-align: center;
+        }
+
+        .viewPosting-Link{
+          /* border: 1px solid black; */
+          height: min-content;
+          margin: auto 0;
         }
   
         .single-posting-container:hover .viewPosting{
+          opacity: 1;
+          color: black;
+        }
+        .single-posting-container:hover .archiveBtn{
           opacity: 1;
           color: black;
         }

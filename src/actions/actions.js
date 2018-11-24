@@ -10,6 +10,7 @@ export const GET_ALL_APPROVED_COMMENTS = 'GET_ALL_APPROVED_COMMENTS' //get all a
 export const GET_PENDING_COMMENTS = 'GET_PENDING_COMMENTS' // get all pending comments needing approval for a post.
 export const GET_POST_BY_ID = 'GET_POST_BY_ID';
 export const GET_COMMENTS_BY_POST_ID = 'GET_COMMENT_BY_POST_ID';
+export const GET_COMMENTS_BY_USER_ID = 'GET_COMMENT_BY_USER_ID';
 export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
@@ -17,6 +18,7 @@ export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
 export const ADD_USER = 'ADD_USER';
 export const GET_ALL_POSTS_AFTER_ARCHIVE = "GET_ALL_POSTS_AFTER_ARCHIVE";
+export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT'
 
 // const auth = new Auth();
 
@@ -56,7 +58,6 @@ export const getAll = (name) => {
       })
       .then(response => {
         id = response.data.id;
-        console.log('does the id come through', id)
         return axios.get(`/user-profile/${id}`)
       })
       .then(response => {
@@ -85,6 +86,13 @@ export const getAll = (name) => {
           type: GET_ALL_TYPES,
           payload: response.data
         })
+        return axios.get(`/mycomments/${id}`)
+      })
+      .then(response => {
+        dispatch({
+          type: GET_COMMENTS_BY_USER_ID,
+          payload: response.data
+        })
       })
       .catch(err => {
         dispatch({
@@ -99,6 +107,33 @@ export const getPostandCommentsById = (id) => {
   return dispatch => {
     axios
       .get(`/post/${id}`)
+      .then(response => {
+        dispatch({
+          type: GET_POST_BY_ID,
+          payload: response.data
+        })
+        return axios.get(`/comments/${id}`)
+      })
+      .then(response => {
+          dispatch({
+            type: GET_COMMENTS_BY_POST_ID,
+            payload: response.data
+          })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+// get comment draft by ID
+export const getDraftCommentAndPostById = (id, draftId) => {
+  return dispatch => {
+    axios
+      .get(`/comment-draft/${id}/${draftId}`)
       .then(response => {
         dispatch({
           type: GET_POST_BY_ID,
@@ -209,6 +244,29 @@ export const addNewComment = (newComment) => {
         console.log("response.data:", response.data)
         dispatch({
           type: ADD_COMMENT,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+// add new draft comment action
+export const addNewCommentDraft = (draftComment) => {
+  console.log("\nCheck newComment:", draftComment);
+
+  return dispatch => {
+    axios
+      .post('/save-comment', draftComment)
+      .then(response => {
+        console.log("response.data:", response.data)
+        dispatch({
+          type: ADD_DRAFT_COMMENT,
           payload: response.data
         })
       })
