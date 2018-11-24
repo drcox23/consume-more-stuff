@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './EditDraftPostForm.css';
+import './EditDraftCommentForm.css';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
 //Actions
-import { addNewComment, addNewCommentDraft, getDraftCommentAndPostById} from '../../actions/actions.js'
+import { addNewComment, addNewCommentDraft, getDraftCommentAndPostById } from '../../actions/actions.js'
 
 class EditDraftPostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        user_id: "",
-        body: "",
-        post_id: ""
+      user_id: "",
+      body: "",
+      post_id: ""
     }
   }
 
   //This will set state from props everytime props changes
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.detailedDraftPost !== prevState.detailedDraftPost){
-      return {         
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.detailedDraftPost !== prevState.detailedDraftPost) {
+      return {
         original: {
           user_id: nextProps.user.id,
           body: nextProps.detailedDraftPost.body,
           post_id: nextProps.detailedDraftPost.post_id,
         }
       };
-   }
-   else return null;
+    }
+    else return null;
   }
 
   componentDidMount() {
-    const  { name } = jwtDecode(localStorage.getItem('id_token'))
-    const  draftId  = this.props.match.params.id
+    const { name } = jwtDecode(localStorage.getItem('id_token'))
+    const draftId = this.props.match.params.id
     const userId = this.props.user.id
 
     console.log("whats the id??", draftId)
@@ -61,7 +61,7 @@ class EditDraftPostForm extends Component {
   submittingForm = () => {
     let form = {};
 
-    for(const key in this.state) {
+    for (const key in this.state) {
       if (this.state[key] === "") {
         form[key] = this.state.original[key]
       } else {
@@ -91,27 +91,19 @@ class EditDraftPostForm extends Component {
   render() {
     console.log(this.props)
     return (
-      <div id="container">
+      <div id="edit-draft-comment-container">
 
-        <div id="new-request-title">Edit Draft Comment</div>
+        <div id="edit-draft-comment-title">Edit Draft Comment</div>
 
-        {/* New Request form */}
+        {/* Edit Draft Comment form */}
         <form onSubmit={this.handleSubmit}>
-
-         
-
-          <div class="row">
-            <div class="rowHeader">
-              <label>Body:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="body" defaultValue={this.props.detailedDraftPost.body} />
-            </div>
-          </div>
-
+          <label className="edit-draft-comment-label">Body:</label>
+          <input onChange={this.handleChange} className="user-edit-draft-comment-input" type="text" name="body" defaultValue={this.props.detailedDraftPost.body} />
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new comment" onClick={this.add}/>
-          <br /><br />
-          <input id="user-save-draft-btn" type="submit" value="Save comment for later" onClick={this.editToDraftPosts}/>
+          <input id="user-edit-draft-comment-btn" type="submit" value="Submit new comment" onClick={this.add} />
+
+          <input id="user-save-draft-comment-btn" type="submit" value="Save comment for later" onClick={this.editToDraftPosts} />
           <br />
         </form>
       </div>

@@ -51,16 +51,16 @@ class Dashboard extends Component {
   render() {
     const match = this.props.match.path;
     const id = this.props.user.id;
-    const { items } = this.props;
+    const { items, user } = this.props;
     const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="pageWrapper">
 
         <Switch>
-          <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
+          <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} user={user}/>} />
 
-          <Route exact path={`${match}/myposts`} component={() => <MyPosts props={this.props} />} />
+          <Route exact path={`${match}/myposts`} component={() => <MyPosts props={this.props} user={user} />} />
 
           <Route exact path={`${match}/posts`} component={PostsBoard} />
 

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './MyPosts.css';
 import { connect } from 'react-redux';
 import Posts from '../../PostsBoard/posts/posts.jsx'
-import { getPostandCommentsById, getAllPosts } from '../../../actions/actions.js';
+import { getPostandCommentsById, getAllPosts, archive } from '../../../actions/actions.js';
 
 class MyPosts extends Component {
   constructor(props) {
@@ -24,6 +24,12 @@ class MyPosts extends Component {
     }
   }
 
+  archive = (id) => {
+    this.props.dispatch(
+      archive(id)
+    )
+  }
+
   render() {
     const user = this.props.user;
     const auth = this.props.auth;
@@ -34,7 +40,7 @@ class MyPosts extends Component {
 
     return (
       <div className="myPosts-container">
-        <Posts props={this.props} auth={auth} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+        <Posts props={this.props} auth={auth} items={items} user={user} archive={this.archive} getPostandCommentsById={this.getPostandCommentsById} />
       </div>
     )
   }

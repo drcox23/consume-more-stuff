@@ -23,8 +23,8 @@ const Users = require('./knex/models/Users.js');
 const Type = require('./knex/models/Type.js');
 const draftPosts = require('./knex/models/draftPosts.js');
 const draftComments = require('./knex/models/draftComments.js');
-// const archivedPosts = require('./knex/models/archivedPosts.js');
-// const archivedComments = require('./knex/models/archivedComments.js');
+const archivedPosts = require('./knex/models/archivedPosts.js');
+const archivedComments = require('./knex/models/archivedComments.js');
 const postDrafts = require('./routes/postDraftRoutes');
 const commentDrafts = require('./routes/commentDraftRoutes.js')
 
@@ -316,6 +316,64 @@ app.get('/type', (req, res) => {
     })
     .catch(err => {
       console.log("user-profile get error", err)
+      res.json(err)
+    })
+})
+
+app.delete("/archive/post/:id", (req, res) => {
+  const { id } = req.params;
+
+  Posts
+    .where({id})
+    .fetch()
+    .then(results => {
+      const postInfo = results.serialize();
+      
+      postInfo["old_id"] = postInfo.id;
+
+      delete postInfo.id;
+      delete postInfo.created_at;
+      delete postInfo.updated_at;
+
+      return postInfo;
+    })
+    .then(results => {
+      archivedPosts.forge(results).save()
+    })
+    .then(() => {
+      Comments
+        .where({post_id:id})
+        .fetchAll()
+        .then(results => {
+          const commentInfo = (results.serialize()).map(comment => {
+            delete comment.id;
+            delete comment.created_at;
+            delete comment.updated_at;
+            return comment;
+          })
+          commentInfo.forEach(comment => {
+            archivedComments.forge(comment).save()
+          })
+        })
+    })
+    .then(() => {
+      Comments.where({post_id:id}).destroy()
+    })
+    .then(() => {
+      draftComments.where({post_id:id}).destroy()
+    })
+    .then(() => {
+      Posts.where({id}).destroy()
+    })
+    .then(() => {
+      Posts
+        .fetchAll()
+        .then(results => {
+          res.json(results)
+        })
+    })
+    .catch(err => {
+      console.log("ERROR - DELETE /archive/post :", err)
       res.json(err)
     })
 })
