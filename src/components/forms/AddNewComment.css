@@ -1,9 +1,18 @@
-#edit-draft-comment-container {
-  width: 100%;
+/* form{
   height: 700px;
+} */
+
+#new-post-container {
+  /* border: 2px solid rgb(211, 189, 189); */
+  width: 100%;
+  /* border-radius: 50px; */
+  /* background-color: #d0f0ff; */
+  /* padding: 30px 0; */
+  height: 700px;
+  margin: 50px 100px;
 }
 
-#edit-draft-comment-title{
+#new-post-title{
   width: 100%;
   margin: 0 auto;
   padding: 40px 0;
@@ -12,7 +21,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.edit-draft-comment-label {
+.new-req-form-label {
   height: min-content;
   padding: 10px;
   margin: auto 0;
@@ -22,9 +31,8 @@
   margin: 20px 0;
 }
 
-.user-edit-draft-comment-input{
-  width: 40%;
-  height: 100px;
+.user-new-req-input{
+  width: 50%;
   /* height: min-content; */
   padding: 10px;
   margin: auto 10px;
@@ -34,7 +42,8 @@
   font-family: 'Montserrat', sans-serif;
 } 
 
-#user-edit-draft-comment-btn, #user-save-draft-comment-btn{
+
+#user-newReq-btn, #user-save-draft-btn{
   width: 300px;
   margin: 40px 10px;
   padding: 10px;
@@ -48,7 +57,7 @@
   background-color: rgb(124, 180, 124);
 } 
 
-#user-edit-draft-comment-btn:hover, #user-save-draft-comment-btn:hover{
+#user-newReq-btn:hover, #user-save-draft-btn:hover{
   color: black;
   background-color: rgb(155, 192, 155);
   font-weight: bold;
