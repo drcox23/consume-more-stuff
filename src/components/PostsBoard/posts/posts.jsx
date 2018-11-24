@@ -12,6 +12,7 @@ const Posts = (props) => {
     console.log(props, "WUTS GOING ON");
 
     return props.items.map(post =>
+    <div>
         <Link key={post.id} to={`${match}/post/${post.id}`}>
             <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
                 <div className="single-posting-container">
@@ -27,12 +28,13 @@ const Posts = (props) => {
                     </div>
 
                     <div className="viewPosting">view posting</div>
-
-
+  
                 </div>
-                <button className="archiveBtn">Archive</button>
             </div>
         </Link>
+        { (props.user.id === post.user_id) && <button className="archiveBtn" onClick={() => props.archive(post.id)}>Archive</button>
+        }
+    </div>
     )
 }
 
