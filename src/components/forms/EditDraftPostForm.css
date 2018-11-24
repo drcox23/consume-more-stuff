@@ -33,7 +33,7 @@
   font-family: 'Montserrat', sans-serif;
 } 
 
-#user-edit-draft-post-btn, #user-save-draft-btn{
+#user-edit-draft-post-btn, #user-save-draft-post-btn{
   width: 300px;
   margin: 40px 10px;
   padding: 10px;
@@ -47,7 +47,7 @@
   background-color: rgb(124, 180, 124);
 } 
 
-#user-edit-draft-post-btn:hover, #user-save-draft-btn:hover{
+#user-edit-draft-post-btn:hover, #user-save-draft-post-btn:hover{
   color: black;
   background-color: rgb(155, 192, 155);
   font-weight: bold;

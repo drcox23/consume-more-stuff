@@ -112,45 +112,36 @@ class EditDraftPostForm extends Component {
 
         <div id="edit-draft-post-title">Edit Draft Post</div>
 
-        {/* New Request form */}
+        {/* Edit Draft Post form */}
         <form onSubmit={this.handleSubmit}>
 
-          {/* <div class="row"> */}
-          {/* <div class="rowHeader"> */}
           <label className="edit-draft-post-label">Subject:</label>
           <input onChange={this.handleChange} className="user-edit-draft-post-input" type="text" name="subject" defaultValue={this.props.detailedDraftPost.subject} />
-          {/* </div> */}
-          {/* </div> */}
+
           <br />
-          {/* <div class="row"> */}
-          {/* <div class="rowHeader"> */}
+
           <label className="edit-draft-post-label">Body:</label>
           <input onChange={this.handleChange} className="user-edit-draft-post-input" type="text" name="body" defaultValue={this.props.detailedDraftPost.body} />
-          {/* </div> */}
-          {/* </div> */}
+
           <br />
-          {/* <div class="row"> */}
-          {/* <div class="rowHeader"> */}
+
           <label className="edit-draft-post-label">Media Type:
           </label>
           <select onChange={this.handleChange} name="type_id">
             {this.DefaultType()}
             {this.SelectType()}
           </select>
-          {/* </div> */}
-          {/* </div> */}
+
           <br />
-          {/* <div class="row"> */}
-          {/* <div class="rowHeader"> */}
+
           <label className="edit-draft-post-label">Set a Price:</label>
           <input onChange={this.handleChange} className="user-edit-draft-post-input" type="text" name="price" defaultValue={this.props.detailedDraftPost.price} />
-          {/* </div> */}
-          {/* </div> */}
+
 
           <br />
           <input id="user-edit-draft-post-btn" type="submit" value="Submit new request" onClick={this.addToPosts} />
 
-          <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.editToDraftPosts} />
+          <input id="user-save-draft-post-btn" type="submit" value="Save draft for later" onClick={this.editToDraftPosts} />
           <br />
         </form>
       </div >
