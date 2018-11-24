@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './NewRequest.css';
+import './AddNewComment.css';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
@@ -18,10 +18,10 @@ class AddComment extends Component {
   }
 
   //This will set state from props everytime props changes
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.user.id !== prevState.user_id){
-      return {         
-          user_id: nextProps.user.id
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.user.id !== prevState.user_id) {
+      return {
+        user_id: nextProps.user.id
       };
     }
     else return null;
@@ -66,19 +66,17 @@ class AddComment extends Component {
 
   render() {
     console.log('add-new-comment props', this.props)
-    
+
     return (
       <div id="new-comment-container">
 
         <div id="new-comment-title">Add New Comment</div>
 
-        {/* New Request form */}
+        {/* New comment form */}
         <form onSubmit={this.handleSubmit}>
 
-          
-
-          <label className="new-req-form-label">Comment:</label>
-          <input onChange={this.handleChange} className="user-new-req-input" type="text" name="body" placeholder="enter comment" />
+          <label className="new-comment-label">Comment:</label>
+          <input onChange={this.handleChange} className="user-new-comment-input" type="text" name="body" placeholder="enter comment" />
 
           <br />
 
@@ -95,8 +93,9 @@ class AddComment extends Component {
           <input onChange={this.handleChange} className="user-new-req-input" type="text" name="price" placeholder="enter price" /> */}
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new comment" onClick={this.addComment} />
-          <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.addToDraftComments} />
+          <input id="user-new-comment-btn" type="submit" value="Submit new comment" onClick={this.addComment} />
+
+          <input id="user-save-new-draft-comment-btn" type="submit" value="Save draft for later" onClick={this.addToDraftComments} />
           <br />
         </form>
       </div>
