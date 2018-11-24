@@ -174,7 +174,7 @@ login() {
 		<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" className="hide-laptop">
 			<path d="M 420 630 L 0 630 L 0 420 L 210 630 L 210 420 L 420 420 L 210 210 L 0 210 L 0 0 L 420 0 L 420 200 Z" fill="rgba(255, 255, 255, 1.00)"></path>
 		</svg>
-		<div className="takeSpace2"><p className="homeLogin" id="loginBtn" onClick={this.login.bind(this)}>LOGIN  &nbsp; ||  &nbsp; ABOUT</p></div></div>
+		<div className="takeSpace2"><p className="homeLogin" id="loginBtn" onClick={this.login.bind(this)}>LOGIN  &nbsp; &nbsp;||&nbsp;  &nbsp; ABOUT</p></div></div>
 		<div style={{height: '0px', backgroundColor: 'white'}} className="StickyText-trigger" />
 	</div>
 	<div style={{height: '1100px', backgroundColor: 'black'}} />
