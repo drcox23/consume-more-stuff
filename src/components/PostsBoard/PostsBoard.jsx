@@ -37,7 +37,7 @@ class PostsBoard extends Component {
   }
 
   render() {
-    const auth = this.props.auth;
+    const auth = this.props.auth || this.props.props.auth;
     const { items, user } = this.props;
     const match = this.props.match.path;
 
