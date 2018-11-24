@@ -28,7 +28,6 @@ const postReducer = (state = {
     case GET_ALL_POSTS:
       return { ...state, items: action.payload }
     case GET_POST_BY_ID:
-      console.log("POST CHECK!!!", action.payload)
       return { ...state, detailedItem: action.payload }
     case GET_COMMENTS_BY_POST_ID:
       return { ...state, comments: action.payload }
@@ -45,7 +44,6 @@ const postReducer = (state = {
     case GET_ALL_TYPES:
       return { ...state, type: action.payload}
     case ADD_NEW_POST:
-      console.log("REDUCERS - ADD_NEW_POST", action.payload)
       return { ...state, form: action.payload }
     case ADD_MORE_CREDIT:
       return { ...state, user: action.payload}
@@ -58,7 +56,6 @@ const postReducer = (state = {
     case ADD_DRAFT_COMMENT:
       return { ...state, form: action.payload} 
     case GET_DRAFT_COMMENT_BY_ID:
-      console.log("reducer check!!", action.payload)
       return {...state, detailedDraftComment: action.payload}
     default:
       return state

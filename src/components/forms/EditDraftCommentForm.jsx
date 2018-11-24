@@ -122,7 +122,8 @@ class EditDraftCommentForm extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    detailedDraftComment: state.detailedDraftComment
+    detailedDraftComment: state.detailedDraftComment,
+    detailedItem: state.detailedItem
   }
 }
 
