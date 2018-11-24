@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './PostDetail.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 //Components
 import Post from './post/post.jsx';
 import Comments from './comments/comments.jsx';
+import AddNewComment from '../forms/AddNewComment.jsx'
 
 //Actions
 import { getPostandCommentsById } from '../../actions/actions.js';
 
-import './PostDetail.css';
 
 class PostsDetail extends Component {
   constructor(props) {
@@ -24,19 +26,29 @@ class PostsDetail extends Component {
   }
 
   render() {
-    console.log(this.props, ' WAT IS DIS EVEN GETTING RN')
     const { detailedItem, comments } = this.props;
+    // console.log('post by id props', this.props)
+    const match = this.props.match.url
 
     return (
+
       <div className="detailedPage">
+
         <div className="postDetail">
           <Post props={this.props} detailedItem={detailedItem} />
         </div>
+        {/* <div className="addCommentBtn">
+          <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
+        </div> */}
+
 
         <div className="comments">
           <Comments comments={comments} />
         </div>
+
+
       </div>
+
     )
   }
 }

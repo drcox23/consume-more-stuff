@@ -1,20 +1,15 @@
-
-// import React from 'react';
-
-// const Header = (props) => {
-//     return (
-//       <div id="headerBar">
-
 import React, { Component } from 'react';
 import logo from '../../2cents.png';
-import '../../App.css';
 import Greeting from '../Greeting/Greeting.jsx';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import Picture from '../Greeting/Picture.jsx';
 
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="navbar-btns">{props.title}</button>
+      {/* <button className="navbar-btns">{props.title}</button> */}
+      <p className="navbar-btns">{props.title}</p>
     </Link>
   )
 }
@@ -26,16 +21,9 @@ class Header extends Component {
 
   //~~~~~~~~Lifecycle Methods~~~~~~~~~~~//
   componentDidMount() {
-    console.log('Header Component')
+    // console.log('Header Component')
     //   this.props.dispatch(getAllPosts())
   }
-
-  // getAllPosts() {
-  //   console.log("App.js - Setting state back to all");
-  //   this.props.dispatch(
-  //     getAllPosts()
-  //   )
-  // }
 
   //~~~~~~~~App Component Methods~~~~~~~~~//
   goTo(route) {
@@ -56,52 +44,72 @@ class Header extends Component {
 
   //~~~~~~~~App Component - RENDER~~~~~~~~~//
   render() {
-    console.log(this.props.auth, '?')
     const { isAuthenticated } = this.props.auth;
+    console.log("are we Authed???", isAuthenticated())
 
     return (
       <div id="navbar">
+        {/* Fonts */}
+        <style>
+          @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500|Poiret+One');
+        </style>
+
         <div id="headerBar">
-
-
           <div id="subheader-container">
             {/* imgBox is for resizing the logo with a fixed scale */}
             <div id="imgBox">
-
-              {/* <img src={props.logo} alt="logo" /> */}
-
               <Link to={'/'} ><img src={logo} alt="logo" /></Link>
-
             </div>
+            <h1 id="app-title"><Link style={{ color: "black" }} to={'/'} >two<span style={{ fontSize: "18px" }}> </span>cents</Link></h1>
 
-            {/* Search Bar */}
-            <input id="searchBar" type="text" placeholder="Search..." />
           </div>
-
-          {/* Navigation Links */}
-
-          {/* {props.children}
-      </div>
-    )
-  } */}
-
-          {/* export default Header */}
 
           {this.props.children}
           <div id="linkBtns">
-            {isAuthenticated() &&
-              <p id="user-greeting">Hello, <Greeting /></p>}
-
-            <LinkButton to={"/"} title={"Home"} onClick={this.goTo.bind(this, 'home')} />
-
-            {!isAuthenticated() && <button id="loginBtn" onClick={this.login.bind(this)}>Login</button>}
+            {isAuthenticated() && <Link to={"/user/profile"} ><Picture /></Link>}
 
             {isAuthenticated() &&
-              <LinkButton to={"/user/profile"} title={"My Profile"} onClick={this.goTo.bind(this, 'user/profile')} />}
 
-            {isAuthenticated() &&
-              <button id="logoutBtn" onClick={this.logout.bind(this)}>Log Out</button>}
+              <div className="dropdown">
+                <p id="user-greeting">Hello, <Greeting /></p>
+                {/* <LinkButton className="dropbtn" to={"/user/profile"} title={<i class="fas fa-user-circle"></i>} onClick={this.goTo.bind(this, 'user/profile')} /> */}
 
+                <div className="dropdown-content">
+                  <a href={"/user/profile/myprofile"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>View My Profile</a>
+
+                  <a href={"/user/profile/mydraftposts"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Posts</a>
+
+                  <a href={"/user/profile/mydraftcomments"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Comments</a>
+
+                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Account Credit</a>
+
+                </div>
+              </div>
+            }
+
+            {/* {isAuthenticated() &&
+              <div className="dropdown">
+                <LinkButton className="dropbtn" to={"/user/profile"} title={<i class="fas fa-user-circle"></i>} onClick={this.goTo.bind(this, 'user/profile')} />
+
+                <div className="dropdown-content">
+                  <a href={"/user/profile/myprofile"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>View My Profile</a>
+
+                  <a href={"/user/profile/mydraftposts"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Posts</a>
+
+                  <a href={"/user/profile/mydraftcomments"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Draft Comments</a>
+
+                  <a href={"/user/profile/accountcredit"} className="profile-links" onClick={this.goTo.bind(this, 'home')}>Add Credit</a>
+
+                </div>
+              </div>
+            } */}
+
+            <LinkButton to={"/"} title={"HOME"} onClick={this.goTo.bind(this, 'home')} />
+
+
+            {!isAuthenticated() && <p id="loginBtn" onClick={this.login.bind(this)}>LOGIN</p>}
+
+            {isAuthenticated() && <p id="logoutBtn" onClick={this.logout.bind(this)}>LOGOUT</p>}
 
           </div>
         </div>
