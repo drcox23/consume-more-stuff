@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 //Components
@@ -8,9 +8,12 @@ import ProfileData from './ProfileData/ProfileData.jsx';
 import DraftPosts from './DraftPosts/DraftPost.jsx';
 import DraftComments from './DraftComments/DraftComments.jsx';
 import AddAccountCredit from './AddAccountCredit/AddAccountCredit.jsx';
+import EditDraftPostForm from '../forms/EditDraftPostForm.jsx';
+import EditDraftCommentForm from '../forms/EditDraftCommentForm.jsx'
+import NotFound from '../Error/404.jsx';
 
 //Actions
-import { getAll, addMoreCredit } from '../../actions/actions.js';
+import { getAllPosts, getAll, addMoreCredit, deleteFromDraft } from '../../actions/actions.js';
 
 //CSS
 import './UserProfile.css';
@@ -18,7 +21,7 @@ import './UserProfile.css';
 const LinkButton = (props) => {
   return (
     <Link to={props.to}>
-      <button className="userProfile-btns">{props.title}</button>
+      <p className="userProfile-btns">{props.title}</p>
     </Link>
   )
 }
@@ -28,26 +31,20 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       form: {
-
       }
     }
   }
 
   componentDidMount() {
     console.log("PROPS WHEN LOADING", this.props)
-    const { nickname } = jwtDecode(localStorage.getItem('id_token'))
-    this.props.dispatch(getAll(nickname))
-
-    // this.props.dispatch(
-    //     getAllUserProfileData()
-    // )
+    const { name } = jwtDecode(localStorage.getItem('id_token'))
+    this.props.dispatch(getAll(name))
   }
-
 
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    if(!value) {
+    if (!value) {
       this.state.form[name] = parseFloat(this.props.user.account_credit) + 0;
     } else {
       this.state.form[name] = parseFloat(this.props.user.account_credit) + parseFloat(value);
@@ -57,38 +54,59 @@ class UserProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log('\n Submitted!!:', this.state.form);
-    // console.log('\n AddCreditForm:', this.state.form)
     this.props.dispatch(
       addMoreCredit(this.props.user.id, this.state.form)
     );
+    const editform = document.getElementById('addCredit-form');
+    editform.reset();
+  }
+
+  deleteFromDraft = (id, user_id) => {
+    this.props.dispatch(
+      deleteFromDraft(id, user_id)
+    )
   }
 
   render() {
-    const { id } = this.props.user;
-    
+    const id = this.props.user.id;
+    const match = this.props.match.path;
+    const UserProfileProps = this.props;
     return (
       <div id="userProfileContainer">
-        <Router>
-          <div className="userProfileNav">
-            <LinkButton to={`/user/profile/${id}/data`} title={"My Profile"} />
+        <div className="userProfileNav">
 
-            <LinkButton to={`/user/profile/${id}/draftposts`} title={"Drafts Posts"} />
+          <LinkButton to={`${match}/${id}/data`} title={"My Profile"} />
 
-            <LinkButton to={`/user/profile/${id}/draftcomments`} title={"Draft Comments"} />
+          <LinkButton to={`${match}/${id}/draftposts`} title={"Drafts Posts"} />
 
-            <LinkButton to={`/user/profile/${id}/accountcredit`} title={"Account Credit"} />
+          <LinkButton to={`${match}/${id}/draftcomments`} title={"Draft Comments"} />
 
+          <LinkButton to={`${match}/${id}/accountcredit`} title={"Account Credit"} />
 
-            <Route path={`/user/profile/${id}/data`} component={() => <ProfileData {...this.props} />} />
+          <Switch>
 
-            <Route path={`/user/profile/${id}/draftposts`}component={() => <DraftPosts {...this.props} />} />
+            <Route exact path={match} render={() => <ProfileData user={UserProfileProps.user} />} />
+            <Route exact path={`${match}/myprofile`} component={() => <ProfileData user={UserProfileProps.user} />} />
+            <Route path={`${match}/${id}/data`} component={() => <ProfileData user={UserProfileProps.user} />} />
 
-            <Route path={`/user/profile/${id}/draftcomments`} component={() => <DraftComments {...this.props} />} />
+            <Route exact path={`${match}/mydraftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} deleteFromDraft={this.deleteFromDraft} user={UserProfileProps.user} />} />
+            <Route path={`${match}/${id}/draftposts`} render={() => <DraftPosts draftPosts={UserProfileProps.draftPosts} deleteFromDraft={this.deleteFromDraft} user={UserProfileProps.user} />} />
 
-            <Route path={`/user/profile/${id}/accountcredit`} component={() => <AddAccountCredit {...this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
-          </div>
-        </Router>
+            <Route exact path={`${match}/mydraftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
+            <Route path={`${match}/${id}/draftcomments`} render={() => <DraftComments draftComments={UserProfileProps.draftComments} />} />
+            
+               <Route path={`${match}/${id}/edit-comment/:id`} component={EditDraftCommentForm} />
+            <Route exact path={`${match}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+            <Route path={`${match}/${id}/accountcredit`} render={() => <AddAccountCredit {...this.props} user={UserProfileProps.user} AllProps={UserProfileProps} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />} />
+
+              <Route component={NotFound}/>
+
+            <Route path='/edit/draftpost/:id' component={EditDraftPostForm} />
+
+            <Route component={NotFound} />
+
+          </Switch>
+        </div>
 
       </div>
     )

@@ -3,6 +3,12 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+// const request = require("request");
+
+
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 // const RedisStore = require('connect-redis')(session);
 // const passport = require('passport');
 // const session = require('express-session');
@@ -55,6 +61,29 @@ app.get('/home', (req, res) => {
       res.json(err)
     })
 });
+
+
+// GET /mypost - my posts
+app.get('/my-post/:id', (req, res) => {
+  console.log("\nGET /my-post/:id...")
+  const id = req.params.id;
+  console.log('\nCHECK id:', id);
+
+  Posts
+    .where({user_id: id})
+    .fetchAll()
+    .then(results => {
+      const posts = results.toJSON()
+      console.log('\nCHECK posts:', posts);
+      // const postById = posts[0];
+      res.json(posts)
+    })
+    .catch(err => {
+      console.log("\nERROR - GET /post/:id:", err)
+      res.json(err)
+    })
+
+})
 
 // GET /post/:id - post by id
 app.get('/post/:id', (req, res) => {
@@ -140,6 +169,23 @@ app.post('/add-new-post', (req, res) => {
     })
 });
 
+// POST /add-new-comment --> adding a new comment
+app.post('/add-new-comment', (req, res) => {
+  console.log("POST - /add-new-comment req.body:", req.body);
+  const post_data = req.body
+
+  Comments
+    .forge(post_data)
+    .save()
+    .then(() => {
+      res.send('success')
+    })
+    .catch(err => {
+      console.log("ERROR - POST /add:", err)
+      res.json(err)
+    })
+});
+
 // POST /save-post - initial save post
 app.post('/save-post', (req, res) => {
   const post_data = req.body
@@ -202,6 +248,32 @@ app.put('/add-more-credit/:id', (req, res) => {
   })
 })
 
+// post user data into Users DB
+app.post('/user-profile/email/:email', (req, res) => {
+  // console.log("what's the req???", req.body)
+  const userData = {
+    username: req.body.nickname,
+    email: req.body.name,
+    password: 'password',
+    first_name: req.body.nickname,
+    last_name: 'test'
+  } 
+
+  Users
+    .forge(userData)
+    .save()
+    .then(() => {
+      return Users.fetchAll()
+    })
+    .then(results => {
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("ERROR - POST newUser:", err)
+      res.json(err)
+  })
+})
+
 // GET /user-profile/:id - get the user profile data 
 app.get('/user-profile/:id', (req, res) => {
   const { id } = req.params;
@@ -218,7 +290,7 @@ app.get('/user-profile/:id', (req, res) => {
     })
 })
 
-app.get('/user-profile/email/:email', (req, res) => {
+app.get('/user-profile/get/:email', (req, res) => {
   const { email } = req.params;
 
   Users

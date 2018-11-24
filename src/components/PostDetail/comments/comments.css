@@ -1,7 +1,6 @@
 .comment-container{
-  /* border: 1px solid lawngreen; */
-  width: 20%;
-  /* height: auto; */
+  width: 35%;
+  height: auto;
   margin: 25px;
   padding: 25px 50px;
   background-color: rgb(154, 209, 170);
@@ -18,7 +17,7 @@
 }
 
 .comment-body{
-  font-size: 1.0em;
+  font-size: 0.9em;
   font-family: 'Quicksand', sans-serif;
 }
 

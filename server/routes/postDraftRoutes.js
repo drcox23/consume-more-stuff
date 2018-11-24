@@ -38,6 +38,24 @@ router.get('/:id', (req, res) => {
     })
 });
 
+router.get('/post/:id', (req, res) => {
+  const id = req.params.id;
+
+  draftPosts
+    .where({
+      id
+    })
+    .fetch()
+    .then(results => {
+      const posts = results.toJSON()
+      res.json(posts)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+
+})
+
 // CRUD for saved draft items
 router.route('/:id/:draftId')
   .get((req, res) => {
@@ -61,9 +79,9 @@ router.route('/:id/:draftId')
   })
 
   // Update the drafted post and save.
-  .put((req, res) => {
+  router.put('/edit-post/:id',(req, res) => {
 
-    const draftId = req.params.draftId; //post draft id
+    const draftId = req.params.id; //post draft id
 
     const postDraft_data = req.body;
     console.log("PUT - data being added to DB", req.body)
@@ -92,24 +110,41 @@ router.route('/:id/:draftId')
   })
 
   // Insert the drafted post into Posts table, destroy entry in draftPosts table
-  .post((req, res) => {
+  router.post("/add-new-post/:id", (req, res) => {
     const post_data = req.body
-    const draftId = req.params.draftId //post draft id
+    const draftId = req.params.id //post draft id
 
     Posts
       .forge(post_data)
       .save()
       .then(() => {
-        return Posts.fetchAll()
-      })
-      .then(results => {
-        res.json(results)
-      })
-      .then(() => {
         draftPosts.where({ id: draftId }).destroy()
       })
       .catch(err => {
         console.log("server post error", err)
+        res.json(err)
+      })
+  })
+
+  router.delete("/delete/:id/:user_id", (req, res) => {
+    const { id, user_id } = req.params;
+
+    draftPosts
+      .where({id})
+      .destroy()
+      .then(() => {
+        draftPosts
+        .where({
+          user_id
+        })
+        .fetchAll()
+        .then(results => {
+          const draftPosts = results.toJSON()
+          res.json(draftPosts)
+        })
+      })
+      .catch(err => {
+        console.log("server delete error", err)
         res.json(err)
       })
   })

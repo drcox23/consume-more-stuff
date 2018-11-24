@@ -1,4 +1,4 @@
-form{
+/* form{
   text-align: center;
 }
 
@@ -7,21 +7,21 @@ form{
   font-size: 3em;
   padding: 30px;
   font-family: 'Kodchasan', sans-serif;
-}
+} */
 
-#container {
-  border-radius: 5px;
+/* #container { */
+  /* border-radius: 5px; */
   /* background-color: #d0f0ff; */
-  padding: 30px 0;
+  /* padding: 30px 0;
   height: 320px;
-}
+} */
 
-.rowHeader {
+/* .rowHeader {
   float: left;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; */
   /* width: 50%; */
-}
+/* }
 
 input{
   width: 300px;
@@ -31,15 +31,15 @@ input{
   border-radius: 4px;
   resize: vertical;
   font-size: 0.7em;
-}
+} */
 
-label {
+/* label {
   padding: 12px 12px 12px 0;
   display: inline-block;
-}
+} */
 
 /* Clear floats after the columns */
-.row:after {
+/* .row:after {
   content: "";
   display: table;
   clear: both;
@@ -47,4 +47,4 @@ label {
 
 button{
   margin: 0;
-}
+} */

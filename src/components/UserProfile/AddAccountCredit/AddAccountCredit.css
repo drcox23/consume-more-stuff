@@ -1,70 +1,45 @@
-form{
-    text-align: center;
-  }
-  
-  #container {
-    border-radius: 5px;
-    /* background-color: #d0f0ff; */
-    padding: 30px 0;
-    height: 320px;
-  }
-  
-  #add-credit{
-    /* width: 7%; */
-    /* margin: 0 auto; */
-    padding: 40px;
-    text-align: center;
-    font-size: 2.5em;
-  }
-  
-  .rowHeader {
-    float: left;
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  label {
-    padding: 12px 12px 12px 0;
+#account-credit-title{
+  margin: 50px 0 20px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#add-more-credit-title{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em;
+}
+
+#add-credit-form{
+  display: flex;
+  flex-flow: row nowrap;
+  width: 35%;
+  height: 60px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+  #addCredit-label {
     display: inline-block;
-    font-family: 'Kodchasan', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    margin: auto;
   }
   
-  .user-input{
-    width: 300px;
-    padding: 10px;
-    margin-right: 75px;
-    border: 1px solid rgb(163, 161, 161);
-    border-radius: 4px;
-    resize: vertical;
-    font-size: 1em;
-    font-family: 'Kodchasan', sans-serif;
-  } 
+    .user-input{
+      font-size: 1em;
+      font-family: 'Montserrat', sans-serif;
+      margin: auto 20px;
+      padding: 10px;
+      height: 30px;
+    } 
   
   #user-addCredit-btn{
-    width: 400px;
-    padding: 5px;
-    margin: 0 auto;
     border: 1px solid rgb(163, 161, 161);
-    border-radius: 4px;
-    resize: vertical;
-    font-size: 1.2em;
-    font-family: 'Kodchasan', sans-serif;
     cursor: pointer;
-    font-weight: bold;
     color: white;
     background-color: rgb(88, 136, 88);
-  
-  } 
-  
-  #user-addCredit-btn:hover{
-    color: black;
-    background-color: rgb(155, 192, 155);
-    font-weight: bold;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
+    font-size: 1.2em;
+    margin: auto 0;
+    padding: 0;
+    height: 52px;
+    font-family: 'Montserrat', sans-serif;
+    width: 200px;
   }

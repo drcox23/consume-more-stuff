@@ -8,17 +8,17 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([
         {
-          username: 'wyminc',
+          username: 'wyminc808',
           password: "123",
-          email: 'wyminc808@gmail.com',
+          email: 'Wymin Chan',
           first_name: 'Wymin',
           last_name: 'Chan',
           account_credit: 100.00
         },
         {
-          username: 'maymc',
+          username: 'maychen.ee',
           password: "123",
-          email: 'maychen.ee@gmail.com',
+          email: 'May Chen',
           first_name: 'May',
           last_name: 'Chen',
           account_credit: 100.00
@@ -26,15 +26,15 @@ exports.seed = function (knex, Promise) {
         {
           username: 'drcox23',
           password: "123",
-          email: 'drcox23@gmail.com',
+          email: 'Doug Cox',
           first_name: 'Douglas',
           last_name: 'Cox',
           account_credit: 100.00
         },
         {
-          username: 'demifire',
+          username: 'chuckeekondo',
           password: "123",
-          email: 'chuckeekondo@gmail.com',
+          email: 'Chaz Kondo',
           first_name: 'Chaz',
           last_name: 'Kondo',
           account_credit: 100.00
