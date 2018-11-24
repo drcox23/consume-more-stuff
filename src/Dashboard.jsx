@@ -56,8 +56,6 @@ class Dashboard extends Component {
 
     return (
       <div className="pageWrapper">
-        <Route exact path={match.path} render={(props) => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
-        <Route path={`${match.path}/posts`} component={PostsBoard} />
 
         <Switch>
           <Route exact path={match} render={() => <PostsBoard items={items} getPostandCommentsById={this.getPostandCommentsById} match={match} props={this.props} />} />
