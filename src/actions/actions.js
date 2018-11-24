@@ -17,7 +17,8 @@ export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
 export const ADD_USER = 'ADD_USER';
-export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT'
+export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT';
+export const GET_DRAFT_COMMENT_BY_ID = "GET_DRAFT_COMMENT_BY_ID"
 
 // const auth = new Auth();
 
@@ -135,14 +136,15 @@ export const getDraftCommentAndPostById = (id, draftId) => {
       .get(`/comment-draft/${id}/${draftId}`)
       .then(response => {
         dispatch({
-          type: GET_POST_BY_ID,
+          type: GET_DRAFT_COMMENT_BY_ID,
           payload: response.data
         })
-        return axios.get(`/comments/${id}`)
+        let post_id = response.data.post_id
+        return axios.get(`/post/${post_id}`)
       })
       .then(response => {
           dispatch({
-            type: GET_COMMENTS_BY_POST_ID,
+            type: GET_POST_BY_ID,
             payload: response.data
           })
       })

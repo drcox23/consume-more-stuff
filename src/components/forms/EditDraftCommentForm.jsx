@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 //Actions
 import { addNewComment, addNewCommentDraft, getDraftCommentAndPostById} from '../../actions/actions.js'
 
-class EditDraftPostForm extends Component {
+class EditDraftCommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,12 +19,12 @@ class EditDraftPostForm extends Component {
 
   //This will set state from props everytime props changes
   static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.detailedDraftPost !== prevState.detailedDraftPost){
+    if(nextProps.detailedDraftComments !== prevState.detailedDraftComments){
       return {         
         original: {
           user_id: nextProps.user.id,
-          body: nextProps.detailedDraftPost.body,
-          post_id: nextProps.detailedDraftPost.post_id,
+          body: nextProps.detailedDraftComments.body,
+          post_id: nextProps.detailedDraftComments.post_id,
         }
       };
    }
@@ -40,7 +40,7 @@ class EditDraftPostForm extends Component {
     console.log("can i see the user id???", userId)
 
     this.props.dispatch(
-      getDraftCommentAndPostById(draftId, userId)
+      getDraftCommentAndPostById(userId, draftId)
     )
   }
 
@@ -89,7 +89,7 @@ class EditDraftPostForm extends Component {
 
 
   render() {
-    console.log(this.props)
+    console.log("what are the props", this.props)
     return (
       <div id="container">
 
@@ -103,7 +103,7 @@ class EditDraftPostForm extends Component {
           <div class="row">
             <div class="rowHeader">
               <label>Body:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="body" defaultValue={this.props.detailedDraftPost.body} />
+              <input onChange={this.handleChange} className="user-input" type="text" name="body" defaultValue={this.props.detailedDraftComment.body} />
             </div>
           </div>
 
@@ -122,8 +122,8 @@ class EditDraftPostForm extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    detailedDraftPost: state.detailedDraftPost
+    detailedDraftComment: state.detailedDraftComment
   }
 }
 
-export default connect(mapStateToProps)(EditDraftPostForm);
+export default connect(mapStateToProps)(EditDraftCommentForm);
