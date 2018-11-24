@@ -121,7 +121,7 @@
     position: absolute;
     top: 45px;
     left: 295px;
-    z-index: 2;
+    z-index: 3;
   }
 
   .homeLogin {
@@ -138,7 +138,7 @@
         left: 215px;
         flex: 0 0 auto;
         width: 70px;
-        z-index: 2;
+        z-index: 3;
         /* border: 1px solid blue; */
       }
   

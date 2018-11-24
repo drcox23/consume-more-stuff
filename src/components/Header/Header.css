@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column wrap;
   /* border: 1px solid pink; */
+  /* z-index: 2; */
 }
 
   #headerBar{
@@ -13,12 +14,14 @@
     padding: 10px 140px;
     /* border: 1px solid black; */
     border-bottom: 4px solid rgb(112, 184, 202);
+    /* z-index: 4; */
   }
 
   #subheader-container{
     display: flex;
     flex-flow: row nowrap;
     flex: 1 1 auto;
+    /* z-index: 2; */
   }
 
     /* Logo Styling */
@@ -139,6 +142,7 @@
     -o-transition: opacity 0.6s, visibility 0.6s;
     transition: opacity 0.6s, visibility 0.6s;
     opacity: 0;
+    z-index: 4;
 }
 
 .dropdown-content a {

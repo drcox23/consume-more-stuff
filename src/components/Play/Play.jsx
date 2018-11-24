@@ -4,7 +4,7 @@ import './Play.css';
 import { render } from "react-dom";
 import Plx from "react-plx";
 import PostsBoard from '../PostsBoard/PostsBoard.jsx';
-import Header from '../Header/Header.jsx';
+import FrontpageHeader from '../Header/FrontpageHeader.jsx';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../2.png';
 
@@ -178,7 +178,7 @@ login() {
 		<div style={{height: '0px', backgroundColor: 'white'}} className="StickyText-trigger" />
 	</div>
 	<div style={{height: '1100px', backgroundColor: 'black'}} />
-	<Header auth={this.props.auth} {...this.props} />
+	<FrontpageHeader auth={this.props.auth} {...this.props} />
 	<PostsBoard auth={this.props.auth} {...this.props} />
 </div>
     )
