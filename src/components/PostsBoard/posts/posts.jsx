@@ -9,7 +9,6 @@ const Posts = (props) => {
     } else {
         match = '/dashboard';
     }
-    console.log(props, "WUTS GOING ON");
 
     return props.items.map(post =>
         <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
@@ -27,7 +26,7 @@ const Posts = (props) => {
                 <Link className="viewPosting-Link" key={post.id} to={`${match}/post/${post.id}`}>
                     <div className="viewPosting">view posting</div>
                 </Link>
-                {/* <div className="archiveBtn" onClick={() => console.log("test " + post.id)}>archive</div> */}
+
                 {props.auth.isAuthenticated() && (props.user.id === post.user_id) && <button className="archiveBtn" onClick={() => props.archive(post.id)}>archive</button>}
             </div>
         </div>

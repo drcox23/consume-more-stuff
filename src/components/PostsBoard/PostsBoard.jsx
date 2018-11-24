@@ -44,23 +44,17 @@ class PostsBoard extends Component {
     return (
       <div className="postsBoard">
 
-      {this.checkForParentComponent() && <div id="postings-section-auth">
-      <div id="postings-section-title">All Postings</div>
-      
-      <Posts props={this.props} auth={auth} match={match} items={items} user={user} archive={this.archive} getPostandCommentsById={this.getPostandCommentsById} />
-      
-      </div>
-      }
- 
-      
-      {!this.checkForParentComponent() && <div id="postings-section">
-      <div id="postings-section-title">All Postings</div>
-      
-      <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
-      
-      </div>
-      }
-        
+        {this.checkForParentComponent() && <div id="postings-section-auth">
+          <div id="postings-section-title">All Postings</div>
+          <Posts props={this.props} auth={auth} match={match} items={items} user={user} archive={this.archive} getPostandCommentsById={this.getPostandCommentsById} />
+        </div>
+        }
+
+        {!this.checkForParentComponent() && <div id="postings-section">
+          <div id="postings-section-title">All Postings</div>
+          <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+        </div>
+        }
       </div>
     )
   }
