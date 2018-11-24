@@ -52,7 +52,7 @@ textData = [
 	{
 		start: '.StickyText-trigger',
 		startOffset: 1200,
-    duration: 610,
+    duration: 620,
     properties: [
       {
         startValue: 0,
