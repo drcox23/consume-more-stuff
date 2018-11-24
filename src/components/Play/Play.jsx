@@ -116,7 +116,8 @@ scrollFunc = () => {
 
 componentDidMount () {
 	const items = [{key:1, text:1234},{key:2, text:2},{key:3, text:3},{key:4, text:4}];
-	window.addEventListener( 'load', this.scrollFunc(), false);
+  window.addEventListener( 'load', this.scrollFunc(), false);
+  console.log(this.textData[1].duration, 'duration')
 }
 
 componentWillUnmount() {
