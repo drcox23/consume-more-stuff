@@ -132,11 +132,11 @@ class EditDraftPostForm extends Component {
           {/* <div class="row"> */}
           {/* <div class="rowHeader"> */}
           <label className="edit-draft-post-label">Media Type:
-                <select onChange={this.handleChange} name="type_id">
-              {this.DefaultType()}
-              {this.SelectType()}
-            </select>
           </label>
+          <select onChange={this.handleChange} name="type_id">
+            {this.DefaultType()}
+            {this.SelectType()}
+          </select>
           {/* </div> */}
           {/* </div> */}
           <br />
@@ -148,7 +148,8 @@ class EditDraftPostForm extends Component {
           {/* </div> */}
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new request" onClick={this.addToPosts} />
+          <input id="user-edit-draft-post-btn" type="submit" value="Submit new request" onClick={this.addToPosts} />
+
           <input id="user-save-draft-btn" type="submit" value="Save draft for later" onClick={this.editToDraftPosts} />
           <br />
         </form>

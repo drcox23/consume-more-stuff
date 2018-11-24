@@ -32,3 +32,23 @@
   font-size: 0.8em;
   font-family: 'Montserrat', sans-serif;
 } 
+
+#user-edit-draft-post-btn, #user-save-draft-btn{
+  width: 300px;
+  margin: 40px 10px;
+  padding: 10px;
+  border: 1px solid rgb(163, 161, 161);
+  border-radius: 4px;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(124, 180, 124);
+} 
+
+#user-edit-draft-post-btn:hover, #user-save-draft-btn:hover{
+  color: black;
+  background-color: rgb(155, 192, 155);
+  font-weight: bold;
+}
