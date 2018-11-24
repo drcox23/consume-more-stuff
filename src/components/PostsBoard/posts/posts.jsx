@@ -9,7 +9,6 @@ const Posts = (props) => {
     } else {
         match = '/dashboard';
     }
-    console.log(props, "WUTS GOING ON");
 
     return props.items.map(post =>
         <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>

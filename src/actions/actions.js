@@ -17,7 +17,7 @@ export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
 export const ADD_USER = 'ADD_USER';
-export const GET_ALL_POSTS_AFTER_ARCHIVE = "GET_ALL_POSTS_AFTER_ARCHIVE";
+export const GET_AFTER_ARCHIVE = "GET_AFTER_ARCHIVE";
 export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT'
 
 // const auth = new Auth();
@@ -427,9 +427,10 @@ export const archive = (id) => {
       .delete(`/archive/post/${id}`)
       .then(() => {
         dispatch ({
-          type: GET_ALL_POSTS,
+          type: GET_AFTER_ARCHIVE,
           payload: id
         })
       })
+      .catch(err => console.log("err:", err));
   }
 }
