@@ -2,8 +2,8 @@ const bookshelf = require('./bookshelf')
 const Type = require('./Type.js');
 const Users = require('./Users.js');
 
-const draftPosts = bookshelf.Model.extend({
-  tableName: 'draft_posts',
+const archivedPosts = bookshelf.Model.extend({
+  tableName: 'archived_posts',
   type_id: function () {
     return this.belongsTo(Type, "type_id");
   },
@@ -14,4 +14,4 @@ const draftPosts = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = draftPosts;
+module.exports = archivedPosts;

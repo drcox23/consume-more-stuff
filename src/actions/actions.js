@@ -421,3 +421,16 @@ export const deleteFromDraft = (id, user_id) => {
       })
   }
 }
+
+export const archive = (id) => {
+  return dispatch => {
+    axios
+      .delete(`/archive/post/${id}`)
+      .then(response => {
+        dispatch ({
+          type: GET_ALL_POSTS,
+          payload: response.data
+        })
+      })
+  }
+}

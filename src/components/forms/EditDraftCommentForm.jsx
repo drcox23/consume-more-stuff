@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './EditDraftPostForm.css';
+import './EditDraftCommentForm.css';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
 //Actions
-import { addNewComment, addNewCommentDraft, getDraftCommentAndPostById} from '../../actions/actions.js'
+import { addNewComment, addNewCommentDraft, getDraftCommentAndPostById } from '../../actions/actions.js'
 
 class EditDraftCommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        user_id: "",
-        body: "",
-        post_id: ""
+      user_id: "",
+      body: "",
+      post_id: ""
     }
   }
 
@@ -27,13 +27,13 @@ class EditDraftCommentForm extends Component {
           post_id: nextProps.detailedDraftComments.post_id,
         }
       };
-   }
-   else return null;
+    }
+    else return null;
   }
 
   componentDidMount() {
-    const  { name } = jwtDecode(localStorage.getItem('id_token'))
-    const  draftId  = this.props.match.params.id
+    const { name } = jwtDecode(localStorage.getItem('id_token'))
+    const draftId = this.props.match.params.id
     const userId = this.props.user.id
 
     console.log("whats the id??", draftId)
@@ -61,7 +61,7 @@ class EditDraftCommentForm extends Component {
   submittingForm = () => {
     let form = {};
 
-    for(const key in this.state) {
+    for (const key in this.state) {
       if (this.state[key] === "") {
         form[key] = this.state.original[key]
       } else {
@@ -91,11 +91,11 @@ class EditDraftCommentForm extends Component {
   render() {
     console.log("what are the props", this.props)
     return (
-      <div id="container">
+      <div id="edit-draft-comment-container">
 
-        <div id="new-request-title">Edit Draft Comment</div>
+        <div id="edit-draft-comment-title">Edit Draft Comment</div>
 
-        {/* New Request form */}
+        {/* Edit Draft Comment form */}
         <form onSubmit={this.handleSubmit}>
 
          
@@ -109,9 +109,9 @@ class EditDraftCommentForm extends Component {
 
 
           <br />
-          <input id="user-newReq-btn" type="submit" value="Submit new comment" onClick={this.add}/>
-          <br /><br />
-          <input id="user-save-draft-btn" type="submit" value="Save comment for later" onClick={this.editToDraftPosts}/>
+          <input id="user-edit-draft-comment-btn" type="submit" value="Submit new comment" onClick={this.add} />
+
+          <input id="user-save-draft-comment-btn" type="submit" value="Save comment for later" onClick={this.editToDraftPosts} />
           <br />
         </form>
       </div>

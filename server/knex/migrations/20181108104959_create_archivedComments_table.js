@@ -4,10 +4,10 @@ exports.up = function (knex, Promise) {
     table.increments();
     table.string('body', 10000).notNullable();
     table.integer("post_id").unsigned().notNullable();
-    table.foreign('post_id').references('id').inTable('posts');
+    table.foreign('post_id').references('old_id').inTable('archived_posts');
     table.integer('user_id').unsigned().notNullable();
     table.foreign('user_id').references('id').inTable('users');
-    table.boolean('is_approved').notNullable();
+    table.boolean('is_approved');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

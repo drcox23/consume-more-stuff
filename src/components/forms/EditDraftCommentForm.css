@@ -1,0 +1,55 @@
+#edit-draft-comment-container {
+  width: 100%;
+  height: 700px;
+}
+
+#edit-draft-comment-title{
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 1.8em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.edit-draft-comment-label {
+  height: min-content;
+  padding: 10px;
+  margin: auto 0;
+  /* border: 1px solid red; */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  margin: 20px 0;
+}
+
+.user-edit-draft-comment-input{
+  width: 40%;
+  height: 100px;
+  /* height: min-content; */
+  padding: 10px;
+  margin: auto 10px;
+  border: 1px solid rgb(163, 161, 161);
+  border-radius: 5px;
+  font-size: 0.8em;
+  font-family: 'Montserrat', sans-serif;
+} 
+
+#user-edit-draft-comment-btn, #user-save-draft-comment-btn{
+  width: 300px;
+  margin: 40px 10px;
+  padding: 10px;
+  border: 1px solid rgb(163, 161, 161);
+  border-radius: 4px;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(124, 180, 124);
+} 
+
+#user-edit-draft-comment-btn:hover, #user-save-draft-comment-btn:hover{
+  color: black;
+  background-color: rgb(155, 192, 155);
+  font-weight: bold;
+}

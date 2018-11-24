@@ -7,7 +7,7 @@ exports.up = function (knex, Promise) {
     table.foreign('post_id').references('id').inTable('posts');
     table.integer('user_id').unsigned().notNullable();
     table.foreign('user_id').references('id').inTable('users');
-    table.boolean('is_approved').defaultTo("");
+    table.boolean('is_approved');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
