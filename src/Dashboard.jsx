@@ -66,7 +66,7 @@ class Dashboard extends Component {
 
           <Route exact path={`${match}/new-request`} component={NewRequest} />
 
-          <Route exact path={`${match}/post/:id`} component={PostDetail} />
+          <Route exact path={`${match}/post/:id`} render={(props) => <PostDetail {...props} auth={isAuthenticated} />} />
 
           <Route exact path={`${match}/my-comments`} render={() => <MyComments items={items} userComments={this.props.userComments}/>} />
           

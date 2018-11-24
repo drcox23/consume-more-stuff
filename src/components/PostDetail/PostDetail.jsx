@@ -28,14 +28,14 @@ class PostsDetail extends Component {
   render() {
     const { detailedItem, comments } = this.props;
     // console.log('post by id props', this.props)
-    const match = this.props.match.url
+    const match = this.props.match.url;
 
     return (
 
       <div className="detailedPage">
 
         <div className="postDetail">
-          <Post props={this.props} detailedItem={detailedItem} />
+          <Post props={this.props} detailedItem={detailedItem} auth={this.props.auth} />
         </div>
         {/* <div className="addCommentBtn">
           <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
