@@ -54,11 +54,14 @@ class NewRequest extends Component {
   }
 
   addToPosts = () => {
+    const newPostId = this.props.items.length + 1;
     this.props.dispatch(addNewPost(this.state));
+    this.props.history.push(`/dashboard/post/${newPostId}`)
   }
 
   addToDraftPosts = () => {
     this.props.dispatch(addNewDraftPost(this.state));
+    this.props.history.push(`/user/profile/mydraftposts`)
   }
 
   render() {
