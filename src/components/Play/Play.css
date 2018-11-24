@@ -66,8 +66,9 @@
 
   #svg {
     border: 100px solid white;
+    border-bottom: 150px solid white;
     position: relative;
-    bottom: 120px;
+    bottom: 85px;
   }
 
   #video {

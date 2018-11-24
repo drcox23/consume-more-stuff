@@ -8,21 +8,6 @@ import FrontpageHeader from '../Header/FrontpageHeader.jsx';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../2.png';
 
-const styles = {
-  width: 100,
-  height: 100,
-  lineHeight: "100px",
-  textAlign: "center",
-  borderRadius: 20,
-  backgroundColor: "#34ba9c",
-  color: "#fff",
-  left: "50%",
-  marginLeft: -50,
-  top: 100,
-  position: "fixed",
-  fontFamily: "Helvetica, Arial, sans-serif"
-};
-
 class Play extends Component {
   constructor(props) {
 		super(props);
@@ -51,7 +36,7 @@ textData = [
 	},
 	{
 		start: '.StickyText-trigger',
-		startOffset: 1200,
+		startOffset: 1400,
     duration: 620,
     properties: [
       {
@@ -70,7 +55,7 @@ textData = [
 	{
     start: '.StickyText-trigger',
 		duration: 7000,
-		startOffset: 1800,
+		startOffset: 2020,
     properties: [
       {
         startValue: -100,
@@ -117,7 +102,6 @@ scrollFunc = () => {
 componentDidMount () {
 	const items = [{key:1, text:1234},{key:2, text:2},{key:3, text:3},{key:4, text:4}];
   window.addEventListener( 'load', this.scrollFunc(), false);
-  console.log(this.textData[1].duration, 'duration')
 }
 
 componentWillUnmount() {
@@ -178,8 +162,9 @@ login() {
 		<div className="takeSpace2"><p className="homeLogin" id="loginBtn" onClick={this.login.bind(this)}>LOGIN  &nbsp; &nbsp;||&nbsp;  &nbsp; ABOUT</p></div></div>
 		<div style={{height: '0px', backgroundColor: 'white'}} className="StickyText-trigger" />
 	</div>
-	<div style={{height: '1100px', backgroundColor: 'black'}} />
-	<FrontpageHeader auth={this.props.auth} {...this.props} />
+	<div style={{height: '1300px', backgroundColor: 'black'}} />
+  {/* <div style={{height: '1100px', backgroundColor: 'white'}} /> */}
+	<FrontpageHeader style={{marginTop: '200px'}} auth={this.props.auth} {...this.props} />
 	<PostsBoard auth={this.props.auth} {...this.props} />
 </div>
     )
