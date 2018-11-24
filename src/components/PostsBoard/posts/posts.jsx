@@ -28,7 +28,7 @@ const Posts = (props) => {
                     <div className="viewPosting">view posting</div>
                 </Link>
                 {/* <div className="archiveBtn" onClick={() => console.log("test " + post.id)}>archive</div> */}
-                {(props.user.id === post.user_id) && <button className="archiveBtn" onClick={() => props.archive(post.id)}>archive</button>}
+                {props.auth.isAuthenticated() && (props.user.id === post.user_id) && <button className="archiveBtn" onClick={() => props.archive(post.id)}>archive</button>}
             </div>
         </div>
     )

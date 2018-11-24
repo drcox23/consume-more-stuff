@@ -76,7 +76,7 @@ export const makeMainRoutes = () => {
             <Route path="/callbacklogin" render={(props) => <CallbackLogin auth={auth} {...props} />} />
 
             <Route path="/post/:id" render={(props) => (!auth.isAuthenticated() ?
-              (<PostDetail auth={auth} {...props} />) : (<Redirect to="/dashboard" />))} />
+              (<PostDetail auth={auth.isAuthenticated} {...props} />) : (<Redirect to="/dashboard" />))} />
 
             <Route path="/callback" render={(props) => {
               handleAuthentication(props);
