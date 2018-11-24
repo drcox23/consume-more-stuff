@@ -368,13 +368,13 @@ app.delete("/archive/post/:id", (req, res) => {
     .then(() => {
       Posts.where({id}).destroy()
     })
-    .then(() => {
-      Posts
-        .fetchAll()
-        .then(results => {
-          res.json(results)
-        })
-    })
+    // .then(() => {
+    //   Posts
+    //     .fetchAll()
+    //     .then(results => {
+    //       res.json(results)
+    //     })
+    // })
     .catch(err => {
       console.log("ERROR - DELETE /archive/post :", err)
       res.json(err)

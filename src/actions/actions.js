@@ -15,7 +15,8 @@ export const GET_DRAFTPOSTS_BY_USER_ID = 'GET_DRAFTPOSTS_BY_USER_ID';
 export const GET_DRAFTCOMMENTS_BY_USER_ID = 'GET_DRAFTCOMMENTS_BY_USER_ID';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
-export const ADD_USER = 'ADD_USER'
+export const ADD_USER = 'ADD_USER';
+export const GET_ALL_POSTS_AFTER_ARCHIVE = "GET_ALL_POSTS_AFTER_ARCHIVE";
 
 // const auth = new Auth();
 
@@ -366,10 +367,10 @@ export const archive = (id) => {
   return dispatch => {
     axios
       .delete(`/archive/post/${id}`)
-      .then(response => {
+      .then(() => {
         dispatch ({
           type: GET_ALL_POSTS,
-          payload: response.data
+          payload: id
         })
       })
   }
