@@ -4,6 +4,7 @@ import './Play.css';
 import { render } from "react-dom";
 import Plx from "react-plx";
 import PostsBoard from '../PostsBoard/PostsBoard.jsx';
+import Header from '../Header/Header.jsx';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../2.png';
 
@@ -51,7 +52,7 @@ textData = [
 	{
 		start: '.StickyText-trigger',
 		startOffset: 1200,
-    duration: 600,
+    duration: 610,
     properties: [
       {
         startValue: 0,
@@ -175,8 +176,10 @@ login() {
 		</svg>
 		<div className="takeSpace2"><p className="homeLogin" id="loginBtn" onClick={this.login.bind(this)}>LOGIN  &nbsp; ||  &nbsp; ABOUT</p></div></div>
 		<div style={{height: '0px', backgroundColor: 'white'}} className="StickyText-trigger" />
-	</div> 
-	<div style={{height: '2000px', backgroundColor: 'white'}} />
+	</div>
+	<div style={{height: '1100px', backgroundColor: 'black'}} />
+	<Header auth={this.props.auth} {...this.props} />
+	<PostsBoard auth={this.props.auth} {...this.props} />
 </div>
     )
   }

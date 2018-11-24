@@ -46,7 +46,7 @@ class PostsBoard extends Component {
  
       
       {!this.checkForParentComponent() && <div id="postings-section">
-      <div style={{height: '1150px', backgroundColor: 'white'}} />
+      {/* <div style={{height: '1150px', backgroundColor: 'white'}} /> */}
       <div id="postings-section-title">All Postings</div>
       
       <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />

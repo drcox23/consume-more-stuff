@@ -11,7 +11,7 @@
 
 .takeSpace2 {
   background-color: white;
-  border: 100.1px solid white;
+  border: 101px solid white;
   width: 100%;
   height: 100%;
 }
@@ -127,7 +127,7 @@
   .homeLogin {
     position: relative;
     top: 53px;
-    right: 180px;
+    right: 183px;
     color: black !important;
   }
 
