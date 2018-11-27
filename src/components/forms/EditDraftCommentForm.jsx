@@ -18,18 +18,18 @@ class EditDraftCommentForm extends Component {
   }
 
   //This will set state from props everytime props changes
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.detailedDraftComments !== prevState.detailedDraftComments){
-      return {         
-        original: {
-          user_id: nextProps.user.id,
-          body: nextProps.detailedDraftComments.body,
-          post_id: nextProps.detailedDraftComments.post_id,
-        }
-      };
-    }
-    else return null;
-  }
+  // static getDerivedStateFromProps(nextProps, prevState){
+  //   if(nextProps.detailedDraftComments !== prevState.detailedDraftComments){
+  //     return {         
+  //       original: {
+  //         user_id: nextProps.user.id,
+  //         body: nextProps.detailedDraftComments.body,
+  //         post_id: nextProps.detailedDraftComments.post_id,
+  //       }
+  //     };
+  //   }
+  //   else return null;
+  // }
 
   componentDidMount() {
     const { name } = jwtDecode(localStorage.getItem('id_token'))
