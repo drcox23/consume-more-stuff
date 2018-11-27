@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
 //Actions
-import { addNewComment, addNewCommentDraft, getDraftCommentAndPostById } from '../../actions/actions.js'
+import { addNewComment, updateDraftComment, getDraftCommentAndPostById } from '../../actions/actions.js'
 
 class EditDraftCommentForm extends Component {
   constructor(props) {
@@ -44,6 +44,8 @@ class EditDraftCommentForm extends Component {
     )
   }
 
+
+
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -62,6 +64,7 @@ class EditDraftCommentForm extends Component {
     let form = {};
 
     for (const key in this.state) {
+      console.log("can i see the key", key)
       if (this.state[key] === "") {
         form[key] = this.state.original[key]
       } else {
@@ -75,16 +78,18 @@ class EditDraftCommentForm extends Component {
   }
 
   addComment = () => {
-    // this.props.dispatch(
-    //   addNewPostFromDraft(this.props.detailedDraftPost.id, this.submittingForm())
-    // );
+    this.props.dispatch(
+      addNewComment(this.props.detailedDraftComment.id, this.submittingForm())
+    );
   }
 
 
   editToDraftPosts = () => {
-    // this.props.dispatch(
-    //   editDraftPost(this.props.detailedDraftPost.id, this.submittingForm())
-    // );
+    console.log("HUHH", this.props);
+
+    this.props.dispatch(
+      updateDraftComment(this.props.user.id, this.props.detailedDraftComment.id, this.submittingForm())
+    );
   }
 
 
@@ -92,6 +97,12 @@ class EditDraftCommentForm extends Component {
     console.log("what are the props", this.props)
     return (
       <div id="edit-draft-comment-container">
+      <br></br>
+
+        <div id="associated-post-title">Original Post</div>
+        <div id="post-details-subject">{this.props.detailedItem.subject}</div>
+        <div id="post-details-body">{this.props.detailedItem.body}</div>
+        <div id="post-details-price">{this.props.detailedItem.price}</div>
 
         <div id="edit-draft-comment-title">Edit Draft Comment</div>
 
@@ -103,13 +114,13 @@ class EditDraftCommentForm extends Component {
           <div class="row">
             <div class="rowHeader">
               <label>Body:</label>
-              <input onChange={this.handleChange} className="user-input" type="text" name="body" defaultValue={this.props.detailedDraftComment.body} />
+              <input onChange={this.handleChange} className="user-edit-draft-comment-input" type="text" name="body" defaultValue={this.props.detailedDraftComment.body} />
             </div>
           </div>
 
 
           <br />
-          <input id="user-edit-draft-comment-btn" type="submit" value="Submit new comment" onClick={this.add} />
+          <input id="user-edit-draft-comment-btn" type="submit" value="Submit new comment" onClick={this.addComment} />
 
           <input id="user-save-draft-comment-btn" type="submit" value="Save comment for later" onClick={this.editToDraftPosts} />
           <br />

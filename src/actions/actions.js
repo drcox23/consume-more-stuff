@@ -158,6 +158,26 @@ export const getDraftCommentAndPostById = (id, draftId) => {
   }
 }
 
+// update draft comment from draft
+export const updateDraftComment = (id, draftId) => {
+  return dispatch => {
+    axios
+      .put(`/comment-draft/${id}/${draftId}`)
+      .then(response => {
+        dispatch({
+          type: ADD_COMMENT,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        })
+      })
+  }
+}
+
 // export const getAllUserProfileData = (id) => {
 //   return dispatch => [
 //     axios
