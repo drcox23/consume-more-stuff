@@ -37,30 +37,25 @@ class PostsBoard extends Component {
   }
 
   render() {
-    const auth = this.props.auth || this.props.props.auth;
+    console.log(this.checkForParentComponent(), 'check for parent')
+    const auth = this.props.auth;
     const { items, user } = this.props;
     const match = this.props.match.path;
-
+    console.log(this.props, 'what about poastboard?')
     return (
       <div className="postsBoard">
 
-      {this.checkForParentComponent() && <div id="postings-section-auth">
-      <div id="postings-section-title">All Postings</div>
-      
-      <Posts props={this.props} auth={auth} match={match} items={items} user={user} archive={this.archive} getPostandCommentsById={this.getPostandCommentsById} />
-      
-      </div>
-      }
- 
-      
-      {!this.checkForParentComponent() && <div id="postings-section">
-      <div id="postings-section-title">All Postings</div>
-      
-      <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
-      
-      </div>
-      }
-        
+        {!this.checkForParentComponent() && <div id="postings-section-auth">
+          <div id="postings-section-title">All Postings</div>
+          <Posts props={this.props} auth={auth} match={match} items={items} user={user} archive={this.archive} getPostandCommentsById={this.getPostandCommentsById} />
+        </div>
+        }
+
+        {this.checkForParentComponent() && <div id="postings-section">
+          <div id="postings-section-title">All Postings</div>
+          <Posts props={this.props} auth={auth} match={match} items={items} getPostandCommentsById={this.getPostandCommentsById} />
+        </div>
+        }
       </div>
     )
   }
