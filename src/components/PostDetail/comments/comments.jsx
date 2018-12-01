@@ -4,7 +4,7 @@ import './comments.css'
 import { userInfo } from 'os';
 
 const Comments = (props) => {
-    return props.comments.map(comment =>
+    return props.comments.filter(comment => comment.is_approved === true).map(comment =>
         <div key={comment.id} className="comment-container">
             <p className="comment-user-id">User: {comment.user_id}</p>
             <p className="comment-body">{comment.body}</p>

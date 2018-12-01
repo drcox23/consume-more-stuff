@@ -41,6 +41,10 @@ class PostsDetail extends Component {
           <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
         </div> */}
 
+        <div className="pendingComments">
+
+        </div>
+
 
         <div className="comments">
           <Comments comments={comments} />
