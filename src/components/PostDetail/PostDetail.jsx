@@ -56,6 +56,7 @@ class PostsDetail extends Component {
         <div className="pendingComments">
           <PendingApprovalComments comments={comments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
         </div>
+
         {/* <div className="pendingComments">
           <PendingApprovalComments comments={comments} auth={this.props.auth} />
         </div> */}
