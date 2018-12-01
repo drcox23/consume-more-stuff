@@ -9,7 +9,7 @@ import Comments from './comments/comments.jsx';
 import AddNewComment from '../forms/AddNewComment.jsx'
 
 //Actions
-import { getPostandCommentsById } from '../../actions/actions.js';
+import { getPostandCommentsById, approve, reject } from '../../actions/actions.js';
 
 
 class PostsDetail extends Component {
@@ -22,6 +22,18 @@ class PostsDetail extends Component {
 
     this.props.dispatch(
       getPostandCommentsById(id),
+    )
+  }
+
+  approveComment(id) {
+    this.props.dispatch(
+      approve(id)
+    )
+  }
+
+  rejectComment(id){
+    this.props.dispatch(
+      reject(id)
     )
   }
 

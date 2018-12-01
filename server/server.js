@@ -374,6 +374,48 @@ app.delete("/archive/post/:id", (req, res) => {
     })
 })
 
+app.put('/approve/:id', (req, res) => {
+  const { id } = req.params;
+  const approve = {
+    is_approved: true
+  }
+
+  Comments
+  .where({ id })
+  .fetch()
+  .then(results => {
+    return results.save(approve)
+  })
+  .then(results => {
+    Comments.where({ id }).fetch().then(results => res.json(results))
+  })
+  .catch(err => {
+    console.log("ERROR - Approve Comment:", err)
+    res.json(err)
+  })
+})
+
+app.put('/reject/:id', (req, res) => {
+  const { id } = req.params;
+  const reject = {
+    is_approved: false
+  }
+
+  Comments
+  .where({ id })
+  .fetch()
+  .then(results => {
+    return results.save(reject)
+  })
+  .then(results => {
+    res.json(200)
+  })
+  .catch(err => {
+    console.log("ERROR - Approve Comment:", err)
+    res.json(err)
+  })
+})
+
 // *********
 
 
