@@ -41,9 +41,9 @@ class PostsDetail extends Component {
           <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
         </div> */}
 
-        {/* <div className="pendingComments"> */}
-        {/* <PendingApprovalComments props={this.props} detailedItem={detailedItem} auth={this.props.auth} /> */}
-        {/* </div> */}
+        <div className="pendingComments">
+          <PendingApprovalComments comments={comments} />
+        </div>
 
 
         <div className="comments">
