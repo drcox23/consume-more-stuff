@@ -12,8 +12,8 @@ const PendingApprovalComments = (props) => {
       <p className="comment-body">{comment.body}</p>
       <p className="comment-created-timestamp">created:<br />{comment.created_at}</p>
       <p className="comment-updated-timestamp">last update:<br />{comment.created_at}</p>
-      <button>Approve Comment</button>
-      <button>Reject Comment</button>
+      <button onClick={props.approveComment(comment.id)}>Approve Comment</button>
+      <button onClick={props.rejectComment(comment.id)}>Reject Comment</button>
 
       {/* {props.auth() &&
         <div className="addCommentBtn">
