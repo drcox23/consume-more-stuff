@@ -1,27 +1,18 @@
 import React from 'react';
+
 import '../comments/comments.css'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { userInfo } from 'os';
 
-const  = (props) => {
-  const match = props.props.match.url;
-  return (
-    <div key={props.detailedItem.id} className="specificPost">
-      <div className="subject-container">{props.detailedItem.subject}</div>
-      <div className="body-container">{props.detailedItem.body}</div>
-      <div className="price-container">Price: ${`${props.detailedItem.price}`}</div>
-      <div className="createdAt-container">{`${props.detailedItem.created_at}`}</div>
-
-
-      {props.auth() && <Link to={`${match}/add-comment`}>
-        <div className="addCommentBtn">
-          <i class="fas fa-plus"></i> <div className="addComment-text">Add Comment</div>
-        </div>
-      </Link>}
-
-
-
+const PendingApprovalComments = (props) => {
+  console.log("PROPS????:", props);
+  return props.comments.map(comment =>
+    <div key={comment.id} className="comment-container">
+      <p className="comment-user-id">User: {comment.user_id}</p>
+      <p className="comment-body">{comment.body}</p>
+      <p className="comment-created-timestamp">created:<br />{comment.created_at}</p>
+      <p className="comment-updated-timestamp">last update:<br />{comment.created_at}</p>
     </div>
   )
 }
 
-export default Post
+export default PendingApprovalComments
