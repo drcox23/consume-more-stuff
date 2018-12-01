@@ -36,7 +36,7 @@ const postReducer = (state = {
     case GET_COMMENTS_BY_USER_ID:
       return { ...state, userComments: action.payload }
     case GET_USER_BY_ID:
-      return { ...state, user: action.payload}
+      return { ...state, user: action.payload }
     case GET_DRAFTPOSTS_BY_USER_ID:
       return { ...state, draftPosts: action.payload }
     case GET_DRAFTPOST_BY_POST_ID:
@@ -44,30 +44,30 @@ const postReducer = (state = {
     case GET_DRAFTCOMMENTS_BY_USER_ID:
       return { ...state, draftComments: action.payload }
     case GET_ALL_TYPES:
-      return { ...state, type: action.payload}
+      return { ...state, type: action.payload }
     case ADD_NEW_POST:
       console.log("REDUCERS - ADD_NEW_POST", action.payload)
       return { ...state, form: action.payload }
     case ADD_MORE_CREDIT:
-      return { ...state, user: action.payload}
+      return { ...state, user: action.payload }
     case ADD_NEW_DRAFT_POST:
       return { ...state, draftPosts: action.payload }
     case ADD_USER:
-      return { ...state, user: action.payload}
+      return { ...state, user: action.payload }
     case ADD_COMMENT:
-      return { ...state, form: action.payload}
+      return { ...state, form: action.payload }
     case GET_AFTER_ARCHIVE:
       let newItems = state.items.filter(element => element.id !== action.payload)
       return { ...state, items: newItems }
     case ADD_DRAFT_COMMENT:
-      return { ...state, form: action.payload}
+      return { ...state, form: action.payload }
     case AFTER_APPROVE:
       let newComments = state.comments.push(action.payload.data)
-      let waitNewComments = state.waitComments.filter(element => element.id !==  action.payload.id)
-      return { ...state, comments: newComments, waitComments: waitNewComments}
+      let approveNewComments = state.waitComments.filter(element => element.id !== action.payload.id)
+      return { ...state, comments: newComments, waitComments: approveNewComments }
     case AFTER_REJECT:
-      let waitNewComments = state.waitComments.filter(element => element.id !==  action.payload)
-      return { ...state, waitComments: waitNewComments}
+      let rejectNewComments = state.waitComments.filter(element => element.id !== action.payload)
+      return { ...state, waitComments: rejectNewComments }
     default:
       return state
   }

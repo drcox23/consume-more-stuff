@@ -33,9 +33,9 @@ export const getAllPosts = () => {
           type: GET_ALL_POSTS,
           payload: response.data
         })
-        .then(response => {
-          // console.log('check JWT', auth.getGreeting())
-        })
+          .then(response => {
+            // console.log('check JWT', auth.getGreeting())
+          })
       })
       .catch(err => {
         dispatch({
@@ -117,10 +117,10 @@ export const getPostandCommentsById = (id) => {
         return axios.get(`/comments/${id}`)
       })
       .then(response => {
-          dispatch({
-            type: GET_COMMENTS_BY_POST_ID,
-            payload: response.data
-          })
+        dispatch({
+          type: GET_COMMENTS_BY_POST_ID,
+          payload: response.data
+        })
       })
       .catch(err => {
         dispatch({
@@ -144,10 +144,10 @@ export const getDraftCommentAndPostById = (id, draftId) => {
         return axios.get(`/comments/${id}`)
       })
       .then(response => {
-          dispatch({
-            type: GET_COMMENTS_BY_POST_ID,
-            payload: response.data
-          })
+        dispatch({
+          type: GET_COMMENTS_BY_POST_ID,
+          payload: response.data
+        })
       })
       .catch(err => {
         dispatch({
@@ -170,31 +170,31 @@ export const getTypeData = (email) => {
 
   return dispatch => {
     axios
-    .get(`/type`)
-    .then(response => {
-      dispatch({
-        type: GET_ALL_TYPES,
-        payload: response.data
+      .get(`/type`)
+      .then(response => {
+        dispatch({
+          type: GET_ALL_TYPES,
+          payload: response.data
+        })
+        return axios.get(`/user-profile/get/${email}`)
       })
-      return axios.get(`/user-profile/get/${email}`)
-    })
-    .then(response => {
-      id = response.data.id;
-      console.log("Id:", id)
-      return axios.get(`/user-profile/${id}`)
-    })
-    .then(response => {
-      dispatch({
-        type: GET_USER_BY_ID,
-        payload: response.data
+      .then(response => {
+        id = response.data.id;
+        console.log("Id:", id)
+        return axios.get(`/user-profile/${id}`)
       })
-    })
-    .catch(err => {
-      dispatch({
-        type: "DISPLAY_ERROR_NOTIFICATION",
-        err
+      .then(response => {
+        dispatch({
+          type: GET_USER_BY_ID,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
       });
-    });
   }
 }
 
@@ -383,21 +383,21 @@ export const editDraftPost = (id, body) => {
 export const addUserToDB = (info) => {
   return dispatch => {
     let email = info.name;
-    
+
     axios
       .get(`/user-profile/get/${email}`)
       .then(response => {
         console.log("can i see the response", response)
-        if(response.data === null){
+        if (response.data === null) {
           axios.post(`/user-profile/email/${email}`, info)
-          .then(response => {
-            console.log("response.data:", response.data)
-            dispatch({
-              type: ADD_USER,
-              payload: response.data
+            .then(response => {
+              console.log("response.data:", response.data)
+              dispatch({
+                type: ADD_USER,
+                payload: response.data
+              })
             })
-          })
-        }else{
+        } else {
           console.log("user already exists")
         }
       })
@@ -428,7 +428,7 @@ export const archive = (id) => {
     axios
       .delete(`/archive/post/${id}`)
       .then(() => {
-        dispatch ({
+        dispatch({
           type: GET_AFTER_ARCHIVE,
           payload: id
         })
@@ -441,8 +441,8 @@ export const approve = (id) => {
   return dispatch => {
     axios
       .put(`/approve/${id}`)
-      .then(() => {
-        dispatch ({
+      .then((response) => {
+        dispatch({
           type: AFTER_APPROVE,
           payload: {
             data: response.data,
@@ -450,7 +450,7 @@ export const approve = (id) => {
           }
         })
       })
-    .catch(err => console.log("err:", err));
+      .catch(err => console.log("err:", err));
   }
 }
 
@@ -459,11 +459,11 @@ export const reject = (id) => {
     axios
       .put(`/reject/${id}`)
       .then(() => {
-        dispatch ({
+        dispatch({
           type: AFTER_REJECT,
           payload: id
         })
       })
-    .catch(err => console.log("err:", err));
+      .catch(err => console.log("err:", err));
   }
 }
