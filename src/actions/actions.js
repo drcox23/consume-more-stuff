@@ -18,7 +18,9 @@ export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_DRAFTPOST_BY_POST_ID = 'GET_DRAFTPOST_BY_POST_ID';
 export const ADD_USER = 'ADD_USER';
 export const GET_AFTER_ARCHIVE = "GET_AFTER_ARCHIVE";
-export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT'
+export const ADD_DRAFT_COMMENT = 'ADD_DRAFT_COMMENT';
+export const AFTER_APPROVE = "AFTER_APPROVE";
+export const AFTER_REJECT = "AFTER_REJECT";
 
 // const auth = new Auth();
 
@@ -432,5 +434,36 @@ export const archive = (id) => {
         })
       })
       .catch(err => console.log("err:", err));
+  }
+}
+
+export const approve = (id) => {
+  return dispatch => {
+    axios
+      .put(`/approve/${id}`)
+      .then(() => {
+        dispatch ({
+          type: AFTER_APPROVE,
+          payload: {
+            data: response.data,
+            id: id
+          }
+        })
+      })
+    .catch(err => console.log("err:", err));
+  }
+}
+
+export const reject = (id) => {
+  return dispatch => {
+    axios
+      .put(`/reject/${id}`)
+      .then(() => {
+        dispatch ({
+          type: AFTER_REJECT,
+          payload: id
+        })
+      })
+    .catch(err => console.log("err:", err));
   }
 }

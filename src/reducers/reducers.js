@@ -14,6 +14,8 @@ import {
   GET_AFTER_ARCHIVE,
   GET_COMMENTS_BY_USER_ID,
   ADD_DRAFT_COMMENT,
+  AFTER_APPROVE,
+  AFTER_REJECT,
   // GET_ALL_APPROVED_COMMENTS,
   // GET_PENDING_COMMENTS,
   // ADD_POST,
@@ -22,7 +24,7 @@ import {
   from '../actions/actions.js'
 
 const postReducer = (state = {
-  items: [], detailedItem: {}, comments: [], user: {}, draftPosts: [], draftComments: [], form: {}, type: [], detailedDraftPost: {}, detailedDraftComment: {}, userComments: []
+  items: [], detailedItem: {}, comments: [], waitComments: [], user: {}, draftPosts: [], draftComments: [], form: {}, type: [], detailedDraftPost: {}, detailedDraftComment: {}, userComments: []
 }, action) => {
   switch (action.type) {
     case GET_ALL_POSTS:
@@ -58,7 +60,14 @@ const postReducer = (state = {
       let newItems = state.items.filter(element => element.id !== action.payload)
       return { ...state, items: newItems }
     case ADD_DRAFT_COMMENT:
-      return { ...state, form: action.payload} 
+      return { ...state, form: action.payload}
+    case AFTER_APPROVE:
+      let newComments = state.comments.push(action.payload.data)
+      let waitNewComments = state.waitComments.filter(element => element.id !==  action.payload.id)
+      return { ...state, comments: newComments, waitComments: waitNewComments}
+    case AFTER_REJECT:
+      let waitNewComments = state.waitComments.filter(element => element.id !==  action.payload)
+      return { ...state, waitComments: waitNewComments}
     default:
       return state
   }
