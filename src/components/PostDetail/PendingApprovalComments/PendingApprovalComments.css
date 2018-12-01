@@ -2,3 +2,41 @@
   font-style: italic;
   color: red;
 }
+
+.approveCommentBtn, .rejectCommentBtn{
+  flex: 1 1 auto;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  /* font-size: 1.2em; */
+  border: 1px solid rgb(198, 219, 198);
+  border-radius: 50px;
+  display: inline-block;
+  padding: 16px;
+  width: 150px;
+  /* height: 25px; */
+  text-align: center;
+  /* margin: 0 auto; */
+  background-color: rgb(127, 187, 127);
+  font-weight: bold;
+  float: right;
+}
+
+.approveCommentBtn:hover, .rejectCommentBtn:hover{
+  border: 1px solid  black;
+  background-color: rgb(83, 122, 83);
+}
+
+.approveComment-text, .rejectComment-text{
+  display: none;
+  font-size: 0.8em;
+}
+
+.approveCommentBtn:hover .approveComment-text {
+  display: inline-block;
+  /* width: 200px; */
+}
+
+.rejectCommentBtn:hover .rejectComment-text {
+  display: inline-block;
+  /* width: 200px; */
+}

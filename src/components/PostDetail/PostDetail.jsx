@@ -25,17 +25,17 @@ class PostsDetail extends Component {
     )
   }
 
-  // approveComment(id) {
-  //   this.props.dispatch(
-  //     approve(id),
-  //   )
-  // }
+  approveComment = (id) => {
+    this.props.dispatch(
+      approve(id),
+    )
+  }
 
-  // rejectComment(id){
-  //   this.props.dispatch(
-  //     reject(id),
-  //   )
-  // }
+  rejectComment = (id) => {
+    this.props.dispatch(
+      reject(id),
+    )
+  }
 
   render() {
     const { detailedItem, comments } = this.props;
@@ -53,12 +53,12 @@ class PostsDetail extends Component {
           <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
         </div> */}
 
-        {/* <div className="pendingComments">
-          <PendingApprovalComments comments={comments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
-        </div> */}
         <div className="pendingComments">
-          <PendingApprovalComments comments={comments} auth={this.props.auth} />
+          <PendingApprovalComments comments={comments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
         </div>
+        {/* <div className="pendingComments">
+          <PendingApprovalComments comments={comments} auth={this.props.auth} />
+        </div> */}
 
 
         <div className="comments">
