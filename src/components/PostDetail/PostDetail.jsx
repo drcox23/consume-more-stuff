@@ -27,13 +27,13 @@ class PostsDetail extends Component {
 
   approveComment(id) {
     this.props.dispatch(
-      approve(id)
+      approve(id),
     )
   }
 
   rejectComment(id){
     this.props.dispatch(
-      reject(id)
+      reject(id),
     )
   }
 
