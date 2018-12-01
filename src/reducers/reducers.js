@@ -11,6 +11,7 @@ import {
   ADD_NEW_DRAFT_POST,
   GET_DRAFTPOST_BY_POST_ID,
   ADD_USER,
+  GET_AFTER_ARCHIVE,
   GET_COMMENTS_BY_USER_ID,
   ADD_DRAFT_COMMENT,
   // GET_ALL_APPROVED_COMMENTS,
@@ -53,6 +54,9 @@ const postReducer = (state = {
       return { ...state, user: action.payload}
     case ADD_COMMENT:
       return { ...state, form: action.payload}
+    case GET_AFTER_ARCHIVE:
+      let newItems = state.items.filter(element => element.id !== action.payload)
+      return { ...state, items: newItems }
     case ADD_DRAFT_COMMENT:
       return { ...state, form: action.payload} 
     default:
