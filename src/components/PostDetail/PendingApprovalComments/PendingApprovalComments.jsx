@@ -14,6 +14,17 @@ const PendingApprovalComments = (props) => {
       <p className="comment-updated-timestamp">last update:<br />{comment.created_at}</p>
       <button>Approve Comment</button>
       <button>Reject Comment</button>
+
+      {/* {props.auth() &&
+        <div className="addCommentBtn">
+          <i class="fas fa-check"></i> <div className="addComment-text">Approve Comment</div>
+        </div>
+      }
+      {props.auth() &&
+        <div className="addCommentBtn">
+          <i class="fas fa-times"></i> <div className="addComment-text">Reject Comment</div>
+        </div>
+      } */}
     </div>
   )
 }
