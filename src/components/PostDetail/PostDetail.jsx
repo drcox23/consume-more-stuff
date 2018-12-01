@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Post from './post/post.jsx';
 import Comments from './comments/comments.jsx';
 import AddNewComment from '../forms/AddNewComment.jsx'
-
+import PendingApprovalComments from '../PostDetail/PendingApprovalComments/PendingApprovalComments.jsx';
 //Actions
 import { getPostandCommentsById, approve, reject } from '../../actions/actions.js';
 
@@ -54,7 +54,7 @@ class PostsDetail extends Component {
         </div> */}
 
         <div className="pendingComments">
-
+          <PendingApprovalComments comments={comments} />
         </div>
 
 
