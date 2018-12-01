@@ -11,7 +11,7 @@ const LinkButton = (props) => {
   }
 
 export const MyComments = (props) => {
-    return (props.userComments.map(comment =>
+    return (props.userComments.filter(comment => comment.is_approved === true).map(comment =>
         {let selectedComment = comment.post_id;
         return (<div key={comment.id} className="comment-container">
             <div className="post-id">Post: {props.items.map(post => 
