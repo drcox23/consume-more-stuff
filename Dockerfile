@@ -11,7 +11,7 @@ WORKDIR ${app_directory}
 COPY package.json .
 
 # Install node module dependencies
-RUN npm install
+RUN yarn install
 
 # Add the rest of the project files(most builds will start from here based on cache)
 COPY . .

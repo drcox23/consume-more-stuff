@@ -5,7 +5,7 @@ import { userInfo } from 'os';
 
 const PendingApprovalComments = (props) => {
   console.log("PROPS????:", props);
-  return props.comments.filter(comment => comment.is_approved === null).map(comment =>
+  return props.comments.map(comment =>
     <div key={comment.id} className="comment-container">
 
       {/* <p className="comments-need-approval">Pending Comment Approval</p> */}

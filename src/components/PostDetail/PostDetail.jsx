@@ -38,9 +38,12 @@ class PostsDetail extends Component {
   }
 
   render() {
-    const { detailedItem, comments } = this.props;
+    let { detailedItem, comments:orgComments } = this.props;
     // console.log('post by id props', this.props)
     const match = this.props.match.url;
+    
+    const waitComments = orgComments.filter(comment => comment.is_approved === null);
+    const showComments = orgComments.filter(comment => comment.is_approved === true);
 
     return (
 
@@ -54,7 +57,7 @@ class PostsDetail extends Component {
         </div> */}
 
         <div className="pendingComments">
-          <PendingApprovalComments comments={comments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
+          <PendingApprovalComments comments={waitComments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
         </div>
         {/* <div className="pendingComments">
           <PendingApprovalComments comments={comments} auth={this.props.auth} />
@@ -62,7 +65,7 @@ class PostsDetail extends Component {
 
 
         <div className="comments">
-          <Comments comments={comments} />
+          <Comments comments={showComments} />
         </div>
 
 

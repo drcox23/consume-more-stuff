@@ -24,7 +24,7 @@ import {
   from '../actions/actions.js'
 
 const postReducer = (state = {
-  items: [], detailedItem: {}, comments: [], waitComments: [], user: {}, draftPosts: [], draftComments: [], form: {}, type: [], detailedDraftPost: {}, detailedDraftComment: {}, userComments: []
+  items: [], detailedItem: {}, comments: [], user: {}, draftPosts: [], draftComments: [], form: {}, type: [], detailedDraftPost: {}, detailedDraftComment: {}, userComments: []
 }, action) => {
   switch (action.type) {
     case GET_ALL_POSTS:
@@ -62,12 +62,13 @@ const postReducer = (state = {
     case ADD_DRAFT_COMMENT:
       return { ...state, form: action.payload }
     case AFTER_APPROVE:
-      let newComments = state.comments.push(action.payload.data)
-      let approveNewComments = state.waitComments.filter(element => element.id !== action.payload.id)
-      return { ...state, comments: newComments, waitComments: approveNewComments }
+      let approveNewComments = (state.comments.filter(element => element.id !== action.payload.id))
+      approveNewComments.push(action.payload.data)
+      return { ...state, comments: approveNewComments }
     case AFTER_REJECT:
-      let rejectNewComments = state.waitComments.filter(element => element.id !== action.payload)
-      return { ...state, waitComments: rejectNewComments }
+      console.log("I HERE")
+      let rejectNewComments = state.comments.filter(element => element.id !== action.payload)
+      return { ...state, comments: rejectNewComments }
     default:
       return state
   }
