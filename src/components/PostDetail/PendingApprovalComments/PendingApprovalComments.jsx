@@ -6,7 +6,7 @@ import { userInfo } from 'os';
 const PendingApprovalComments = (props) => {
   console.log("PROPS????:", props);
   return props.comments.map(comment =>
-    <div key={comment.id} className="comment-container">
+    <div key={comment.id} className="PendingApprovalComments-container">
 
       {/* <p className="comments-need-approval">Pending Comment Approval</p> */}
 
@@ -17,8 +17,10 @@ const PendingApprovalComments = (props) => {
       <p className="comment-created-timestamp">created:<br />{comment.created_at}</p>
       <p className="comment-updated-timestamp">last update:<br />{comment.created_at}</p>
 
-      <button onClick={(() => props.approveComment(comment.id))}>Approve Comment</button>
-      <button onClick={(() => props.rejectComment(comment.id))}>Reject Comment</button>
+      {props.auth() && <button className="rejectCommentBtn" onClick={(() => props.rejectComment(comment.id))}><i class="fas fa-times"></i> Reject Comment</button>}
+
+      {props.auth() && <button className="approveCommentBtn" onClick={(() => props.approveComment(comment.id))}><i class="fas fa-check"></i> Approve Comment</button>}
+
 
       {/* <button>Approve Comment</button>
       <button>Reject Comment</button> */}

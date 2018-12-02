@@ -10,6 +10,14 @@
   /* height: 100%; */
 }
 
+.pendingComments{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 100px 0px 0 50px;
+  background: rgb(235, 235, 235);
+}
+
 /* .addCommentBtn{
   flex: 1 1 auto;
   font-family: 'Montserrat', sans-serif;
