@@ -11,6 +11,7 @@ class EditDraftCommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      draft_id:"",
       user_id: "",
       body: "",
       post_id: ""
@@ -60,22 +61,22 @@ class EditDraftCommentForm extends Component {
   }
 
   //Submit an object called form and iterate over this.state with for...in to check for which data to use (org data vs newly changed data)
-  submittingForm = () => {
-    let form = {};
+  // submittingForm = () => {
+  //   let form = {};
 
-    for (const key in this.state) {
-      console.log("can i see the key", key)
-      if (this.state[key] === "") {
-        form[key] = this.state.original[key]
-      } else {
-        form[key] = this.state[key]
-      }
-    }
-    //Because form was created from an iteration of this.state, form now also includes original. Delete original to dispatch a clean form to axios
-    delete form.original;
+  //   for (const key in this.state) {
+  //     console.log("can i see the key", key)
+  //     if (this.state[key] === "") {
+  //       form[key] = this.state.original[key]
+  //     } else {
+  //       form[key] = this.state[key]
+  //     }
+  //   }
+  //   //Because form was created from an iteration of this.state, form now also includes original. Delete original to dispatch a clean form to axios
+  //   delete form.original;
 
-    return form;
-  }
+  //   return form;
+  // }
 
   addComment = () => {
     this.props.dispatch(
@@ -85,10 +86,10 @@ class EditDraftCommentForm extends Component {
 
 
   editToDraftPosts = () => {
-    console.log("HUHH", this.props);
+    // console.log("HUHH", this.props);
 
     this.props.dispatch(
-      updateDraftComment(this.props.user.id, this.props.detailedDraftComment.id, this.submittingForm())
+      updateDraftComment(this.props.user.id, this.props.detailedDraftComment.id)
     );
   }
 
