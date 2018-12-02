@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './PostDetail.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 //Components
 import Post from './post/post.jsx';
@@ -19,9 +20,10 @@ class PostsDetail extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params
+    const { name } = jwtDecode(localStorage.getItem('id_token'))
 
     this.props.dispatch(
-      getPostandCommentsById(id),
+      getPostandCommentsById(id, name),
     )
   }
 
@@ -45,6 +47,8 @@ class PostsDetail extends Component {
     const waitComments = orgComments.filter(comment => comment.is_approved === null);
     const showComments = orgComments.filter(comment => comment.is_approved === true);
 
+    console.log("PROPOS:", this.props)
+
     return (
 
       <div className="detailedPage">
@@ -56,7 +60,7 @@ class PostsDetail extends Component {
           <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
         </div> */}
 
-        {this.props.auth() && <div className="pendingComments">
+        {this.props.auth() && this.props.detailedItem.user_id === this.props.user.id && <div className="pendingComments">
           <PendingApprovalComments comments={waitComments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
         </div>}
 
@@ -80,7 +84,8 @@ const mapStateToProps = state => {
 
   return {
     detailedItem: state.detailedItem,
-    comments: state.comments
+    comments: state.comments,
+    user: state.user
   }
 }
 

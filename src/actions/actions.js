@@ -105,7 +105,9 @@ export const getAll = (name) => {
   }
 }
 
-export const getPostandCommentsById = (id) => {
+export const getPostandCommentsById = (id, name) => {
+  let checkId = ""
+  
   return dispatch => {
     axios
       .get(`/post/${id}`)
@@ -119,6 +121,17 @@ export const getPostandCommentsById = (id) => {
       .then(response => {
         dispatch({
           type: GET_COMMENTS_BY_POST_ID,
+          payload: response.data
+        })
+        return axios.get(`/user-profile/get/${name}`)
+      })
+      .then(response => {
+        checkId = response.data.id;
+        return axios.get(`/user-profile/${checkId}`)
+      })
+      .then(response => {
+        dispatch({
+          type: GET_USER_BY_ID,
           payload: response.data
         })
       })
