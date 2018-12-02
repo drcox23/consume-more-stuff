@@ -105,7 +105,7 @@ export const getAll = (name) => {
   }
 }
 
-export const getPostandCommentsById = (id, name) => {
+export const getPostandCommentsandUserById = (id, name) => {
   let checkId = ""
   
   return dispatch => {
@@ -132,6 +132,32 @@ export const getPostandCommentsById = (id, name) => {
       .then(response => {
         dispatch({
           type: GET_USER_BY_ID,
+          payload: response.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "DISPLAY_ERROR_NOTIFICATION",
+          err
+        });
+      });
+  }
+}
+
+export const getPostandCommentsById = (id) => {
+  return dispatch => {
+    axios
+      .get(`/post/${id}`)
+      .then(response => {
+        dispatch({
+          type: GET_POST_BY_ID,
+          payload: response.data
+        })
+        return axios.get(`/comments/${id}`)
+      })
+      .then(response => {
+        dispatch({
+          type: GET_COMMENTS_BY_POST_ID,
           payload: response.data
         })
       })

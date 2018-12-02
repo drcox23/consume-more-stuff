@@ -10,7 +10,7 @@ import Comments from './comments/comments.jsx';
 import AddNewComment from '../forms/AddNewComment.jsx'
 import PendingApprovalComments from '../PostDetail/PendingApprovalComments/PendingApprovalComments.jsx';
 //Actions
-import { getPostandCommentsById, approve, reject } from '../../actions/actions.js';
+import { getPostandCommentsandUserById, getPostandCommentsById, approve, reject } from '../../actions/actions.js';
 
 
 class PostsDetail extends Component {
@@ -20,11 +20,18 @@ class PostsDetail extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params
-    const { name } = jwtDecode(localStorage.getItem('id_token'))
 
-    this.props.dispatch(
-      getPostandCommentsById(id, name),
-    )
+    if (this.props.auth()){
+      const { name } = jwtDecode(localStorage.getItem('id_token'))
+
+      this.props.dispatch(
+        getPostandCommentsandUserById(id, name),
+      )
+    } else {
+      this.props.dispatch(
+        getPostandCommentsById(id),
+      )
+    }
   }
 
   approveComment = (id) => {
@@ -75,7 +82,6 @@ class PostsDetail extends Component {
 
 
       </div>
-
     )
   }
 }
