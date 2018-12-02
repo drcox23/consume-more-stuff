@@ -56,9 +56,9 @@ class PostsDetail extends Component {
           <Link to={`${match}/add-comment`}><i class="fas fa-plus"></i> Add Comment</Link>
         </div> */}
 
-        <div className="pendingComments">
+        {this.props.auth() && <div className="pendingComments">
           <PendingApprovalComments comments={waitComments} auth={this.props.auth} approveComment={this.approveComment} rejectComment={this.rejectComment} />
-        </div>
+        </div>}
 
         {/* <div className="pendingComments">
           <PendingApprovalComments comments={comments} auth={this.props.auth} />
