@@ -11,7 +11,7 @@ const Posts = (props) => {
     }
     console.log(props, 'what is coming through at this point');
 
-    return props.items.map(post =>
+    return props.items.slice(0).reverse().map(post =>
         <div key={post.id} className="posting" onClick={() => props.getPostandCommentsById(post.id)}>
             <div className="single-posting-container">
                 <div className="userIcon">
