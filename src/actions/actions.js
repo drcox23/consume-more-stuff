@@ -506,3 +506,4 @@ export const reject = (id) => {
       .catch(err => console.log("err:", err));
   }
 }
+
