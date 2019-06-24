@@ -1,28 +1,28 @@
 version: '3'
 services:
   consume-more-stuff:
-    image: maymc/consume-more-stuff:${IMAGE_VERSION}-local
+    image: drcox23/consume-more-stuff:${IMAGE_VERSION}-local
     depends_on:
       - pg
       - redis
-    command: ["npm", "run", "start"]
+    command: ['npm', 'run', 'start']
     container_name: consume-more-stuff
     volumes:
-      - ".:/app/:rw"
+      - '.:/app/:rw'
     env_file: .env
     environment:
       NODE_ENV: development
     ports:
-      - "${EXPRESS_HOST_PORT}:${EXPRESS_CONTAINER_PORT}"
-      - "3000:3000"
+      - '${EXPRESS_HOST_PORT}:${EXPRESS_CONTAINER_PORT}'
+      - '3000:3000'
     networks:
       - my-app-network
   pg:
     image: postgres:10.0-alpine
     env_file: .env
-    volumes: 
+    volumes:
       - pg-data-volume:/var/lib/postgresql/data
-    ports: 
+    ports:
       - '${POSTGRES_HOST_PORT}:${POSTGRES_CONTAINER_PORT}'
     networks:
       - my-app-network
@@ -36,7 +36,7 @@ services:
     networks:
       - my-app-network
 
-volumes: 
+volumes:
   pg-data-volume:
   redis-data-volume:
 networks:
